@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<body>
+    <xmlTag tagName="HlMerchantId"></xmlTag>
+    <xmlTag tagName="RespInfo">
+        <xmlTag tagName="ResultStatus"></xmlTag>
+        <xmlTag tagName="ResultCode"></xmlTag>
+        <xmlTag tagName="ResultMsg"></xmlTag>
+    </xmlTag>
+</body>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!--5.2.4	微信子商户支付配置接口	<ant.mybank.merchantprod.merchant.addMerchantConfig> -->
+<body>
+    <xmlTag tagName="OutTradeNo"></xmlTag>
+    <xmlTag tagName="IsvOrgId"></xmlTag>
+    <xmlTag tagName="HlMerchantId"></xmlTag>
+    <xmlTag tagName="PaymentAppId"></xmlTag>
+    <xmlTag tagName="Path"></xmlTag>
+    <xmlTag tagName="SubscribeAppid"></xmlTag>
+    <xmlTag tagName="SubscribeAppidType"></xmlTag>
+</body>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!--4.2.6	商户开启接口<ant.mybank.merchantprod.merchant.unfreeze> -->
+<body>
+  <xmlTag tagName="IsvOrgId"></xmlTag>
+  <xmlTag tagName="HlMerchantId"></xmlTag>
+  <xmlTag tagName="UnfreezeReason"></xmlTag>
+  <xmlTag tagName="OutTradeNo"></xmlTag>
+</body>

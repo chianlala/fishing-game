@@ -1,0 +1,27 @@
+spring:
+  mysql:
+    data: #主数据库配置
+      jdbc-url: jdbc:mysql://${spring.redis.host}:3306/app_data?useSSL=false&allowPublicKeyRetrieval=true
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    log: #日志数据库配置
+      jdbc-url: jdbc:mysql://${spring.redis.host}:3306/app_log?useSSL=false&allowPublicKeyRetrieval=true
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    database: 10 #数据库序号
+    host: localhost #数据库服务器地址
+    port: 6379 #数据库服务器端口
+    timeout: 4096 #连接超时时间
+    jedis:
+      pool:
+        max-active: 8 #连接池最大连接数
+        max-wait: -1 #最大阻塞时间 -1:无限制
+        max-idle: 2 #最大空闲连接数
+        min-idle: 1 #最小空闲连接数
+    ##Redisson配置
+    redisson:
+      config-file:
+        yaml: classpath:redisson.yml

@@ -1,0 +1,72 @@
+<% layout('/layouts/default.html', {title: '全服资产记录', libs: ['dataGrid']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <div class="box-header with-border">
+            <div class="box-title">
+                <i class="fa fa-reorder"></i> <span data-i18n="全服资产记录.全服资产记录">全服资产记录</span>
+            </div>
+            <div class="box-tools pull-right">
+                <a href="#" class="btn btn-default" id="btnSearch" data-i18n="查询">
+                    <i class="fa fa-filter"></i> ${text('查询')}
+                </a>
+            </div>
+        </div>
+        <div class="box-body">
+            <#form:form id="searchForm" model="${changeAllVO}" action="${ctx}/osee/money/changeAll/list" method="post" class="form-inline"
+            data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-sm" data-i18n="查询">${text('查询')}</button>
+                    <button type="reset" class="btn btn-default btn-sm" data-i18n="重置">${text('重置')}</button>
+                </div>
+            </#form:form>
+            <table id="dataGrid"></table>
+            <div id="dataGridPage"></div>
+        </div>
+    </div>
+</div>
+<% } %>
+<script>
+    // 初始化DataGrid对象
+    $('#dataGrid').dataGrid({
+        searchForm: $("#searchForm"),
+        columnModel: [
+            {header:`${jsValue('$.i18n.t("全服资产记录.统计时间")')}`, name:'createTime', width:450, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    return js.formatDate(new Date(val), 'yyyy-MM-dd HH:mm:ss')
+                }},
+            {header:`${jsValue('$.i18n.t("全服资产记录.活跃人数")')}`, name:'loginNum', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("全服资产记录.黄金核弹")')}`, name:'goldAll', width:150, align:"center", sortable:false},
+            // {header:`${jsValue('$.i18n.t("全服资产记录.号角数量")')}`, name:'bossAll', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("全服资产记录.暴击")')}`, name:'critAll', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("全服资产记录.锁定")')}`, name:'lockAll', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("全服资产记录.神灯")')}`, name:'magicAll', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("全服资产记录.钻石")')}`, name:'diamondAll', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("全服资产记录.冰冻")')}`, name:'frozenAll', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("全服资产记录.鱼骨")')}`, name:'yuGuAll', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("全服资产记录.海魂石")')}`, name:'haiHunShiAll', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("全服资产记录.海兽石")')}`, name:'haiShouShiAll', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("全服资产记录.电磁石")')}`, name:'dianCiShiAll', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("全服资产记录.海魔石")')}`, name:'haiMoShiAll', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("全服资产记录.海妖石")')}`, name:'haiYaoShiAll', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("全服资产记录.珍珠石")')}`, name:'zhenZhuShiAll', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("全服资产记录.召唤石")')}`, name:'zhaoHunShiAll', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("全服资产记录.王魂石")')}`, name:'wangHunShiAll', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("全服资产记录.鱼雷炮")')}`, name:'skillTorpedoAll', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("全服资产记录.黑洞炮")')}`, name:'skillBlackHoleAll', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("全服资产记录.钻头")')}`, name:'skillBitAll', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("全服资产记录.龙珠")')}`, name:'longZhuAll', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("全服资产记录.龙元")')}`, name:'longYuanAll', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("全服资产记录.龙脊")')}`, name:'longJiAll', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("全服资产记录.龙骨")')}`, name:'longGuAll', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("全服资产记录.领主石")')}`, name:'lingZhuShiAll', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("全服资产记录.黑洞石")')}`, name:'heiDongShiAll', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("全服资产记录.金币变化")')}`, name:'moneyChange', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("全服资产记录.资金变化")')}`,name:'dragonChange',width:300, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    return (val / 1000000).toFixed(1)
+            }},
+        ],
+        // ajaxSuccess: function(data){ // 数据加载成功后执行方法
+        //     // 将总金额数据展示
+        //     $('#totalMoney').html(data.otherData.totalMoney);
+        // }
+    })
+</script>

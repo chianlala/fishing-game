@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 9de0f2c4432c48e187fa319ee280eb40
+timeCreated: 1650970352
+licenseType: Free
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: shader/fx/fish_uv_flow.shader.f3d
+  assetBundleVariant: 

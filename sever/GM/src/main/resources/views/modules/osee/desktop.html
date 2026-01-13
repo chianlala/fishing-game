@@ -1,0 +1,66 @@
+<% layout('/layouts/default.html', {title: '主页'}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <div class="box-body">
+            <h2 data-i18n="仪表盘.欢迎使用" data-i18n-options='{ "productName": "${productName}" }'>
+                欢迎使用，${productName}！</h2>
+        </div>
+    </div>
+</div>
+<% } %>
+
+<script src="https://cdn.bootcss.com/sockjs-client/1.3.0/sockjs.min.js"></script>
+<script src="https://cdn.bootcss.com/stomp.js/2.3.3/stomp.min.js"></script>
+
+<script>
+
+$(() => {
+
+    const maskDiv = window.parent.document.getElementById('maskDiv');
+
+    if (maskDiv) {
+        maskDiv.remove()
+    }
+
+})
+
+$(function () {
+
+    // WebSocket初始化连接
+    var webSocket = new SockJS('${ctxPath}/pushEndpoint');
+
+    var stompClient = Stomp.over(webSocket);
+
+    stompClient.debug = null; // debug处理函数设为空即为取消自带的浏览器console输出
+
+    stompClient.connect({}, function () {
+
+        stompClient.subscribe('/push/haveGiveGiftFlag', function (response) {
+
+            var body = JSON.parse(response.body);
+
+            if (body.success) {
+
+                if (body.data) {
+
+                    // 播放音频
+                    var audio = new Audio('${ctxStatic}/common/audio/y1971.mp3');
+
+                    // 播放音频
+                    audio.play();
+
+                }
+
+            }
+
+        });
+
+    }, function () {
+
+        js.showErrorMessage('推送服务器(WebSocket)连接失败！');
+
+    });
+
+});
+
+</script>

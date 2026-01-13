@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入 layui.css -->
+    <link rel="stylesheet" href="https://unpkg.com/layui@2.6.8/dist/css/layui.css">
+</head>
+<body>
+<div id="container">
+    <table class="layui-table" lay-even="" lay-skin="nob">
+        <colgroup>
+            <col width="280">
+            <col width="480">
+            <col width="200">
+            <col>
+        </colgroup>
+        <thead>
+        <tr>
+            <th data-i18n="竞技奖励.名称">名称</th>
+            <th data-i18n="竞技奖励.描述">描述</th>
+            <th data-i18n="竞技奖励.操作时间">操作时间</th>
+            <th data-i18n="竞技奖励.操作">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr >
+            <td data-i18n="竞技奖励.捕鱼大奖赛奖励设置">捕鱼大奖赛奖励设置</td>
+            <td data-i18n="竞技奖励.对玩家排名进行奖励设置">对玩家排名进行奖励设置</td>
+            <td>2019-11-24 13:30:00</td>
+            <td><a href="javascript:void(0);" class="setting" data-i18n="竞技奖励.规则设置">规则设置</a></td>
+        </tr>
+        <tr >
+            <td data-i18n="竞技奖励.捕鱼排行榜奖励设置">捕鱼排行榜奖励设置</td>
+            <td data-i18n="竞技奖励.对玩家排名进行奖励设置">对玩家排名进行奖励设置</td>
+            <td>2019-11-24 13:30:00</td>
+            <td><a href="javascript:void(0);" class="setting1" data-i18n="竞技奖励.规则设置">规则设置</a></td>
+        </tr>
+<!--        <tr >-->
+<!--            <td>捕鱼弹头掉落排行榜奖励设置</td>-->
+<!--            <td>对玩家排名进行奖励设置</td>-->
+<!--            <td>2019-11-24 13:30:00</td>-->
+<!--            <td><a href="javascript:void(0);" class="setting2">规则设置</a></td>-->
+<!--        </tr>-->
+        <tr >
+            <td data-i18n="竞技奖励.玩家击杀排行榜奖励设置">玩家击杀排行榜奖励设置</td>
+            <td data-i18n="竞技奖励.对玩家排名进行奖励设置">对玩家排名进行奖励设置</td>
+            <td>2019-11-24 13:30:00</td>
+            <td><a href="javascript:void(0);" class="setting3" data-i18n="竞技奖励.规则设置">规则设置</a></td>
+        </tr>
+
+<!--        <tr >-->
+<!--            <td>玩家连击排行榜奖励设置</td>-->
+<!--            <td>对玩家排名进行奖励设置</td>-->
+<!--            <td>2019-11-24 13:30:00</td>-->
+<!--            <td><a href="javascript:void(0);" class="setting4">规则设置</a></td>-->
+<!--        </tr>-->
+
+    </table>
+</div>
+
+<!-- 引入 layui.js -->
+<script src="https://unpkg.com/layui@2.6.8/dist/layui.js" ></script>
+<script src="https://unpkg.com/vue@2.7.14/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script src="${ctxStatic}/jquery/jquery-1.12.4.min.js" type="text/javascript"></script>
+
+<script>
+
+if (window.parent.window.$.InitI18next) {
+    window.parent.window.$.InitI18next(window.$)
+    window.$.InitI18next = window.parent.window.$.InitI18next
+}
+
+$(() => {
+
+    if ($('[data-i18n]').localize) {
+        $('[data-i18n]').localize();
+    }
+
+})
+
+    layui.use('layer', function(){
+        var layer = layui.layer;
+        var setting_btns = document.querySelectorAll('.setting');
+        setting_btns.forEach(function (ele, index, array) {
+            ele.addEventListener('click', function () {
+                layer.open({
+                    type: 2
+                    ,title: $.i18n.t('竞技奖励.规则设置')
+                    ,area: ['1200px', '800px']
+                    ,offset: 'auto' //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+                    ,id: 'layerDemo'+1 //防止重复弹出
+                    ,content: '/ttmy_admin/a/osee/shop/rewardSetting'
+                    // ,content: '/a/osee/shop/rewardSetting'
+                    ,btn: $.i18n.t('竞技奖励.关闭全部')
+                    ,btnAlign: 'c' //按钮居中
+                    ,shade: 0 //不显示遮罩
+                    ,yes: function(){
+                        layer.closeAll();
+                    }
+                })
+            })
+        });
+    });
+
+    layui.use('layer', function(){
+        var layer = layui.layer;
+        var setting_btns = document.querySelectorAll('.setting1');
+        setting_btns.forEach(function (ele, index, array) {
+            ele.addEventListener('click', function () {
+                layer.open({
+                    type: 2
+                    ,title: $.i18n.t('竞技奖励.规则设置')
+                    ,area: ['1200px', '800px']
+                    ,offset: 'auto' //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+                    ,id: 'layerDemo'+1 //防止重复弹出
+                    ,content: '/ttmy_admin/a/osee/shop/rewardSetting1'
+                    // ,content: '/a/osee/shop/rewardSetting1'
+                    ,btn: $.i18n.t('竞技奖励.关闭全部')
+                    ,btnAlign: 'c' //按钮居中
+                    ,shade: 0 //不显示遮罩
+                    ,yes: function(){
+                        layer.closeAll();
+                    }
+                })
+            })
+        });
+    });
+
+    // layui.use('layer', function(){
+    //     var layer = layui.layer;
+    //     var setting_btns = document.querySelectorAll('.setting2');
+    //     setting_btns.forEach(function (ele, index, array) {
+    //         ele.addEventListener('click', function () {
+    //             layer.open({
+    //                 type: 2
+    //                 ,title: '规则设置'
+    //                 ,area: ['1200px', '800px']
+    //                 ,offset: 'auto' //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+    //                 ,id: 'layerDemo'+1 //防止重复弹出
+    //                 ,content: '/ttmy_admin/a/osee/shop/rewardSetting2'
+    //                 // ,content: '/a/osee/shop/rewardSetting2'
+    //                 ,btn: '关闭全部'
+    //                 ,btnAlign: 'c' //按钮居中
+    //                 ,shade: 0 //不显示遮罩
+    //                 ,yes: function(){
+    //                     layer.closeAll();
+    //                 }
+    //             })
+    //         })
+    //     });
+    // });
+
+    layui.use('layer', function(){
+        var layer = layui.layer;
+        var setting_btns = document.querySelectorAll('.setting3');
+        setting_btns.forEach(function (ele, index, array) {
+            ele.addEventListener('click', function () {
+                layer.open({
+                    type: 2
+                    ,title: $.i18n.t('竞技奖励.规则设置')
+                    ,area: ['1200px', '800px']
+                    ,offset: 'auto' //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+                    ,id: 'layerDemo'+1 //防止重复弹出
+                    ,content: '/ttmy_admin/a/osee/shop/rewardSetting3'
+                    // ,content: '/a/osee/shop/rewardSetting3'
+                    ,btn: $.i18n.t('竞技奖励.关闭全部')
+                    ,btnAlign: 'c' //按钮居中
+                    ,shade: 0 //不显示遮罩
+                    ,yes: function(){
+                        layer.closeAll();
+                    }
+                })
+            })
+        });
+    });
+
+    // layui.use('layer', function(){
+    //     var layer = layui.layer;
+    //     var setting_btns = document.querySelectorAll('.setting4');
+    //     setting_btns.forEach(function (ele, index, array) {
+    //         ele.addEventListener('click', function () {
+    //             layer.open({
+    //                 type: 2
+    //                 ,title: '规则设置'
+    //                 ,area: ['1200px', '800px']
+    //                 ,offset: 'auto' //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+    //                 ,id: 'layerDemo'+1 //防止重复弹出
+    //                 ,content: '/ttmy_admin/a/osee/shop/rewardSetting4'
+    //                 // ,content: '/a/osee/shop/rewardSetting4'
+    //                 ,btn: '关闭全部'
+    //                 ,btnAlign: 'c' //按钮居中
+    //                 ,shade: 0 //不显示遮罩
+    //                 ,yes: function(){
+    //                     layer.closeAll();
+    //                 }
+    //             })
+    //         })
+    //     });
+    // });
+
+
+</script>
+</body>
+</html>

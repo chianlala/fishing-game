@@ -1,0 +1,223 @@
+
+buyudating_shibei.png
+size: 500,500
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jinbsg_01
+  rotate: true
+  xy: 367, 126
+  size: 3, 29
+  orig: 54, 64
+  offset: 3, 15
+  index: -1
+jinbsg_02
+  rotate: false
+  xy: 198, 22
+  size: 6, 42
+  orig: 54, 64
+  offset: 3, 8
+  index: -1
+jinbsg_03
+  rotate: false
+  xy: 251, 16
+  size: 9, 50
+  orig: 54, 64
+  offset: 3, 4
+  index: -1
+jinbsg_04
+  rotate: false
+  xy: 225, 11
+  size: 12, 55
+  orig: 54, 64
+  offset: 3, 2
+  index: -1
+jinbsg_05
+  rotate: false
+  xy: 166, 6
+  size: 15, 58
+  orig: 54, 64
+  offset: 3, 1
+  index: -1
+jinbsg_06
+  rotate: false
+  xy: 244, 68
+  size: 18, 59
+  orig: 54, 64
+  offset: 3, 1
+  index: -1
+jinbsg_07
+  rotate: false
+  xy: 398, 69
+  size: 21, 60
+  orig: 54, 64
+  offset: 3, 1
+  index: -1
+jinbsg_08
+  rotate: true
+  xy: 367, 131
+  size: 24, 61
+  orig: 54, 64
+  offset: 3, 1
+  index: -1
+jinbsg_09
+  rotate: true
+  xy: 332, 189
+  size: 27, 61
+  orig: 54, 64
+  offset: 3, 1
+  index: -1
+jinbsg_10
+  rotate: true
+  xy: 367, 157
+  size: 30, 61
+  orig: 54, 64
+  offset: 3, 1
+  index: -1
+jinbsg_11
+  rotate: true
+  xy: 332, 218
+  size: 33, 61
+  orig: 54, 64
+  offset: 3, 1
+  index: -1
+jinbsg_12
+  rotate: false
+  xy: 129, 5
+  size: 35, 61
+  orig: 54, 64
+  offset: 4, 1
+  index: -1
+jinbsg_13
+  rotate: false
+  xy: 169, 66
+  size: 36, 61
+  orig: 54, 64
+  offset: 6, 1
+  index: -1
+jinbsg_14
+  rotate: false
+  xy: 328, 124
+  size: 37, 61
+  orig: 54, 64
+  offset: 8, 1
+  index: -1
+jinbsg_15
+  rotate: false
+  xy: 266, 84
+  size: 38, 60
+  orig: 54, 64
+  offset: 10, 2
+  index: -1
+jinbsg_16
+  rotate: true
+  xy: 266, 146
+  size: 39, 60
+  orig: 54, 64
+  offset: 12, 2
+  index: -1
+jinbsg_17
+  rotate: false
+  xy: 129, 68
+  size: 38, 59
+  orig: 54, 64
+  offset: 15, 3
+  index: -1
+jinbsg_18
+  rotate: false
+  xy: 207, 68
+  size: 35, 59
+  orig: 54, 64
+  offset: 18, 3
+  index: -1
+jinbsg_19
+  rotate: true
+  xy: 326, 89
+  size: 33, 59
+  orig: 54, 64
+  offset: 20, 3
+  index: -1
+jinbsg_20
+  rotate: true
+  xy: 395, 221
+  size: 30, 59
+  orig: 54, 64
+  offset: 23, 3
+  index: -1
+jinbsg_21
+  rotate: true
+  xy: 395, 192
+  size: 27, 58
+  orig: 54, 64
+  offset: 26, 4
+  index: -1
+jinbsg_22
+  rotate: false
+  xy: 326, 29
+  size: 24, 58
+  orig: 54, 64
+  offset: 29, 4
+  index: -1
+jinbsg_23
+  rotate: false
+  xy: 264, 25
+  size: 21, 57
+  orig: 54, 64
+  offset: 32, 4
+  index: -1
+jinbsg_24
+  rotate: false
+  xy: 306, 87
+  size: 18, 57
+  orig: 54, 64
+  offset: 35, 4
+  index: -1
+jinbsg_25
+  rotate: false
+  xy: 207, 10
+  size: 16, 56
+  orig: 54, 64
+  offset: 37, 4
+  index: -1
+jinbsg_26
+  rotate: false
+  xy: 183, 10
+  size: 13, 54
+  orig: 54, 64
+  offset: 40, 5
+  index: -1
+jinbsg_27
+  rotate: false
+  xy: 239, 14
+  size: 10, 52
+  orig: 54, 64
+  offset: 43, 5
+  index: -1
+qianbei_pangxie01
+  rotate: true
+  xy: 266, 253
+  size: 243, 222
+  orig: 243, 222
+  offset: 0, 0
+  index: -1
+qianbei_pangxie02
+  rotate: false
+  xy: 2, 2
+  size: 125, 125
+  orig: 125, 125
+  offset: 0, 0
+  index: -1
+qianbei_pangxie03
+  rotate: false
+  xy: 266, 187
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+shibei_BG
+  rotate: false
+  xy: 2, 129
+  size: 262, 367
+  orig: 267, 405
+  offset: 3, 36
+  index: -1

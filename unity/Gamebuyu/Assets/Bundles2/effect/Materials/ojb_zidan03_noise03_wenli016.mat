@@ -1,0 +1,122 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: "ojb_zidan03_noise03_wenli016"
+  m_Shader: {fileID: 4800000, guid: 468c435de44449b9930e98ab730afebe, type: 3}
+  m_ShaderKeywords: "_HITCOLORCHANNEL_RIM _SHADOWOFFSETTOGGLE_ON _STREAMERCHANNEL_UVPOS"
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _DissolveTex:
+        m_Texture: {fileID: 2800000, guid: 12734755874147e886813e60afe5d0bf, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 6f99ab9224cf49bb93bfd56294675f79, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseTex:
+        m_Texture: {fileID: 2800000, guid: 52fe2971550641b9b873a4e6f650cb5d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _AdjustHSV: 0
+    - _AdjustHue: 0
+    - _AdjustSaturation: 1
+    - _AdjustValue: 1
+    - _Alpha: 1
+    - _AlpharFactor: 0.2
+    - _B: 1
+    - _Brightness: 0.48
+    - _BumpScale: 1
+    - _ColorScale: 1
+    - _Contrast: 0
+    - _CullMode: 2
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DissSize: 1
+    - _DstBlend: 0
+    - _EmissionMapChannel: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _HeightFog: 0
+    - _HeightFogDensity: 1
+    - _HeightFogEnd: 10
+    - _HeightFogStart: -10
+    - _HitColorChannel: 0
+    - _HitMultiple: 1
+    - _HitRimPower: 0.01
+    - _HitRimSpread: 0.01
+    - _Metallic: 0
+    - _MetallicRemapMax: 1
+    - _MetallicRemapMin: 0
+    - _Mode: 0
+    - _NoiseOffset: 0.33
+    - _NotFixSubstance: 1
+    - _OcclusionStrength: 1
+    - _Opacity: 0.747
+    - _Overlay: 0
+    - _OverlayMultiple: 0
+    - _OverlayRimPower: 0.01
+    - _OverlayRimSpread: 0.01
+    - _Parallax: 0.02
+    - _Perspective: 0
+    - _PlanarReflections: 0
+    - _ReflectionPower: 1
+    - _RimLight: 0
+    - _RimPower: 0.01
+    - _RimSpread: 0.01
+    - _Shadow: 0
+    - _ShadowOffsetToggle: 1
+    - _SmoothnessRemapMax: 1
+    - _SmoothnessRemapMin: 0
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _Streamer: 0
+    - _StreamerAlpha: 1
+    - _StreamerChannel: 0
+    - _StreamerNoiseSpeed: 1
+    - _StreamerScrollX: 1
+    - _StreamerScrollY: 0
+    - _TransAmbient: 0
+    - _TransDirect: 0.1
+    - _TransMapChannel: 0
+    - _TransScattering: 10
+    - _Translucency: 20
+    - _Translucent: 0
+    - _UVSec: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _AddColor: {r: 1, g: 0.6929948, b: 0.240566, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DissColor: {r: 95.87451, g: 9.035295, b: 2.509804, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FinalColor: {r: 1, g: 1, b: 1, a: 1}
+    - _HeightFogColor: {r: 0, g: 0, b: 1, a: 1}
+    - _HitColor: {r: 1, g: 1, b: 1, a: 1}
+    - _HitRimOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _OverlayColor: {r: 1, g: 1, b: 1, a: 1}
+    - _OverlayRimOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _RimColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _RimOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _ShadowColor: {r: 0, g: 0, b: 0, a: 0.8}
+    - _ShadowOffset: {r: -0.5, g: -1, b: 2, a: 0}
+    - _Speed: {r: -5, g: 0, b: 0, a: 1}
+    - _StreamerColor: {r: 1, g: 1, b: 1, a: 1}
+    - _TintColor: {r: 8, g: 3.523485, b: 1.320755, a: 1}
+    - _TransColor: {r: 1, g: 0, b: 0, a: 0}
+    - _UVScroll: {r: 0, g: 0, b: 0, a: 0}
+    - _UVScroll_DissolveTex: {r: 0, g: 0, b: 0, a: 0}
+    - _UVScroll_MainTex: {r: 0, g: 0, b: 0, a: 0}

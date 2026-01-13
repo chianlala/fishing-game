@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 7493c16b53dc4b17a92ac1366860c8d5
+timeCreated: 1650999099
+licenseType: Free
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: shader/fx/alphablend.shader.f3d
+  assetBundleVariant: 

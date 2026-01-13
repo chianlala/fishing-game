@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jeesite.modules.osee.dao.GameNoticeDao">
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="entity.id">
+		insert into tbl_game_notice
+		(`index`, `title`, `content`, `start_time`, `end_time`)
+		values
+		(#{entity.index}, #{entity.title}, #{entity.content}, #{entity.startTime}, #{entity.endTime})
+	</insert>
+
+    <delete id="deleteById">
+        delete from tbl_game_notice where `id` = #{id}
+    </delete>
+
+    <delete id="delete">
+        delete from tbl_game_notice where `id` = #{entity.id}
+    </delete>
+
+    <update id="update">
+        update tbl_game_notice
+        set
+        `index` = #{entity.index}, `title` = #{entity.title}, `content` = #{entity.content}, `start_time` = #{entity.startTime}, `end_time` = #{entity.endTime}
+        where
+        `id` = #{entity.id}
+    </update>
+
+    <select id="getAll" resultType="com.jeesite.modules.osee.domain.GameNoticeEntity">
+        select * from tbl_game_notice order by `index`
+    </select>
+
+    <select id="getById" resultType="com.jeesite.modules.osee.domain.GameNoticeEntity">
+        select * from tbl_game_notice where `id` = #{id}
+    </select>
+
+</mapper>

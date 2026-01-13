@@ -1,0 +1,209 @@
+<% layout('/layouts/default.html', {title: 'CDKEY管理', libs: ['validate']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <div class="box-header with-border">
+            <div class="box-title">
+                <i class="fa fa-key"></i> 添加CDKEY
+            </div>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <#form:form id="inputForm" model="${cdk}" action="${ctx}/osee/game/cdk/save" method="post"
+            class="form-horizontal">
+        <div class="box-body">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" title="">
+                            <span class="required">*</span> ${text('类型')}：<i class="fa icon-question hide"></i>
+                        </label>
+                        <div class="col-sm-3">
+                            <#form:select path="typeId" items="${cdkTypeList}" itemLabel="name" itemValue="id"
+                                class="form-control required" blankOption="true" blankOptionLabel="=请选择=" />
+                        </div>
+                        <div class="col-sm-3">
+                            <button type="button" class="btn btn-sm btn-primary" onclick="addCdkType()">新增类型</button>
+                            <button type="button" class="btn btn-sm btn-danger" onclick="delCdkType()">删除</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" title="">
+                            <span class="required">*</span> ${text('数量')}：<i class="fa icon-question hide"></i>
+                        </label>
+                        <div class="col-sm-8">
+                            <#form:input path="count" type="number" min="1" maxlength="20" class="form-control required"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" title="">
+                            ${text('代理游戏id')}：
+                        </label>
+                        <div class="col-sm-8">
+                            <#form:input path="agentGameId" class="form-control"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="items">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" title="">
+                                <span class="required">*</span> ${text('兑换奖励')}：<i class="fa icon-question hide"></i>
+                            </label>
+                            <% /* 注释掉 %>
+                            <div class="col-sm-3">
+                                <#form:select path="itemId"
+                                    dictType="osee_item_type" blankOption="true" blankOptionLabel="=请选择="
+                                    class="form-control required" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#form:input path="itemCount" type="number" min="1" maxlength="20" class="form-control required" placeholder="奖励数量"/>
+                            </div>
+                            <% */ %>
+                            <div class="col-sm-8">
+                                <button type="button" id="addItem" class="btn btn-sm btn-info">${text('添加奖励')}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box-footer">
+            <div class="row">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <% if (hasPermi('game:cdk:edit')){ %>
+                    <button type="submit" class="btn btn-sm btn-primary" id="btnSubmit">
+                        <i class="fa fa-check"></i> ${text('保 存')}
+                    </button>&nbsp;
+                    <% } %>
+                    <button type="button" class="btn btn-sm btn-default" id="btnCancel"
+                            onclick="clickClose()"><i class="fa fa-reply-all"></i> ${text('关 闭')}
+                    </button>
+                </div>
+            </div>
+        </div>
+        </#form:form>
+    </div>
+</div>
+
+<!--奖励物品添加模板-->
+<script id="itemTemp" type="text/template">
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="form-group">
+                <div class="col-sm-3 col-sm-offset-4">
+                    <#form:select path="itemId"
+                        dictType="osee_item_type" blankOption="true" blankOptionLabel="=请选择="
+                        class="form-control required" />
+                </div>
+                <div class="col-sm-3">
+                    <#form:input path="itemCount" type="number" min="1" maxlength="20" class="form-control required" placeholder="奖励数量" />
+                </div>
+                <div class="col-sm-2">
+                    <button type="button" name="delItem" class="btn btn-sm btn-danger">${text('删 除')}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<% } %>
+<script>
+    $("#inputForm").validate({
+        submitHandler: function (form) {
+            js.ajaxSubmitForm($(form), function (data) {
+                if (data.result === 'true') {
+                    js.showMessage(data.message);
+                    js.closeCurrentTabPage(function (contentWindow) {
+                        contentWindow.location.reload();
+                    });
+                } else {
+                    js.showErrorMessage(data.message)
+                }
+            }, 'json');
+        }
+    });
+
+    function clickClose(){
+
+        js.closeCurrentTabPage(function (contentWindow) {
+            contentWindow.location.reload();
+        });
+
+    }
+
+    /**
+     * 新添奖励
+     */
+    $('#addItem').click(function () {
+        js.template('itemTemp', {}, function (html) {
+            $('#items').append(html);
+        });
+    });
+
+    /**
+     * 给奖励物品删除按钮绑定点击事件
+     */
+    $('#items').on('click', 'button[name=delItem]', function () {
+        $(this).parents('div.row').remove();
+    });
+
+    function addCdkType() {
+        js.layer.prompt({
+            title: '添加新的CDK类型'
+        }, function(val, index){
+            // 只有在点了确定有了值的情况下才会进入
+            js.ajaxSubmit('${ctx}/osee/game/cdk/type/add',{
+                name: val
+            },function (data) {
+                if (data.result === 'true'){
+                    js.showMessage(data.message);
+                    js.getCurrentTabPage(function (contentWindow) {
+                        contentWindow.location.reload();
+                    });
+                } else {
+                    js.showErrorMessage(data.message)
+                }
+            }, 'json');
+            js.layer.close(index)
+        })
+    }
+
+    /**
+     * 删除：cdk类型
+     */
+    function delCdkType(){
+
+        var typeId = $('#typeId').val();
+        if (typeId === '') {
+            js.showErrorMessage('请先在查询中选中要删除的cdk类型');
+            return;
+        }
+        var name = $('#typeId option[value=' + typeId + ']').text();
+        js.confirm('确定要删除类型为[<b>' + name + '</b>]的所有CDK和该类型吗?', function () {
+            js.ajaxSubmit('${ctx}/osee/game/cdk/delete/' + typeId, function (data) {
+                if (data.result === 'true') {
+                    js.showMessage(data.message);
+                    js.getCurrentTabPage(function (contentWindow) {
+                        contentWindow.location.reload();
+                    });
+                } else {
+                    js.showErrorMessage(data.message);
+                }
+            });
+        });
+
+    }
+
+</script>

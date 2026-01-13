@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!--4.2.2	商户入驻结果查询<ant.mybank.merchantprod.merchant.service.query> -->
+<body>
+  <xmlTag tagName="IsvOrgId"></xmlTag>
+  <xmlTag tagName="OrderNo"></xmlTag>
+</body>

@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 30f91cc31004484b8086c01ef18f7194
+timeCreated: 1650996087
+licenseType: Free
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: shader/fx/wb_tex_mask_uv.shader.f3d
+  assetBundleVariant: 

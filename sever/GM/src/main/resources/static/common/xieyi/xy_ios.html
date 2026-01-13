@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<!-- <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" /> -->
+		<title></title>
+		<style type="text/css">
+			body{
+				background: white;
+			}
+			a {
+				color: #CCC;
+				font-size: 30px;
+				margin: 0 10px;
+				transition: color .3s ease-in-out;
+				-webkit-transition: color .3s ease-in-out;
+				display:block;
+				/* height: 30px; */
+				text-align: center;
+			}
+			
+			a:hover {
+				color: #007bff;
+			}
+			
+			.btn {
+				background: none repeat scroll 0 0 #1BA1E2;
+				border: 0 none;
+				border-radius: 2px;
+				color: #FFFFFF !important;
+				cursor: pointer;
+				font-family: "Open Sans", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, Verdana, Tahoma, sans-serif;
+				font-size: 14px;
+				padding: 6px 10%;
+			}
+			
+			.btn:hover,
+			.yanshibtn:hover {
+				background: none repeat scroll 0 0 #9B59B6;
+				border: 0 none;
+				border-radius: 2px;
+				color: #FFFFFF !important;
+				cursor: pointer;
+				font-family: "Open Sans", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, Verdana, Tahoma, sans-serif;
+				font-size: 14px;
+				padding: 8px 10%;
+			}
+		</style>
+	</head>
+	<body>
+		<iframe src="xieyi.html"  width="100%" height="" frameborder="0"></iframe>
+		
+		<!-- <div id="" style="position: absolute;width: 100%;align-content: center;"> -->
+			<a id="tongyi" href='#' class="btn btn-default" rel='nofollow' onclick="xieyi()" style="">
+				<h2>同意并继续</h2>
+			</a>
+		<!-- </div> -->
+		
+		<script type="text/javascript">
+			//地址替换为要跳转的链接 只需修改此处即可-----------------------------------------------------------------------
+			var targetUrl = "/views/modules/api/agent/index.html";
+		
+			var data = localStorage.getItem("xieyi");
+		
+			if (data == null) {
+				//alert(data);
+			} else {
+				//window.location = targetUrl;
+				//alert("xieyi:"+data);
+			}
+		
+			function xieyi() {
+				//alert("xieyi:1");
+				localStorage.setItem("xieyi", 1);
+				//window.location = targetUrl;
+				//location.reload();
+				parent.location.reload();
+				//window.opener.location.reload();
+			}
+			
+			// document.getElementById('tongyi').style.width = window.screen.width;
+			
+		</script>
+	</body>
+</html>

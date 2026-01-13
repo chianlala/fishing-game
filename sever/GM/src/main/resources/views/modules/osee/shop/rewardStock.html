@@ -1,0 +1,90 @@
+<% layout('/layouts/default.html', {title: '奖品库存', libs: ['dataGrid']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <div class="box-header with-border">
+            <div class="box-title">
+                <i class="fa fa-database"></i> 奖品库存
+            </div>
+            <div class="box-tools pull-right">
+                <a href="#" class="btn btn-default" id="btnSearch" title="${text('查询')}">
+                    <i class="fa fa-filter"></i> ${text('查询')}
+                </a>
+                <% if(hasPermi('shop:reward:edit')){ %>
+                    <a href="${ctx}/osee/shop/reward/stock/add?shopId=${stock.shopId}" class="btn btn-default btnTool" title="${text('添加库存')}">
+                        <i class="fa fa-plus"></i> ${text('手动添加')}
+                    </a>
+                    <a href="javascript:alert('暂未实现')" class="btn btn-default" title="${text('添加库存')}">
+                        <i class="fa fa-file-excel-o"></i> ${text('从Excel添加')}
+                    </a>
+                <% } %>
+            </div>
+        </div>
+        <div class="box-body">
+            <#form:form id="searchForm" model="${stock}" action="${ctx}/osee/shop/reward/stock/list" method="post" class="form-inline"
+                data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
+                <#form:hidden path="shopId" />
+                <div class="form-group">
+                    <label class="control-label">${text('兑换情况')}：</label>
+                    <div class="control-inline width-120">
+                        <#form:select path="state" dictType="ttmy_shop_stock_use_state" class="form-control"
+                            blankOption="true"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">${text('卡号')}：</label>
+                    <div class="control-inline">
+                        <#form:input path="number" maxlength="50" class="form-control width-160" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">${text('兑换人ID')}：</label>
+                    <div class="control-inline">
+                        <#form:input path="userId" maxlength="50" class="form-control width-160" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-sm">${text('查询')}</button>
+                    <button type="reset" class="btn btn-default btn-sm">${text('重置')}</button>
+                </div>
+            </#form:form>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4 class="text-red text-bold">
+                        奖品名称：<span id="shopName">-</span>&nbsp;
+                        总数量：<span id="stock">-</span>&nbsp;
+                        已兑换：<span id="usedNum">-</span>&nbsp;
+                        未兑换：<span id="unusedNum">-</span>
+                    </h4>
+                </div>
+            </div>
+            <table id="dataGrid"></table>
+            <div id="dataGridPage"></div>
+        </div>
+    </div>
+</div>
+<% } %>
+<script>
+    // 初始化DataGrid对象
+    $('#dataGrid').dataGrid({
+        searchForm: $("#searchForm"),
+        showRownum: true,	// 是否显示行号
+        sortableColumn: false,// 列表是否允许排序（设置为false后，整个列表不允许排序）
+        columnModel: [
+            {header:'${text("卡号")}', name:'number', width:200,align:"center", sortable:false},
+            {header:'${text("密码")}', name:'password', width:150, align:"center", sortable:false},
+            {header:'${text("兑换人ID")}', name:'userId', width:150, align:"center", sortable:false, formatter: function(val, obj, row, act) {
+                    return val == null ?  '无' : val;
+                }},
+            {header:'${text("状态")}', name:'state', width:150, align:"center", sortable:false, formatter: function(val, obj, row, act) {
+                    return js.getDictLabel(${@DictUtils.getDictListJson('ttmy_shop_stock_use_state')}, val, '${text("未知")}');
+                }}
+        ],
+        ajaxSuccess: function(data) { // 数据加载成功后执行方法
+            // 将赠送总数量数据展示
+            $('#shopName').html(data.otherData.shopName);
+            $('#stock').html(data.otherData.stock);
+            $('#usedNum').html(data.otherData.usedNum);
+            $('#unusedNum').html(data.otherData.stock - data.otherData.usedNum);
+        }
+    });
+</script>

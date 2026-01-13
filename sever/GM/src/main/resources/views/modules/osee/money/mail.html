@@ -1,0 +1,172 @@
+<% layout('/layouts/default.html', {title: '邮件记录', libs: ['dataGrid']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <div class="box-header with-border">
+            <div class="box-title">
+                <i class="fa fa-circle-o"></i> <span data-i18n="邮件记录.邮件记录">邮件记录</span>
+            </div>
+            <div class="box-tools pull-right">
+                <a href="#" class="btn btn-default" id="btnSearch" data-i18n="查询">
+                    <i class="fa fa-filter"></i> ${text('查询')}
+                </a>
+            </div>
+        </div>
+        <div class="box-body">
+            <#form:form id="searchForm" model="${mail}" action="${ctx}/osee/money/mail/list" method="post" class="form-inline"
+            data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
+            <div class="form-group">
+                <label class="control-label" data-i18n="邮件记录.日期">${text('(邮件记录.日期)')}：</label>
+                <div class="control-inline">
+                    <#form:input path="startTime" maxlength="50" class="form-control width-160 Wdate laydate" data-type="datetime"
+                    onclick="Wdate laydatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+                    -
+                    <#form:input path="endTime" maxlength="50" class="form-control width-160 Wdate laydate" data-type="datetime"
+                    onclick="Wdate laydatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" data-i18n="邮件记录.用户账号">${text('(邮件记录.用户账号)')}：</label>
+                <div class="control-inline">
+                    <#form:input path="username" maxlength="50" class="form-control width-160"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" data-i18n="邮件记录.游戏ID">${text('(邮件记录.游戏ID)')}：</label>
+                <div class="control-inline">
+                    <#form:input path="gameId" maxlength="50" class="form-control width-160"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" data-i18n="邮件记录.邮件标题">${text('(邮件记录.邮件标题)')}：</label>
+                <div class="control-inline">
+                    <#form:input path="title" maxlength="50" class="form-control width-160"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" data-i18n="邮件记录.状态">${text('(邮件记录.状态)')}：</label>
+                <div class="control-inline width-90">
+                    <% var stateItemArr = [{dictLabel: '正常', dictValue: 0}, {dictLabel: '已删除', dictValue: 1}, {dictLabel: '已撤销', dictValue: 2}]; %>
+                    <#form:select path="state" class="form-control"
+                    items="${stateItemArr}" itemLabel="dictLabel" itemValue="dictValue" blankOption="true" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" data-i18n="邮件记录.是否领取">${text('(邮件记录.是否领取)')}：</label>
+                <div class="control-inline width-90">
+                    <% var receiveItemArr = [{dictLabel: '是', dictValue: true}, {dictLabel: '否', dictValue: false}]; %>
+                    <#form:select path="receive" class="form-control"
+                    items="${receiveItemArr}" itemLabel="dictLabel" itemValue="dictValue" blankOption="true" />
+                </div>
+            </div>
+<!--            <div class="form-group">-->
+<!--                <label class="control-label" data-i18n="邮件记录.创建人">${text('(邮件记录.创建人)')}：</label>-->
+<!--                <div class="control-inline">-->
+<!--                    <#form:input path="createName" maxlength="50" class="form-control width-160"/>-->
+<!--                </div>-->
+<!--            </div>-->
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-sm" data-i18n="查询">${text('查询')}</button>
+                <button type="reset" class="btn btn-default btn-sm" data-i18n="重置">${text('重置')}</button>
+            </div>
+        </#form:form>
+<!--        <div class="row">-->
+<!--            <div class="col-sm-12">-->
+<!--                <h4 class="text-red text-bold">-->
+<!--                    变化金币/金币总数：<span id="totalWin">-</span>-->
+<!--                </h4>-->
+<!--            </div>-->
+<!--        </div>-->
+        <table id="dataGrid"></table>
+        <div id="dataGridPage"></div>
+    </div>
+</div>
+</div>
+<% } %>
+<script>
+
+var stateItemArr = [{dictLabel: `${jsValue('$.i18n.t("邮件记录.正常")')}`, dictValue: 0}, {dictLabel: `${jsValue('$.i18n.t("邮件记录.已删除")')}`, dictValue: 1}, {dictLabel: `${jsValue('$.i18n.t("邮件记录.已撤销")')}`, dictValue: 2}];
+
+var receiveItemArr = [{dictLabel: `${jsValue('$.i18n.t("是")')}`, dictValue: true}, {dictLabel: `${jsValue('$.i18n.t("否")')}`, dictValue: false}];
+
+    // 初始化DataGrid对象
+    $('#dataGrid').dataGrid({
+        searchForm: $("#searchForm"),
+        columnModel: [
+            {header:'id', name:'id', width:90, align:"center", sortable:false},
+
+            {header:`${jsValue('$.i18n.t("邮件记录.发送人游戏ID")')}`, name:'fromGameId', width:90, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("邮件记录.接收人游戏ID")')}`, name:'toGameId', width:90, align:"center", sortable:false},
+
+            {header:`${jsValue('$.i18n.t("邮件记录.发送时间")')}`, name:'createTime', width:120, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    if(val===undefined) return '-';
+                    return js.formatDate(new Date(val), 'yyyy-MM-dd HH:mm:ss')
+                }
+            },
+            // {header:`${jsValue('$.i18n.t("邮件记录.过期时间")')}`, name:'expirationTime', width:120, align:"center", sortable:false, formatter: function(val, obj, row, act){
+            //         if(val===undefined) return '-';
+            //         return js.formatDate(new Date(val), 'yyyy-MM-dd HH:mm:ss')
+            //     }
+            // },
+            {header:`${jsValue('$.i18n.t("邮件记录.用户账号")')}`, name:'nickname', width:90, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("邮件记录.邮件标题")')}`, name:'title', width:90, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("邮件记录.邮件内容")')}`, name:'content', width:90, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("邮件记录.子弹数量")')}`, name:'bCount', width:90, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("邮件记录.金币数量")')}`, name:'iCount', width:90, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("邮件记录.道具")')}`, name:'props', width:90, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("邮件记录.炮台")')}`, name:'battery', width:90, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("邮件记录.翅膀")')}`, name:'wing', width:90, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("邮件记录.是否领取")')}`, name:'receive', width:90, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    return js.getDictLabel(receiveItemArr, val, '未知')
+                }},
+            {header:`${jsValue('$.i18n.t("邮件记录.状态")')}`, name:'state', width:90, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    return js.getDictLabel(stateItemArr, val, '未知')
+                }},
+            {header:`${jsValue('$.i18n.t("邮件记录.领取时间")')}`, name:'receiveTime', width:120, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    if(val===undefined) return '-';
+                    return js.formatDate(new Date(val), 'yyyy-MM-dd HH:mm:ss')
+                }
+            },
+            // {header:`${jsValue('$.i18n.t("邮件记录.创建人")')}`, name: 'createName', width: 90, align: "center", sortable: false},
+            {header:`${jsValue('$.i18n.t("邮件记录.操作")')}`,name:'actions',width:50, align:"center", sortable:false, title:false, formatter: function(val, obj, row, act){
+
+                    var actions = [];
+
+                    if(row.state === 0 && row.receive === false){
+
+                        actions.push('<a href="javascript:void(0);" onclick="revokeMessage('+ row.id +')"' +
+                            ' class="btn-small" title="' + `${jsValue('$.i18n.t("邮件记录.撤销")')}` + '"><i class="fa fa-reply"></i></a>');
+
+                    }
+
+                    return actions.join(' ');
+
+             }}
+        ],
+        // ajaxSuccess: function(data){ // 数据加载成功后执行方法
+        //     // 将赠送总数量数据展示
+        //     $('#totalWin').html(data.otherData.totalWin);
+        // }
+    })
+
+    $("#searchForm").unbind('submit').submit(function(e){
+        $("#dataGrid").dataGrid('refresh', 1);
+        return false;
+    });
+
+    /**
+     * 获取玩家代理信息
+     */
+    function revokeMessage(id) {
+        js.ajaxSubmit('${ctx}/osee/money/mail/revoke', {
+            id: id
+        }, function (data) {
+            if (data.result === 'true') {
+                js.showMessage("撤销成功");
+            } else {
+                js.showErrorMessage(data.message);
+            }
+            $('#dataGrid').dataGrid('reloadGrid');
+        }, 'json');
+    }
+</script>

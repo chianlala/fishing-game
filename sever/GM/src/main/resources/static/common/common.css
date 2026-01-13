@@ -1,0 +1,66 @@
+/*!
+ * Copyright (c) 2013-Now http://jeesite.com All rights reserved.
+ * 项目自定义的公共CSS，可覆盖jeesite.css里的样式
+ */
+.flex {
+    display: flex;
+}
+
+.flex-c {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.flex-s {
+    flex-shrink: 0;
+}
+
+.ai-c {
+    align-items: center;
+}
+
+.jc-c {
+    justify-content: center;
+}
+
+.m-t-15 {
+    margin-top: 15px;
+}
+
+.m-l-15 {
+    margin-left: 15px;
+}
+
+.m-r-15 {
+    margin-right: 15px;
+}
+
+.m-b-15 {
+    margin-bottom: 15px;
+}
+
+.p-t-15 {
+    padding-top: 15px;
+}
+
+.p-l-15 {
+    padding-left: 15px;
+}
+
+.p-r-15 {
+    padding-right: 15px;
+}
+
+.p-b-15 {
+    padding-bottom: 15px;
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!--4.2.13	退款接口<ant.mybank.bkmerchanttrade.refund> -->
+<body>
+<xmlTag tagName="IsvOrgId" defaultValue="202210000000000001025"></xmlTag>
+<xmlTag tagName="OutTradeNo"></xmlTag>
+    <xmlTag tagName="HlMerchantId"></xmlTag>
+<xmlTag tagName="OutRefundNo"></xmlTag>
+<xmlTag tagName="RefundAmount"></xmlTag>
+<xmlTag tagName="RefundReason"></xmlTag>
+<xmlTag tagName="OperatorId"></xmlTag>
+<xmlTag tagName="DeviceId"></xmlTag>
+<xmlTag tagName="DeviceCreateIp"></xmlTag>
+</body>

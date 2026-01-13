@@ -1,0 +1,54 @@
+<% layout('/layouts/default.html', {title: '谷歌验证器'}){ %>
+
+<% } %>
+
+<script>
+
+$(() => {
+
+    var secret = '${secret}'
+
+    let maskDiv = window.parent.document.getElementById('maskDiv');
+
+    if (!maskDiv) {
+        $(window.parent.document.getElementsByTagName('body')[0]).append("<div id=\"maskDiv\"\n" +
+            "     style=\"position: fixed;top: 0;left: 0;background-color: #F4F6F8;width: 100vw;height: 100vh;z-index: 2000\"></div>")
+    }
+
+    maskDiv = window.parent.document.getElementById('maskDiv')
+
+    if ($(maskDiv).children().length === 0) {
+
+        localStorage.setItem('secret', secret)
+
+        $(maskDiv).append(
+            "    <div\n" +
+            "        style=\"display: flex;flex-direction: column;padding: 100px;position: fixed;top: 0;width: 100vw;height: 100vh;z-index: 9999\">\n" +
+            "\n" +
+            "        <div id=\"bindDiv\" style=\"display: none\">\n" +
+            "            <h5>第一步：请扫描二维码，绑定谷歌验证器</h5>\n" +
+            "            <img style=\"width: 200px;height: 200px\" src=\"${qrBarcodeBase64}\"/>\n" +
+            "            <h5>第二步：请输入谷歌验证器的6位数验证码</h5>\n" +
+            "        </div>\n" +
+            "\n" +
+            "        <div id=\"checkDiv\" style=\"display: none\"><h5>请输入谷歌验证器的6位数验证码</h5></div>\n" +
+            "\n" +
+            "        <input id=\"GoogleAuthenticatorInput\" placeholder=\"请输入谷歌验证器的6位数验证码\" style=\"margin: 20px 0;height: 30px;\"/>\n" +
+            "\n" +
+            "        <button onClick=\"submitClick()\" style=\"height: 30px;\">提交</button>\n" +
+            "\n" +
+            "        <button onClick=\"logout()\" style=\"height: 30px;margin-top: 20px\">退出登录</button>\n" +
+            " </div>"
+        )
+
+    }
+
+    if (secret) {
+        $(window.parent.document.getElementById('bindDiv')).css({"display": "block"})
+    } else {
+        $(window.parent.document.getElementById('checkDiv')).css({"display": "block"})
+    }
+
+})
+
+</script>

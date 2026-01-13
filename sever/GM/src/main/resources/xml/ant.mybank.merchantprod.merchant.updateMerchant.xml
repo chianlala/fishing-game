@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!--4.2.6	商户开启接口<ant.mybank.merchantprod.merchant.unfreeze> -->
+<body>
+  <xmlTag tagName="IsvOrgId"></xmlTag>
+  <xmlTag tagName="DealType"></xmlTag>
+  <xmlTag tagName="SupportPrepayment"></xmlTag>
+  <xmlTag tagName="SettleMode"></xmlTag>
+  <xmlTag tagName="Mcc"></xmlTag>
+  <xmlTag tagName="MerchantDetail"></xmlTag>
+  <xmlTag tagName="TradeTypeList"></xmlTag>
+  <xmlTag tagName="PayChannelList"></xmlTag>
+  <xmlTag tagName="DeniedPayToolList"></xmlTag>
+  <xmlTag tagName="FeeParamList"></xmlTag>
+  <xmlTag tagName="BankCardParam"></xmlTag>
+  <xmlTag tagName="OutTradeNo"></xmlTag>
+  <xmlTag tagName="PartnerType"></xmlTag>
+
+</body>

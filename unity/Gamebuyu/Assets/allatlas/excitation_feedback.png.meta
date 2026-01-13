@@ -1,0 +1,584 @@
+fileFormatVersion: 2
+guid: 75db9e2a77174836939807dafdcf6053
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: turntable-fish_ turntable_1
+  - first:
+      213: 21300002
+    second: bigwin-fish_bigwin_frame
+  - first:
+      213: 21300004
+    second: turntable-fish_turntable_image_1
+  - first:
+      213: 21300006
+    second: bigwin-le
+  - first:
+      213: 21300008
+    second: turntable-fish_turntable_strick3
+  - first:
+      213: 21300010
+    second: bigwin-fish_bigwin_ribbon
+  - first:
+      213: 21300012
+    second: turntable-fish_turntable_strick2
+  - first:
+      213: 21300014
+    second: turntable-fish_ turntable_2
+  - first:
+      213: 21300016
+    second: bigwin-fish_bigwin_effect_lamp_1
+  - first:
+      213: 21300018
+    second: bigwin-bang
+  - first:
+      213: 21300020
+    second: turntable-fish_turntable_ribbon
+  - first:
+      213: 21300022
+    second: bigwin-fish_bigwin_bg
+  - first:
+      213: 21300024
+    second: bigwin-fish_bigwin_effect_light
+  - first:
+      213: 21300026
+    second: bigwin-fish_bigwin_effect_lamp_2
+  - first:
+      213: 21300028
+    second: turntable-fish_turntable_image_2
+  - first:
+      213: 21300030
+    second: bigwin-tai
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 0
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 47
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: 0
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 47
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: turntable-fish_turntable_strick2
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 44
+        width: 156
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -78, y: 27}
+        - {x: 78, y: 27}
+        - {x: -78, y: -27}
+      - - {x: -78, y: -27}
+        - {x: 78, y: 27}
+        - {x: 78, y: -27}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2305410000000000800000000000000
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bigwin-fish_bigwin_effect_lamp_1
+      rect:
+        serializedVersion: 2
+        x: 1460
+        y: 30
+        width: 20
+        height: 20
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 10}
+        - {x: 10, y: 10}
+        - {x: -10, y: -10}
+      - - {x: -10, y: -10}
+        - {x: 10, y: 10}
+        - {x: 10, y: -10}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03305410000000000800000000000000
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turntable-fish_turntable_ribbon
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 128
+        width: 215
+        height: 55
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -107.5, y: 27.5}
+        - {x: 107.5, y: 27.5}
+        - {x: -107.5, y: -27.5}
+      - - {x: -107.5, y: -27.5}
+        - {x: 107.5, y: 27.5}
+        - {x: 107.5, y: -27.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43305410000000000800000000000000
+      internalID: 21300020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turntable-fish_ turntable_2
+      rect:
+        serializedVersion: 2
+        x: 1248
+        y: 2
+        width: 210
+        height: 210
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -105, y: 105}
+        - {x: 105, y: 105}
+        - {x: -105, y: -105}
+      - - {x: -105, y: -105}
+        - {x: 105, y: 105}
+        - {x: 105, y: -105}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2305410000000000800000000000000
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bigwin-fish_bigwin_frame
+      rect:
+        serializedVersion: 2
+        x: 1036
+        y: 214
+        width: 515
+        height: 276
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -257.5, y: 138}
+        - {x: 257.5, y: 138}
+        - {x: -257.5, y: -138}
+      - - {x: -257.5, y: -138}
+        - {x: 257.5, y: 138}
+        - {x: 257.5, y: -138}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22305410000000000800000000000000
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bigwin-le
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 22
+        width: 70
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 38}
+        - {x: 35, y: 38}
+        - {x: -35, y: -38}
+      - - {x: -35, y: -38}
+        - {x: 35, y: 38}
+        - {x: 35, y: -38}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62305410000000000800000000000000
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bigwin-fish_bigwin_bg
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 185
+        width: 556
+        height: 305
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -278, y: 152.5}
+        - {x: 278, y: 152.5}
+        - {x: -278, y: -152.5}
+      - - {x: -278, y: -152.5}
+        - {x: 278, y: 152.5}
+        - {x: 278, y: -152.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63305410000000000800000000000000
+      internalID: 21300022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turntable-fish_turntable_strick3
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 44
+        width: 156
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -78, y: 27}
+        - {x: 78, y: 27}
+        - {x: -78, y: -27}
+      - - {x: -78, y: -27}
+        - {x: 78, y: 27}
+        - {x: 78, y: -27}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82305410000000000800000000000000
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bigwin-fish_bigwin_effect_lamp_2
+      rect:
+        serializedVersion: 2
+        x: 1460
+        y: 8
+        width: 20
+        height: 20
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 10}
+        - {x: 10, y: 10}
+        - {x: -10, y: -10}
+      - - {x: -10, y: -10}
+        - {x: 10, y: 10}
+        - {x: 10, y: -10}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3305410000000000800000000000000
+      internalID: 21300026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turntable-fish_turntable_image_2
+      rect:
+        serializedVersion: 2
+        x: 866
+        y: 85
+        width: 124
+        height: 41
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -62, y: 20.5}
+        - {x: 62, y: 20.5}
+        - {x: -62, y: -20.5}
+      - - {x: -62, y: -20.5}
+        - {x: 62, y: 20.5}
+        - {x: 62, y: -20.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3305410000000000800000000000000
+      internalID: 21300028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bigwin-fish_bigwin_effect_light
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 16
+        width: 474
+        height: 474
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -237, y: 237}
+        - {x: 237, y: 237}
+        - {x: -237, y: -237}
+      - - {x: -237, y: -237}
+        - {x: 237, y: 237}
+        - {x: 237, y: -237}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83305410000000000800000000000000
+      internalID: 21300024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bigwin-fish_bigwin_ribbon
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 100
+        width: 303
+        height: 83
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -151.5, y: 41.5}
+        - {x: 151.5, y: 41.5}
+        - {x: -151.5, y: -41.5}
+      - - {x: -151.5, y: -41.5}
+        - {x: 151.5, y: 41.5}
+        - {x: 151.5, y: -41.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2305410000000000800000000000000
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bigwin-tai
+      rect:
+        serializedVersion: 2
+        x: 1460
+        y: 132
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -40, y: 40}
+        - {x: 40, y: 40}
+        - {x: -40, y: -40}
+      - - {x: -40, y: -40}
+        - {x: 40, y: 40}
+        - {x: 40, y: -40}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3305410000000000800000000000000
+      internalID: 21300030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turntable-fish_ turntable_1
+      rect:
+        serializedVersion: 2
+        x: 1036
+        y: 2
+        width: 210
+        height: 210
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -105, y: 105}
+        - {x: 105, y: 105}
+        - {x: -105, y: -105}
+      - - {x: -105, y: -105}
+        - {x: 105, y: 105}
+        - {x: 105, y: -105}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02305410000000000800000000000000
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bigwin-bang
+      rect:
+        serializedVersion: 2
+        x: 1460
+        y: 52
+        width: 75
+        height: 78
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -37.5, y: 39}
+        - {x: 37.5, y: 39}
+        - {x: -37.5, y: -39}
+      - - {x: -37.5, y: -39}
+        - {x: 37.5, y: 39}
+        - {x: 37.5, y: -39}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23305410000000000800000000000000
+      internalID: 21300018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turntable-fish_turntable_image_1
+      rect:
+        serializedVersion: 2
+        x: 866
+        y: 41
+        width: 97
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -48.5, y: 21}
+        - {x: 48.5, y: 21}
+        - {x: -48.5, y: -21}
+      - - {x: -48.5, y: -21}
+        - {x: 48.5, y: 21}
+        - {x: 48.5, y: -21}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42305410000000000800000000000000
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: assets/ui/atlas/excitation_feedback.bundle
+  assetBundleVariant: 

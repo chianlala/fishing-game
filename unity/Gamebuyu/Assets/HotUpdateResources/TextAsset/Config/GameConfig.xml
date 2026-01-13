@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Config>
+  <!-- 内网ip-->
+  <ServerIP>127.0.0.1</ServerIP>
+  <!--内网端口号-->
+  <ServerPort>8111</ServerPort>
+  <!--后台链接地址-->
+  <WebServer>http://127.0.0.1/xxxx</WebServer>
+  <!--后台端口号-->
+  <WebServerPort>80</WebServerPort>
+  <!--版本号-->
+  <Version>1.0.0.0</Version>
+  <!--1：需要从服务器加载资源 0：不需要从服务器加载资源-->
+  <ServerAssets>1</ServerAssets>
+  <!--背景音乐音量-->
+  <BgmVolume>0.4864013</BgmVolume>
+  <!--音效音量-->
+  <GameVolume>0.4659802</GameVolume>
+</Config>

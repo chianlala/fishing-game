@@ -1,0 +1,5 @@
+id,gameId,sessionId,sessionName,showSessionName,open,useMoneyType,produceMoneyType,skillIdListStr,frozenType,skillPayTypeListStr,batteryIdListStr,wingIdListStr,playerNumber,roomNumber
+12,2,202,积分场,积分场,1,1,4,"[8,11,9001]",0,"[0,0,0]",,,4,10
+21,2,1101,英雄一号,十炮房,1,1,1,"[8,11,9001]",0,"[0,0,0]",,,4,40
+22,2,1102,英雄二号,百炮房,1,1,1,"[8,11,9001]",0,"[0,0,0]",,,4,40
+23,2,1103,英雄三号,千炮房,1,1,1,"[8,11,9001]",0,"[0,0,0]",,,4,40

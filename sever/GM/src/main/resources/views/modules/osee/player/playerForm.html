@@ -1,0 +1,1179 @@
+<% layout('/layouts/default.html', {title: '用户信息修改', libs: ['validate']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <#form:form id="inputForm" model="${player}" action="${ctx}/osee/player/save" method="post"
+        class="form-horizontal" style="">
+        <div class="box-body">
+            <#form:hidden path="playerId" />
+<!--            <div class="row">-->
+<!--                <div class="col-xs-6">-->
+<!--                    <div class="form-group">-->
+<!--                        <label class="control-label col-sm-4" data-i18n="用户信息修改.玩家id：">-->
+<!--                            ${text('玩家id')}：-->
+<!--                        </label>-->
+<!--                        <label class="control-label col-sm-4" title="" style="text-align: left">-->
+<!--                            ${playerId}-->
+<!--                        </label>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="row">-->
+<!--                <div class="col-xs-6">-->
+<!--                    <div class="form-group">-->
+<!--                        <label class="control-label col-sm-4" title="">-->
+<!--                            ${text('玩家昵称')}：<i class="fa icon-question hide"></i>-->
+<!--                        </label>-->
+<!--                        <label class="control-label col-sm-4" title="" style="text-align: left">-->
+<!--                            ${playerName}-->
+<!--                        </label>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+            <% if(hasPermi('player:permission2')){ %>
+
+            <div style="display: flex;flex-direction: column">
+
+                <div style="display: flex;">
+
+                    <div style="display: flex">
+
+                        <% if(hasPermi('player:permission1')){ %>
+
+                        <div style="display: flex; align-items: center">
+                            <div data-i18n="用户信息修改.游戏id：">
+                                ${text('游戏id')}：
+                            </div>
+                            <div>
+                                <#form:input path="gameId" class="form-control" placeholder="请输入游戏id" />
+                            </div>
+                        </div>
+
+                        <% } %>
+
+                    </div>
+
+                    <div style="display: flex;margin-left: 20px;">
+
+                        <div style="display: flex; align-items: center">
+                            <div data-i18n="用户信息修改.手机号：">
+                                ${text('手机号')}：
+                            </div>
+                            <div>
+                                <#form:input path="phone" class="form-control" placeholder="请输入手机号" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div style="display: flex;margin-left: 20px;">
+
+                        <div style="display: flex; align-items: center">
+                            <div data-i18n="用户信息修改.保险箱密码：">
+                                ${text('保险箱密码')}：
+                            </div>
+                            <div>
+                                <#form:input path="bankpassword" type="password" maxlength="18" class="form-control" data-i18n="[placeholder]用户信息修改.不填则不修改密码"
+                                placeholder="不填则不修改密码" autocomplete="new-password" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div style="display: flex;margin-left: 20px;">
+
+                        <div style="display: flex; align-items: center">
+                            <div data-i18n="用户信息修改.用户密码：">
+                                ${text('用户密码')}：
+                            </div>
+                            <div>
+                                <#form:input path="password" type="password" maxlength="18" class="form-control" data-i18n="[placeholder]用户信息修改.不填则不修改密码"
+                                placeholder="不填则不修改密码" autocomplete="off" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <% } %>
+
+            <% if(hasPermi('player:permission2')){ %>
+
+            <div id="commissionRate" style="display: none">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" data-i18n="用户信息修改.支付通道：">
+                                ${text('支付通道')}：</label>
+                            <div class="col-sm-8">
+                                <#form:radio path="payWay" items="${oseePayWayList}" itemLabel="dictLabel" itemValue="dictValue" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" title="">
+                                <span class="required">*</span> <span data-i18n="用户信息修改.渠道商分成比例(%)：">${text('渠道商分成比例(%)')}：</span>
+                            </label>
+                            <div class="col-sm-8">
+                                <#form:input path="rate" type="number" min="0" max="100" class="form-control"
+                                step="0.01" data-i18n="[placeholder]用户信息修改.可输入小数"
+                                placeholder="可输入小数" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" title="">
+                                <span class="required">*</span> <span data-i18n="用户信息修改.渠道商备注：">${text('渠道商备注')}：</span>
+                            </label>
+                            <div class="col-sm-8">
+                                <#form:input path="playerRemark" type="txt" maxlength="100" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <% } %>
+
+        </div>
+        <div class="box-footer">
+            <div class="row">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <% if (hasPermi('player:edit')){ %>
+                    <button type="submit" class="btn btn-sm btn-primary" id="btnSubmit">
+                        <i class="fa fa-check"></i> <span data-i18n="保存">${text('保 存')}</span>
+                    </button>&nbsp;
+                    <% } %>
+                    <button type="button" class="btn btn-sm btn-default" id="btnCancel"
+                            onclick="js.closeCurrentTabPage()"><i class="fa fa-reply-all"></i> <span data-i18n="关闭">${text('关 闭')}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </#form:form>
+
+    <!--<div style="margin-top: 20px;">
+
+        <div class="col-sm-11" style="margin-left: 20px;margin-bottom: 20px">
+
+            <button class="btn btn-sm btn-primary" onclick="changeShowUserInfoForm()">
+                编辑用户信息
+            </button>&nbsp;
+
+        </div>
+
+    </div>-->
+
+</div>
+</div>
+<% } %>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.2/echarts.min.js"></script>
+
+<script>
+
+    function changeShowUserInfoForm(){
+
+        let display = $('#inputForm')[0].style.display;
+
+        if(display === 'none'){
+
+            $('#inputForm').css('display', '');
+
+        }else{
+
+            $('#inputForm').css('display', 'none');
+
+        }
+
+    }
+
+var userId = ${playerId}
+
+var grChart = echarts.init(document.getElementById('grChart'));
+
+let xAxisDataLineArr = []
+
+let lineArr = []
+
+let addNodeList = [] // 新增金币集合
+
+let lineList = []
+
+let lineOriginList = []
+
+let batteryLevel = 1
+let currentMoneyIndex = 0
+let selectIndex = 0 // 选中的下标
+
+var editFlag = false; // 是否时是：编辑状态
+
+let addNodePreName = $.i18n.t('用户信息修改.新增金币')
+
+let tenThousand = 10000
+
+let bdfzList = [] // bdfz集合
+
+// 点击：编辑玩家金币曲线图时
+function editClick(){
+
+    $('#viewId').css("display","none");
+    $('#editId').show()
+
+    $('#selectName').html('')
+    $('#nodeValueId').val('')
+    selectIndex = 0
+    addNodeList = []
+
+    editFlag = true;
+
+}
+
+// 点击：关闭个控时
+function closePersonalClick(){
+
+    let form = {
+        userId,
+    }
+
+    $.ajax({
+
+        url: '${ctx}/osee/statistics/player/jczd0List/closePersonal',
+        type: 'POST',
+        contentType: 'application/json; charset=UTF-8',
+        data: JSON.stringify(form),
+        dataType: 'json',
+        success: function (data) {
+            if (data.result === 'true') {
+                js.showMessage(data.message);
+            } else {
+                js.showErrorMessage(data.message)
+            }
+        },
+    });
+
+    $('#viewId').show()
+    $('#editId').css("display","none")
+
+    $('#selectName').html('')
+    $('#nodeValueId').val('')
+    selectIndex = 0
+    addNodeList = []
+
+    editFlag = false;
+
+    showData({})
+
+}
+
+// 点击：添加节点玩家金币曲线图时
+function addClick(){
+
+    const val = $('#nodeValueId').val();
+
+    if(!val || val <= 0){
+        js.showErrorMessage($.i18n.t('用户信息修改.金币数不能小于等于 0'))
+        return;
+    }
+
+    let addNode = {name: addNodePreName + (addNodeList.length + 1), money: val * tenThousand};
+
+    addNodeList.push(addNode)
+
+    lineList.splice(lineList.length - 1, 0, addNode)
+
+    showData({lineList, batteryLevel, currentMoneyIndex, bdfzList})
+
+}
+
+// 点击：删除节点玩家金币曲线图时
+function delClick(){
+
+    const selectName = $('#selectName').html();
+
+    if (selectName.includes(addNodePreName) === false) {
+        js.showErrorMessage($.i18n.t('用户信息修改.只能删除新增金币'))
+        return
+    }
+
+    const addNodeIndex = Number(selectName.split(addNodePreName)[1]) - 1;
+
+    addNodeList.splice(addNodeIndex, 1)
+
+    addNodeList.forEach((item, index)=>{
+
+        item.name = addNodePreName + (index + 1) // 备注：由于这里和 lineList里面用的是同一个对象，所以这里变化了，lineList里面的对象也会跟着变化
+
+    })
+
+    lineList.splice(lineOriginList.length - 1 + addNodeIndex, 1)
+
+    showData({lineList, batteryLevel, currentMoneyIndex, bdfzList})
+
+}
+
+// 点击：修改节点玩家金币曲线图时
+function updateClick(){
+
+    if(selectIndex === 0){
+        js.showErrorMessage($.i18n.t('用户信息修改.请选择节点'))
+        return
+    }
+
+    const val = $('#nodeValueId').val();
+
+    if(!val || val <= 0){
+        js.showErrorMessage($.i18n.t('用户信息修改.金币数不能小于等于 0'))
+        return;
+    }
+
+    lineList[selectIndex].money = val * tenThousand
+
+    showData({lineList, batteryLevel, currentMoneyIndex, bdfzList})
+
+}
+
+// 点击：保存玩家金币曲线图时
+function saveClick(){
+
+    let changeJczd0List = []
+
+    lineArr.forEach((item, index) =>{
+
+        if(index === 0 || index === currentMoneyIndex){
+            return
+        }
+
+        changeJczd0List.push(item)
+
+    })
+
+    let form = {
+        userId,
+        batteryLevelStr: batteryLevel,
+        changeJczd0List,
+    }
+
+    $.ajax({
+
+        url: '${ctx}/osee/statistics/player/jczd0List/update',
+        type: 'POST',
+        contentType: 'application/json; charset=UTF-8',
+        data: JSON.stringify(form),
+        dataType: 'json',
+        success: function (data) {
+            if (data.result === 'true') {
+                js.showMessage(data.message);
+            } else {
+                js.showErrorMessage(data.message)
+            }
+        },
+    });
+
+    $('#viewId').show()
+    $('#editId').css("display","none")
+
+    $('#selectName').html('')
+    $('#nodeValueId').val('')
+    selectIndex = 0
+    addNodeList = []
+
+    editFlag = false;
+
+    showData({})
+
+}
+
+// 点击：取消玩家金币曲线图时
+function cancelClick(){
+
+    $('#viewId').show()
+    $('#editId').css("display","none")
+
+    $('#selectName').html('')
+    $('#nodeValueId').val('')
+    selectIndex = 0
+    addNodeList = []
+
+    editFlag = false;
+
+    showData({lineList : JSON.parse(JSON.stringify(lineOriginList)), batteryLevel, currentMoneyIndex, bdfzList})
+
+}
+
+let symbolSize = 10
+
+let dataZoom = [
+    {
+        type: 'slider',
+        xAxisIndex: [0]
+    },
+    {
+        type: 'inside',
+        xAxisIndex: [0]
+    },
+]
+
+let option = {
+
+    graphic: [],
+
+    dataZoom: undefined,
+
+    visualMap: {
+
+        show: false,
+        dimension: 0,
+
+        pieces: [
+            {
+                gte: 0,
+                lte: 6,
+                color: 'blue'
+            },
+        ],
+
+        outOfRange: {
+            color: 'red'
+        }
+
+    },
+    tooltip: {
+
+        triggerOn: 'none',
+
+        formatter: function(param) {
+
+            let str = '';
+
+            str += param.marker + param.name  + '<br/>'
+
+            str += param.marker + $.i18n.t('用户信息修改.金币数') +  ': ' + Number(param.data / tenThousand).toFixed(2) + '<br/>'
+
+            str += param.marker + $.i18n.t('用户信息修改.子弹数') + ': ' + Number(param.data / batteryLevel).toFixed(2)
+
+            return str;
+
+        }
+
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    legend: [
+    ],
+    xAxis: [
+        {
+            type: 'category',
+            data: [],
+        },
+    ],
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: (value)=>{
+                return Number(value / tenThousand).toFixed(2)
+            }
+        },
+    },
+    series: [
+        {
+            name: "金币数",
+            data: [],
+            type: 'line',
+            smooth: true,
+            symbolSize: symbolSize, // 设定实心点的大小
+        },
+    ]
+}
+
+grChart.setOption(option)
+
+getData()
+
+getPlayerGameData()
+
+setInterval(()=>{
+
+    getData()
+
+    getPlayerGameData()
+
+}, 2000)
+
+function getData() {
+
+    if(editFlag){
+        return
+    }
+
+    $.ajax({
+        url: '${ctx}/osee/statistics/monitor/playerData?userId=' + userId,
+        type: 'get',
+        dataType: 'json',
+        success: function (response) {
+            const data = response.data;
+            if (data.success) {
+
+                data.data?.lineList?.forEach(item =>{
+
+                    let preName = item.name.substring(0,4);
+
+                    let sufName = item.name.substring(4);
+
+                    item.name = $.i18n.t("用户信息修改." + preName) + sufName
+
+                })
+
+                showData(data.data, true);
+
+            } else {
+                js.showErrorMessage(data.errMsg);
+            }
+        },
+    });
+
+}
+
+function getPlayerGameData(){
+
+    $.ajax({
+
+        url: '${ctx}/osee/statistics/monitor/playerGameData?userId=' + userId,
+        type: 'get',
+        dataType: 'json',
+
+        success: function (response) {
+
+            const data = response.data;
+
+            if (data.success) {
+
+                $('#giftSummaryNumId').html(data.data.giftSummaryNum)
+                $('#gameIdId').html(data.data.gameId)
+
+                $('#lsykId').html(Number((data.data.lsyk || 0) / 10000).toFixed(0))
+                $('#jrykId').html(Number((data.data.jryk || 0) / 10000).toFixed(0))
+                $('#ccykId').html(Number((data.data.ccyk || 0) / 10000).toFixed(0))
+                $('#ccjrykId').html(Number((data.data.ccjryk || 0) / 10000).toFixed(0))
+                $('#jcykId').html(Number((data.data.jcyk || 0) / 10000).toFixed(0))
+
+                $('#userNameId').html(data.data.userName)
+                $('#giftLogStrId').html(data.data.giftLogStr)
+                $('#userIdId').html(data.data.userId)
+                $('#totalDragonCrystalId').html(data.data.totalDragonCrystal)
+                $('#totalGoldTorpedoId').html(data.data.totalGoldTorpedo)
+
+                $('#sessionNameId').html(data.data.sessionName)
+                $('#fishHitInfoStrId').html(data.data.fishHitInfoStr)
+                $('#jcrtpStrId').html(data.data.jcrtpStr)
+
+                $('#ksfzId').html(Number((data.data.ksfz || 0) / 10000).toFixed(0))
+
+            } else {
+
+                js.showErrorMessage(data.errMsg);
+
+            }
+
+        },
+
+    });
+
+}
+
+function showData(data = {}, changeLineOriginList = false) {
+
+    xAxisDataLineArr = []
+    lineArr = []
+    bdfzList = []
+
+    lineList = data.lineList || [];
+    batteryLevel = data.batteryLevel || 1;
+    currentMoneyIndex = data.currentMoneyIndex || 0;
+    bdfzList = data.bdfzList || [];
+    extraJczd0IndexList = data.extraJczd0IndexList || [];
+
+    if(changeLineOriginList){
+
+        lineOriginList = JSON.parse(JSON.stringify(lineList))
+
+    }
+
+    lineList.forEach((item)=>{
+
+        xAxisDataLineArr.push(item.name || "未知");
+
+        lineArr.push(Number(item.money) || 0)
+
+    })
+
+    if(lineList.length > 60){
+
+        option.dataZoom = dataZoom
+
+    }else{
+
+        option.dataZoom = undefined
+
+    }
+
+    option.visualMap.pieces[0].lte = currentMoneyIndex
+
+    option.visualMap.pieces = [option.visualMap.pieces[0]]
+
+    bdfzList.forEach(item =>{
+
+        option.visualMap.pieces.push({value: item, color: 'green'})
+
+    })
+
+    extraJczd0IndexList.forEach(item =>{
+
+        option.visualMap.pieces.push({value: item, color: '#787acb'})
+
+    })
+
+    option.xAxis[0].data = xAxisDataLineArr
+
+    option.series[0].data = lineArr
+
+    // 更新图表数据
+    grChart.setOption(option);
+
+    option.graphic = echarts.util.map(lineArr, (item, dataIndex) => {
+
+        return {
+
+            // 'circle' 表示这个 graphic element 的类型是圆点。
+            type: 'circle',
+            shape: {
+                // 圆点的半径。
+                r: symbolSize
+            },
+            // 用 transform 的方式对圆点进行定位。position: [x, y] 表示将圆点平移到 [x, y] 位置。
+            // 这里使用了 convertToPixel 这个 API 来得到每个圆点的位置
+            position: grChart.convertToPixel('grid', [dataIndex, item]),
+            // 这个属性让圆点不可见（但是不影响他响应鼠标事件）。
+            invisible: true,
+            // 这个属性让圆点可以被拖拽。
+            draggable: true,
+            // 把 z 值设得比较大，表示这个圆点在最上方，能覆盖住已有的折线图的圆点。
+            z: 100,
+
+            ondrag: function () {
+                onPointDragging(dataIndex, this.position);
+            },
+
+            onmousemove: echarts.util.curry(showTooltip, dataIndex),
+            onmouseout: echarts.util.curry(hideTooltip, dataIndex),
+
+        }
+
+    })
+
+    // 更新图表数据
+    grChart.setOption(option);
+
+}
+
+function showTooltip(dataIndex) {
+    grChart.dispatchAction({
+        type: 'showTip',
+        seriesIndex: 0,
+        dataIndex: dataIndex
+    });
+}
+function hideTooltip(dataIndex) {
+    grChart.dispatchAction({ type: 'hideTip' });
+}
+
+function onPointDragging(dataIndex, position) {
+
+    if(!editFlag){
+        return
+    }
+
+    let value = grChart.convertFromPixel('grid', position);
+
+    let money = value[1]
+
+    const currentName = xAxisDataLineArr[dataIndex];
+
+    if(dataIndex <= currentMoneyIndex || dataIndex === lineList.length - 1){ // 再次点击，表示取消，或者点击了当前金币前面的节点，或者是最后一个节点
+
+        $('#selectName').html('')
+        $('#nodeValueId').val('')
+        selectIndex = 0
+        return
+
+    }else{
+
+        $('#selectName').html(currentName)
+        $('#nodeValueId').val(Number(money / tenThousand).toFixed(2))
+        selectIndex = dataIndex
+
+    }
+
+    lineList[dataIndex].money = money
+
+    showData({lineList, batteryLevel, currentMoneyIndex, bdfzList})
+
+}
+
+var historyChart = echarts.init(document.getElementById('historyChart'));
+
+let historyOption = {
+
+    tooltip: {
+        trigger: 'axis',
+    },
+
+    dataZoom: [
+        {
+            type: 'slider',
+            xAxisIndex: [0]
+        },
+        {
+            type: 'slider',
+            yAxisIndex: [0]
+        },
+        {
+            type: 'inside',
+            xAxisIndex: [0]
+        },
+        {
+            type: 'inside',
+            yAxisIndex: [0]
+        }
+    ],
+
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+
+    legend: [
+    ],
+
+    xAxis: [
+        {
+            type: 'category',
+            data: [],
+        },
+    ],
+
+    yAxis: {
+        type: 'value',
+    },
+
+    series: [
+        {
+            name: "金币数",
+            data: [],
+            type: 'line',
+            smooth: true,
+        },
+    ]
+
+}
+
+historyChart.setOption(historyOption)
+
+getHistoryData()
+
+setInterval(getHistoryData, 10000)
+
+function getHistoryData() {
+
+    const displayValue = document.querySelector('#historyChart').style.display;
+
+    if(displayValue === 'none'){
+        return
+    }
+
+    const ctBeginTime = $('#ctBeginTime').val();
+    const ctEndTime = $('#ctEndTime').val();
+
+    let form = {
+        userId,
+        ctBeginTime,
+        ctEndTime
+    }
+
+    $.ajax({
+        url: '${ctx}/osee/statistics/monitor/playerHistoryData',
+        type: 'POST',
+        contentType: 'application/json; charset=UTF-8',
+        data: JSON.stringify(form),
+        dataType: 'json',
+        success: function (response) {
+            const data = response.data;
+            if (data.success) {
+                showHistoryData(data.data);
+            } else {
+                js.showErrorMessage(data.errMsg);
+            }
+        },
+    });
+
+}
+
+function historyChartShowClick(){
+
+    const displayValue = document.querySelector('#historyChart').style.display;
+
+    if(displayValue === 'none'){
+
+        document.querySelector('#historyChart').style.display = ''
+
+        document.querySelector('#historyChartShowDiv').style.display = 'none'
+        document.querySelector('#historyChartHiddenDiv').style.display = ''
+
+        historyChart.resize()
+
+    }else{
+
+        document.querySelector('#historyChart').style.display = 'none'
+
+        document.querySelector('#historyChartShowDiv').style.display = ''
+        document.querySelector('#historyChartHiddenDiv').style.display = 'none'
+
+    }
+
+}
+
+let xAxisDataHistoryLineArr = []
+let historyLineArr = []
+let lineHistoryList = []
+
+function showHistoryData(data = {}) {
+
+    xAxisDataHistoryLineArr = []
+    historyLineArr = []
+
+    lineHistoryList = data.lineHistoryList || [];
+
+    lineHistoryList.forEach((item)=>{
+
+        xAxisDataHistoryLineArr.push(item.createTimeMs || "");
+
+        historyLineArr.push(item.money || undefined)
+
+    })
+
+    historyOption.xAxis[0].data = xAxisDataHistoryLineArr
+
+    historyOption.series[0].data = historyLineArr
+
+    // 更新图表数据
+    historyChart.setOption(historyOption);
+
+}
+
+    $("#inputForm").validate({
+        submitHandler: function (form) {
+            js.ajaxSubmitForm($(form), function (data) {
+                if (data.result === 'true') {
+                    js.showMessage(data.message);
+                    js.closeCurrentTabPage(function (contentWindow) {
+                        contentWindow.page();
+                    });
+                } else {
+                    js.showErrorMessage(data.message)
+                }
+            }, 'json');
+        }
+    });
+    $(function () {
+
+        var ag = "${ag}";
+
+        var one = "${one}";
+
+        // console.log(one);
+
+        for (var i = 0; i < 6; i++) {
+
+            if ((ag & (1 << i)) == (1 << i)) {
+                // console.log("#ag" + (i + 1));
+                $("#ag" + (i + 1)).attr("checked", true);
+            } else {
+                $("#ag" + (i + 1)).attr("checked", false);
+            }
+
+        }
+
+        for (var i = 0; i < 9; i++) {
+            // console.log("#one" + (i + 1));
+            if ((one & (1 << i)) == (1 << i)) {
+
+                $("#one" + (i + 1)).attr("checked", true);
+            } else {
+                $("#one" + (i + 1)).attr("checked", false);
+            }
+
+        }
+        // 如果玩家是代理就要禁用玩家身份切换选项，显示佣金设置
+        if ($('input:radio[name=playerType]:checked').val() === '2') {
+            $('#commissionRate1').css('display', 'none');
+            $('input:radio[name=playerType]:eq(0)').attr('disabled', true);
+            $('#commissionRate').css('display', 'block');
+            $('#firstCommissionRate').addClass('required');
+            $('#secondCommissionRate').addClass('required');
+        }
+        if ($('input:radio[name=playerType]:checked').val() === '3') {
+            $('#commissionRate').css('display', 'none');
+            $('input:radio[name=playerType]:eq(0)').attr('disabled', true);
+            $('#commissionRate1').css('display', 'flex');
+            $('#firstCommissionRate').addClass('required');
+            $('#secondCommissionRate').addClass('required');
+        }
+        // 监听设置身份变化单选按钮来判断是否显示佣金设置
+        $('input:radio[name=playerType]').on('ifChecked', function () {
+            var type = $(this).val();
+            if (type === '2') {
+                $('#commissionRate1').css('display', 'none');
+                $('#commissionRate').css('display', 'block');
+                $('#firstCommissionRate').addClass('required');
+                $('#secondCommissionRate').addClass('required');
+            } else if (type === '3') {
+                $('#commissionRate').css('display', 'none');
+                $('#commissionRate1').css('display', 'flex');
+                $('#firstCommissionRate').addClass('required');
+                $('#secondCommissionRate').addClass('required');
+            } else {
+                $('#commissionRate').css('display', 'none');
+                $('#commissionRate1').css('display', 'none');
+                $('#firstCommissionRate').removeClass('required');
+                $('#secondCommissionRate').removeClass('required');
+            }
+        });
+    });
+
+</script>
+
+<script>
+
+    $(()=>{
+
+        $("#gameId").blur()
+
+    })
+
+var specifyFishData = null
+
+$('#btnSubmit').click((e)=>{
+
+    if(specifyFishData == null){
+        return
+    }
+
+    e.stopPropagation()
+
+    e.preventDefault()
+
+    if(Object.keys(specifyFishData).length === 0){
+
+        specifyFishData = {'-1': 0}
+
+    }
+
+    let action = $("#inputForm").attr("action");
+
+    var formValue = $("#inputForm").serialize()
+
+    if(formValue){
+
+        Object.keys(specifyFishData).forEach(key=>{
+
+            formValue = formValue + "&fishIdArr=" + key + "&fishCountArr=" + specifyFishData[key]
+
+        })
+
+    }
+
+    $.ajax({
+        url: action,
+        type: 'POST',
+        data: formValue,
+        dataType: 'json',
+        success: function (data) {
+
+            if (data.result === 'true') {
+
+                js.closeCurrentTabPage()
+                js.showMessage(data.message)
+
+            } else {
+                js.showErrorMessage(data.message)
+            }
+
+        }
+    });
+
+})
+
+$('#specifyFishBtn').click((e) => {
+
+    e.stopPropagation()
+
+    e.preventDefault()
+
+    layer.open({
+
+        title: '指定鱼种',
+        area: ['1000px', '70vh'],
+        content: js.template('specifyFishTemp'),
+
+        yes: () => {
+
+            let serializeArray = $("#specifyFishForm").serializeArray();
+
+            specifyFishData = {}
+
+            for (let i = 0; i < serializeArray.length; i = i + 2) {
+
+                specifyFishData[serializeArray[i].value] = serializeArray[(i + 1)].value
+
+            }
+
+        },
+
+        success: function(layero, index, that){
+
+            /**
+             * 新添指定鱼种
+             */
+            $('#addItem').click(function () {
+                js.template('specifyFishItemTemp', {}, function (html) {
+                    $('#items').append(html);
+                    $('[data-i18n]').localize();
+                });
+            });
+
+            /**
+             * 给指定鱼种删除按钮绑定点击事件
+             */
+            $('#items').on('click', 'button[name=delItem]', function () {
+                $(this).parent().parent().parent().parent().remove();
+            });
+
+            if(specifyFishData == null){
+
+                $.ajax({
+                    url: '${ctx}/osee/player/getSpecifyFishKill',
+                    type: 'POST',
+                    data: "userId=" + userId,
+                    dataType: 'json',
+                    success: function (response) {
+                        const data = response.data;
+                        if (data.success) {
+
+                            specifyFishData = data.data
+
+                            Object.keys(specifyFishData).forEach((key, index) => {
+
+                                if(key == -1){
+                                    return
+                                }
+
+                                $('#addItem').click()
+
+                                $($('.fishIdArr')[index]).val(key)
+                                $($('.fishCountArr')[index]).val(specifyFishData[key])
+
+                            })
+
+                        } else {
+                            js.showErrorMessage(data.errMsg);
+                        }
+                    },
+                });
+
+            }else{
+
+                Object.keys(specifyFishData).forEach((key, index) => {
+
+                    if(key == -1){
+                        return
+                    }
+
+                    $('#addItem').click()
+
+                    $($('.fishIdArr')[index]).val(key)
+                    $($('.fishCountArr')[index]).val(specifyFishData[key])
+
+                })
+
+            }
+
+        }
+
+    });
+
+})
+
+</script>
+
+<!--指定鱼种模板-->
+<script id="specifyFishTemp" type="text/template">
+
+<form action="" id="specifyFishForm" class="form-horizontal">
+
+    <div id="items" class="row">
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="form-group">
+                    <label class="control-label col-sm-4" data-i18n='用户信息修改.指定鱼种'>
+                        ${text('指定鱼种')}：
+                    </label>
+                    <div class="col-sm-8">
+                        <button type="button" id="addItem" class="btn btn-sm btn-info" data-i18n='添加'>${text('添加')}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+</script>
+
+<!--指定鱼种添加模板-->
+<script id="specifyFishItemTemp" type="text/template">
+
+<div class="row">
+    <div class="col-xs-8">
+        <div class="form-group">
+
+            <div class="col-sm-3 col-sm-offset-4">
+                <#form:select name="fishIdArr" items="${fishList}"
+                itemLabel="dictLabel" itemValue="dictValue" blankOption="true" blankOptionLabel="<span data-i18n='发送邮件.请选择'>请选择</span>" class="form-control required fishIdArr"/>
+            </div>
+
+            <div class="col-sm-3">
+                <#form:input path="fishCountArr" type="number" min="1" class="form-control required fishCountArr" data-i18n='[placeholder]发送邮件.数量' placeholder="数量" />
+            </div>
+
+            <div class="col-sm-2">
+                <button type="button" name="delItem" class="btn btn-sm btn-danger" data-i18n='发送邮件.删除'>${text('删除')}</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</script>

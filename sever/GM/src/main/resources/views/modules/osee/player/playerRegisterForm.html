@@ -1,0 +1,77 @@
+<% layout('/layouts/default.html', {title: '用户注册', libs: ['validate']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <div class="box-header with-border">
+            <div class="box-title">
+                <i class="fa fa-pencil"></i> 用户注册
+            </div>
+<!--            <div class="box-tools pull-right">-->
+<!--                <button type="button" class="btn btn-box-tool" data-widget="collapse">-->
+<!--                    <i class="fa fa-minus"></i>-->
+<!--                </button>-->
+<!--            </div>-->
+        </div>
+        <#form:form id="inputForm" action="${ctx}/osee/player/register" method="post" class="form-horizontal">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" title="">
+                                ${text('用户账号')}：<i class="fa icon-question hide"></i>
+                            </label>
+                            <div class="col-sm-8">
+                                <#form:input path="username" type="text" maxlength="18" class="form-control"
+                                placeholder="账号" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" title="">
+                                ${text('用户密码')}：<i class="fa icon-question hide"></i>
+                            </label>
+                            <div class="col-sm-8">
+                                <#form:input path="password" type="password" maxlength="18" class="form-control"
+                                placeholder="密码" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-footer">
+                <div class="row">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <% if (hasPermi('player:edit')){ %>
+                        <button type="submit" class="btn btn-sm btn-primary" id="btnSubmit">
+                            <i class="fa fa-check"></i>${text('注 册')}
+                        </button>&nbsp;
+                        <% } %>
+                        <button type="button" class="btn btn-sm btn-default" id="btnCancel"
+                                onclick="js.closeCurrentTabPage()"><i class="fa fa-reply-all"></i> ${text('关 闭')}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </#form:form>
+    </div>
+</div>
+</div>
+<% } %>
+<script>
+    $("#inputForm").validate({
+        submitHandler: function (form) {
+            js.ajaxSubmitForm($(form), function (data) {
+                if (data.result === 'true') {
+                    js.showMessage(data.message);
+                    js.closeCurrentTabPage(function (contentWindow) {
+                        contentWindow.page();
+                    });
+                } else {
+                    js.showErrorMessage(data.message)
+                }
+            }, 'json');
+        }
+    });
+</script>

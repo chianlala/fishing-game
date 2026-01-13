@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--5.1.2	图片上传接口<ant.mybank.merchantprod.merchant.uploadphoto > -->
+<body>
+    <xmlTag tagName="PhotoUrl"></xmlTag>
+    <xmlTag tagName="OutTradeNo"></xmlTag>
+    <xmlTag tagName="Function"></xmlTag>
+    <xmlTag tagName="Appid"></xmlTag>
+    <xmlTag tagName="IsvOrgId"></xmlTag>
+    <xmlTag tagName="ReqTime"></xmlTag>
+    <xmlTag tagName="ReqMsgId"></xmlTag>
+    <xmlTag tagName="RespInfo">
+        <xmlTag tagName="ResultStatus"></xmlTag>
+        <xmlTag tagName="ResultCode"></xmlTag>
+        <xmlTag tagName="ResultMsg"></xmlTag>
+    </xmlTag>
+</body>

@@ -1,0 +1,134 @@
+<% layout('/layouts/default.html', {title: 'CDK列表', libs: ['dataGrid']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <div class="box-header with-border">
+            <div class="box-title">
+                <i class="fa fa-key"></i> CDK列表
+            </div>
+            <div class="box-tools pull-right">
+                <a href="#" class="btn btn-default" id="btnSearch" title="${text('查询')}">
+                    <i class="fa fa-filter"></i> ${text('查询')}
+                </a>
+                <% if(hasPermi('game:cdk:edit')){ %>
+                    <a href="${ctx}/osee/game/cdk/form" class="btn btn-default btnTool" title="${text('添加CDK')}">
+                        <i class="fa fa-plus"></i> ${text('添加')}
+                    </a>
+                    <a href="javascript:void(0)" class="btn btn-default" id="btnExport">
+                        <i class="glyphicon glyphicon-export"></i> ${text('导出')}
+                    </a>
+                    <span>|</span>
+                    <a href="javascript:void(0)" class="btn btn-danger" title="${text('删除')}" id="btnDelCdk">
+                        <i class="fa fa-trash"></i>  ${text('删除')}
+                    </a>
+                <% } %>
+            </div>
+        </div>
+        <div class="box-body">
+            <#form:form id="searchForm" model="${cdk}" action="${ctx}/osee/game/cdk/list" method="post" class="form-inline"
+            data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
+                <div class="form-group">
+                    <label class="control-label">${text('CDKEY')}：</label>
+                    <div class="control-inline">
+                        <#form:input path="cdkey" maxlength="50" class="form-control width-160" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">${text('类型')}：</label>
+                    <div class="control-inline width-120">
+                        <#form:select path="typeId" items="${cdkTypeList}" itemLabel="name" itemValue="id"
+                            class="form-control" blankOption="true" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">${text('兑换情况')}：</label>
+                    <div class="control-inline width-120">
+                        <#form:select path="used" dictType="osee_game_cdk_use_status" blankOption="true" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">${text('代理用户id')}：</label>
+                    <div class="control-inline">
+                        <#form:input path="agentId" maxlength="50" class="form-control width-160" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">${text('代理游戏id')}：</label>
+                    <div class="control-inline">
+                        <#form:input path="agentGameId" maxlength="50" class="form-control width-160" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">${text('兑换者游戏id')}：</label>
+                    <div class="control-inline">
+                        <#form:input path="userGameId" maxlength="50" class="form-control width-160" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-sm">${text('查询')}</button>
+                    <button type="reset" class="btn btn-default btn-sm">${text('重置')}</button>
+                </div>
+            </#form:form>
+            <table id="dataGrid"></table>
+            <div id="dataGridPage"></div>
+        </div>
+    </div>
+</div>
+<% } %>
+<script>
+    // 初始化DataGrid对象
+    $('#dataGrid').dataGrid({
+        searchForm: $("#searchForm"),
+        showRownum: true,	// 是否显示行号
+        sortableColumn: true,// 列表是否允许排序（设置为false后，整个列表不允许排序）
+        columnModel: [
+            {header:'${text("CDKEY")}', name:'cdkey', width:200,align:"center", sortable:false},
+            {header:'${text("代理用户id")}', name:'agentId', width:200,align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    return val || '-'
+                }},
+            {header:'${text("代理游戏id")}', name:'agentGameId', width:200,align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    return val || '-'
+                }},
+            {header:'${text("类型")}', name:'typeName', width:150, align:"center", sortable:false},
+            {header:'${text("CDK奖励")}', name:'rewards', width:150, align:"center", sortable:false},
+            {header:'${text("兑换者ID")}', name:'userId', width:150, align:"center", sortable:false , formatter: function(val, obj, row, act){
+                    return val || '未兑换'
+                }},
+            {header:'${text("兑换者游戏ID")}', name:'userGameId', width:150, align:"center", sortable:false , formatter: function(val, obj, row, act){
+                return val || '-'
+                }},
+            {header:'${text("兑换者昵称")}', name:'nickname', width:150, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    return val || '-'
+                }}
+        ]
+    });
+
+    // 点击导出cdkey列表
+    $('#btnExport').click(function(){
+        js.ajaxSubmitForm($('#searchForm'), {
+            url: '${ctx}/osee/game/cdk/export',
+            downloadFile: true
+        });
+    });
+
+    // 删除cdk
+    $('#btnDelCdk').click(function () {
+        var typeId = $('#typeId').val();
+        if (typeId === '') {
+            js.showErrorMessage('请先在查询中选中要删除的cdk类型');
+            return;
+        }
+        var name = $('#typeId option[value=' + typeId + ']').text();
+        js.confirm('确定要删除类型为[<b>' + name + '</b>]的所有CDK和该类型吗?', function () {
+            js.ajaxSubmit('${ctx}/osee/game/cdk/delete/' + typeId, function (data) {
+                if (data.result === 'true') {
+                    js.showMessage(data.message);
+                    js.getCurrentTabPage(function (contentWindow) {
+                        contentWindow.location.reload();
+                    });
+                } else {
+                    js.showErrorMessage(data.message);
+                }
+            });
+        });
+    });
+</script>

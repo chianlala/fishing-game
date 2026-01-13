@@ -1,0 +1,104 @@
+<% layout('/layouts/default.html', {title: '击杀boss列表', libs: ['dataGrid']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <div class="box-header with-border">
+            <div class="box-title">
+                <i class="fa fa-users"></i> 击杀boss列表
+            </div>
+        </div>
+        <div class="box-body">
+            <#form:form id="searchForm" model="${killBoss}" action="${ctx}/osee/game/killBossList/data" method="post" class="form-inline"
+            data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
+            <div class="form-group">
+                <label class="control-label">${text('击杀时间')}：</label>
+                <div class="control-inline">
+                    <#form:input path="startTime" maxlength="50" class="form-control width-160 Wdate laydate" readonly="true" data-type="datetime"
+                    onclick="Wdate laydatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+                    -
+                    <#form:input path="endTime" maxlength="50" class="form-control width-160 Wdate laydate" readonly="true" data-type="datetime"
+                    onclick="Wdate laydatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('用户ID')}：</label>
+                <div class="control-inline width-120">
+                    <#form:input path="userId" class="form-control width-120" blankOption="true"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('场次')}：</label>
+                <div class="control-inline width-120">
+                    <#form:select path="roomIndex" items="${gameStateDictList}" itemLabel="dictLabel" itemValue="dictValue" class="form-control" blankOption="true"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('boss名称')}：</label>
+                <div class="control-inline width-120">
+                    <#form:input path="bossName" class="form-control width-120" blankOption="true"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-sm">${text('查询')}</button>
+                <button type="reset" class="btn btn-default btn-sm">${text('重置')}</button>
+            </div>
+            </#form:form>
+            <table id="dataGrid"></table>
+            <div id="dataGridPage"></div>
+        </div>
+    </div>
+</div>
+<% } %>
+<script>
+
+var gameStateDictList = ${gameStateDictList} || []
+
+function setUserId(userId){
+
+    $('#userId').val(userId)
+
+}
+
+    // 初始化DataGrid对象
+    $('#dataGrid').dataGrid({
+        searchForm: $("#searchForm"),
+        columnModel: [
+            {header:'${text("用户ID")}', name:'userId', width:100, align:"center", sortable:false},
+            {header:'${text("用户昵称")}', name:'nickName', width:50, align:"center", sortable:false,formatter: function(val, obj, row, act){
+
+                      return '<a onclick="setUserId('+ row.userId +')">' + row.nickName + '</a>'
+
+            }},
+            {header:'${text("场次")}', name:'roomIndex', width:50, align:"center", sortable:false,
+                formatter: function(val, obj, row, act){
+                    return js.getDictLabel(gameStateDictList, val, '未知')
+                }},
+            {header:'${text("炮倍")}', name:'batterLevel', width:80, align:"center", sortable:false},
+            {header:'${text("血池概率倍数")}', name:'bloodPoolFloatKillValue', width:80, align:"center", sortable:false},
+            {header:'${text("击杀倍数")}', name:'mult', width:80, align:"center", sortable:false},
+            {header:'${text("奖励物品")}', name:'award', width:80, align:"center", sortable:false},
+            {header:'${text("boss名称")}', name:'bossName', width:120, align:"center", sortable:false},
+            {header:'${text("创建时间")}', name:'createTime', width:200, align:"center", sortable:false,formatter: function(val, obj, row, act){
+                    return js.formatDate(new Date(val), 'yyyy-MM-dd HH:mm:ss')}},
+            // {header:'${text("操作")}',name:'actions',width:150, align:"center", sortable:false, title:false, formatter: function(val, obj, row, act){
+            //     if(row.isSend==0){
+            //         return '<a href="${ctx}/osee/player/update/turntable?id=' + row.id +
+            //             '" class="btnList" title="${text("已发放")}" data-confirm="${text("确认修改已发放吗？")}"><i class="icon-cursor"></i></a>'
+            //     }else{
+            //         return ''
+            //     }
+            //     }}
+        ]
+    });
+
+    // /**
+    //  * 修改信息
+    //  */
+    // function updateSend(id) {
+    //     js.ajaxSubmit('${ctx}/osee/player/update/turntable', {
+    //         id: id
+    //     }, function (data) {
+    //         js.showMessage(data.message);
+    //     }, 'json');
+    // }
+
+</script>

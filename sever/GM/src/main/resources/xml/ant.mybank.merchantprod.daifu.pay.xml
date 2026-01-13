@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<body>
+    <xmlTag tagName="HlMerchantId"></xmlTag>
+    <xmlTag tagName="Name"></xmlTag>
+    <xmlTag tagName="CardNo"></xmlTag>
+    <xmlTag tagName="OutTradeNo"></xmlTag>
+    <xmlTag tagName="Purpose"></xmlTag>
+    <xmlTag tagName="Amount"></xmlTag>
+    <xmlTag tagName="IdCardNo"></xmlTag>
+    <xmlTag tagName="Summary"></xmlTag>
+    <xmlTag tagName="PhoneNo"></xmlTag>
+    <xmlTag tagName="ResponseUrl"></xmlTag>
+    <xmlTag tagName="BusinessType"></xmlTag>
+    <xmlTag tagName="NotifyUrl"></xmlTag>
+    <xmlTag tagName="AdminKey"></xmlTag>
+    <xmlTag tagName="RespInfo">
+        <xmlTag tagName="ResultStatus"></xmlTag>
+        <xmlTag tagName="ResultCode"></xmlTag>
+        <xmlTag tagName="ResultMsg"></xmlTag>
+    </xmlTag>
+</body>

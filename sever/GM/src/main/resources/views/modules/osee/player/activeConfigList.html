@@ -1,0 +1,119 @@
+<% layout('/layouts/default.html', {title: '活跃榜配置', libs: ['dataGrid']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <div class="box-header with-border">
+            <div class="box-title">
+                <i class="fa fa-circle-o"></i> 活跃榜配置
+            </div>
+            <div class="box-tools pull-right">
+                <a href="javascript:void(0)" class="btn btn-primary" onclick="activeConfigClick()"><i
+                        class="fa fa-plus"></i> 新增配置</a>
+            </div>
+        </div>
+        <div class="box-body">
+            <#form:form id="searchForm" model="${bo}" action="${ctx}/osee/player/active/config/page" method="post"
+            class="form-inline"
+            data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}"
+            data-order-by="${parameter.orderBy}">
+            <div class="form-group">
+                <button type="submit" id="searchBtn" class="btn btn-primary btn-sm">${text('查询')}</button>
+            </div>
+        </#form:form>
+        <table id="dataGrid"></table>
+        <div id="dataGridPage"></div>
+    </div>
+</div>
+</div>
+
+<% } %>
+<script>
+
+// 初始化DataGrid对象
+$('#dataGrid').dataGrid({
+    searchForm: $("#searchForm"),
+    columnModel: [
+        {header: '${text("用户ID")}', name: 'userId', width: 80, align: "center", sortable: false},
+        {header: '${text("权重")}', name: 'weight', width: 80, align: "center", sortable: false},
+        {header:'${text("操作")}',name:'actions',width: 80, align:"center", sortable:false, title:false, formatter: function(val, obj, row, act){
+                return '<a href="javascript:void(0)" onclick="activeConfigClick({userId: '+ row.userId +', weight: ' + row.weight + '})" title="修改"><i class="fa fa-pencil"></i></a> <a href="javascript:void(0)" onclick="activeConfigDeleteClick({userId: '+ row.userId +', weight: -1})" title="删除"><i class="fa fa-trash-o"></i></a>'
+            }}
+    ],
+});
+
+$("#searchForm").unbind('submit').submit(function (e) {
+    $("#dataGrid").dataGrid('refresh', 1);
+    return false;
+});
+
+const formStr = '<form action="" id="active_config_form"> <div> <label>用户id</label> <div> <input class="form-control" type="text" id="userId"  name="userId" placeholder="请输入用户id" autocomplete="off"> </div> </div> <div> <label>上榜权重</label> <div> <input class="form-control" type="text" id="weight" name="weight" placeholder="请输入上榜权重" autocomplete="off"> </div> </div> </form>'
+
+// 点击：删除活跃榜配置
+function activeConfigDeleteClick(formValue) {
+
+    layer.confirm('确定删除【'+ formValue.userId +'】吗？', {
+        btn: ['确定','取消']
+    }, function(){
+        doActiveConfigEdit(formValue); // 执行：修改权重
+    });
+
+}
+
+// 点击：新增活跃榜配置
+function activeConfigClick(form) {
+
+    layer.open({
+
+        title: '活跃榜配置',
+        content: formStr,
+
+        yes: () => {
+
+            doActiveConfigEdit(); // 执行：修改权重
+
+        },
+
+        success: function(layero, index, that){
+
+            if(form){
+
+                $('#userId').val(form.userId)
+                $('#weight').val(form.weight)
+
+            }
+
+        }
+
+    });
+
+}
+
+// 执行：修改权重
+function doActiveConfigEdit(formValue) {
+
+    if(!formValue){
+        formValue = $("#active_config_form").serialize()
+    }
+
+    $.ajax({
+        url: '${ctx}/osee/player/active/config/edit',
+        type: 'POST',
+        data: formValue,
+        dataType: 'json',
+        success: function (data) {
+
+            if (data.result === 'true') {
+
+                js.showMessage(data.message)
+                $('#searchBtn').click() // 刷新列表
+
+            } else {
+                js.showErrorMessage(data.message)
+            }
+
+        }
+    });
+
+}
+
+
+</script>

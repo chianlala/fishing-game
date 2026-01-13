@@ -1,0 +1,315 @@
+<% layout('/layouts/default.html', {title: '发送邮件', libs: ['validate']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <div class="box-header with-border">
+            <div class="box-title">
+                <i class="fa fa-envelope-o"></i> <span data-i18n="发送邮件.发送邮件">发送邮件</span>
+            </div>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <#form:form id="inputForm" model="${mail}" action="${ctx}/osee/game/mail/send" method="post"
+            class="form-horizontal">
+        <div class="box-body">
+            <div class="row">
+                <div class="col-xs-8">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" data-i18n="发送邮件.邮件类型">
+                             ${text('邮件类型')}：
+                        </label>
+                        <div class="col-sm-8">
+                            <%
+
+                            var jsI18n1 = "<span data-i18n='发送邮件.游戏邮件'>游戏邮件</span>";
+                            var jsI18n2 = "<span data-i18n='发送邮件.代理邮件'>代理邮件</span>";
+
+                            var mailTypeItemArr = [{dictLabel: jsI18n1, dictValue: '1'}, {dictLabel: jsI18n2, dictValue: '2'}];
+
+                            %>
+                            <#form:radio path="mailType" items="${mailTypeItemArr}" itemLabel="dictLabel" itemValue="dictValue" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row gameMail">
+                <div class="col-xs-8">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" data-i18n='发送邮件.收件人ID'>
+                            ${text('收件人ID')}：
+                        </label>
+                        <div class="col-sm-8">
+
+                            <#form:input path="receiverId" type="number" min="1" maxlength="20" class="form-control" data-i18n='[placeholder]发送邮件.为空则为全服发送'
+                                placeholder="为空则为全服发送" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div hidden>
+
+                <#form:input path="refId" />
+                <#form:input path="type" />
+
+            </div>
+
+            <div class="row gameMail">
+                <div class="col-xs-8">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" title="">
+                            <span class="required">*</span> <span data-i18n='发送邮件.邮件标题'>${text('邮件标题')}：</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <#form:input path="title" type="text" maxlength="20" class="form-control required" data-i18n='[placeholder]发送邮件.最多输入20个字符'
+                                placeholder="最多输入20个字符" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row gameMail">
+                <div class="col-xs-8">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" title="">
+                            <span class="required">*</span> <span data-i18n='发送邮件.邮件内容'>${text('邮件内容')}：</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <#form:textarea path="content" rows="5" maxlength="500" class="form-control required" data-i18n='[placeholder]发送邮件.最多输入500个字符'
+                                placeholder="最多输入500个字符" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="items" class="row gameMail">
+                <div class="row">
+                    <div class="col-xs-8">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" data-i18n='发送邮件.附件'>
+                                ${text('附件')}：
+                            </label>
+                            <% /* 注释掉 %>
+                            <div class="col-sm-3">
+                                <#form:select path="itemId"
+                                    dictType="osee_item_type" blankOption="true" blankOptionLabel="<span data-i18n='发送邮件.请选择'>请选择</span>"
+                                    class="form-control required" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#form:input path="itemCount" type="number" min="1" maxlength="20" class="form-control required" data-i18n='[placeholder]发送邮件.奖励数量' placeholder="奖励数量"/>
+                            </div>
+                            <% */ %>
+                            <div class="col-sm-8">
+                                <button type="button" id="addItem" class="btn btn-sm btn-info" data-i18n='添加'>${text('添 加')}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row agentMail">
+                <div class="col-xs-8">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" data-i18n='发送邮件.代理ID'>
+                            ${text('代理ID')}：
+                        </label>
+                        <div class="col-sm-8">
+                            <#form:input path="toUserIds" type="number" min="1" maxlength="20" class="form-control" data-i18n='[placeholder]发送邮件.为空则给全部代理发送，多个用英文逗号隔开'
+                            placeholder="为空则给全部代理发送，多个用英文逗号隔开" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row agentMail">
+                <div class="col-xs-8">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" data-i18n='发送邮件.发送金币数量'>
+                            ${text('发送金币数量')}：
+                        </label>
+                        <div class="col-sm-8">
+                            <#form:input path="propsCount" type="number" maxlength="20" class="form-control" data-i18n='[placeholder]发送邮件.数量' placeholder="数量" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="box-footer">
+            <div class="row">
+                <div class="col-sm-offset-2 col-sm-10">
+
+                    <% if (hasPermi('game:mail:edit')){ %>
+
+                        <button type="submit" class="btn btn-sm btn-primary gameMail" id="btnSubmit" data-i18n='发送邮件.发送'>
+                            <i class="fa fa-send"></i> ${text('发 送')}
+                        </button>
+
+                        <button onclick="return false" class="btn btn-sm btn-primary agentMail" id="agentMailBtnSubmit" data-i18n='发送邮件.发送'>
+                            <i class="fa fa-send"></i> ${text('发 送')}
+                        </button>
+
+                    <% } %>
+
+                </div>
+            </div>
+        </div>
+        </#form:form>
+    </div>
+</div>
+
+<!--附件物品添加模板-->
+<script id="itemTemp" type="text/template">
+    <div class="row">
+        <div class="col-xs-8">
+            <div class="form-group">
+                <div class="col-sm-3 col-sm-offset-4">
+                    <#form:select path="itemId"
+                        dictType="osee_item_type" blankOption="true" blankOptionLabel="<span data-i18n='发送邮件.请选择'>请选择</span>"
+                        class="form-control required" />
+                </div>
+                <div class="col-sm-3">
+                    <#form:input path="itemCount" type="number" min="1" maxlength="20" class="form-control required" data-i18n='[placeholder]发送邮件.数量' placeholder="数量" />
+                </div>
+                <div class="col-sm-2">
+                    <button type="button" name="delItem" class="btn btn-sm btn-danger" data-i18n='发送邮件.删除'>${text('删 除')}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<% } %>
+<script>
+
+var sendCloseFlag = ${mail.sendCloseFlag}
+
+/**
+ * 点击：发送代理邮件
+ */
+$("#agentMailBtnSubmit").click(function () {
+
+    js.ajaxSubmitForm($('#inputForm'), function (data) {
+
+        if (data.result === 'true') {
+
+            js.showMessage(data.message);
+
+        } else {
+
+            js.showErrorMessage(data.message)
+
+        }
+
+    }, 'json');
+
+});
+
+$('#mailType').on('ifChecked', function(){
+
+    handleMailType()
+
+});
+
+$(()=>{
+
+    if($('#mailType input:radio:checked').val()){
+
+        handleMailType()
+
+    }
+
+})
+
+/**
+ * 处理：mailType
+ */
+function handleMailType(){
+
+    const mailType = $('#mailType input:radio:checked').val();
+
+    if (mailType === '1'){ // 如果是：游戏邮件
+
+        showOrHideByClassName('gameMail', 1);
+        showOrHideByClassName('agentMail', 2);
+
+    } else { // 如果是：代理邮件
+
+        showOrHideByClassName('gameMail', 2);
+        showOrHideByClassName('agentMail', 1);
+
+    }
+
+}
+
+/**
+ * 显示或者隐藏，通过：className
+ * @param className
+ * @param type 1 显示 2 隐藏
+ */
+function showOrHideByClassName(className, type = 1){
+
+    if(!className){
+        return
+    }
+
+    for (let item of document.getElementsByClassName(className)) {
+        if(type === 1){
+            $(item).show()
+        }else{
+            $(item).hide()
+        }
+    }
+
+}
+
+    $("#inputForm").validate({
+
+        submitHandler: function (form) {
+
+            js.ajaxSubmitForm($(form), function (data) {
+
+                if (data.result === 'true') {
+
+                    js.showMessage(data.message);
+
+                    if(sendCloseFlag){
+
+                        js.closeCurrentTabPage()
+
+                    }else{
+
+                        js.getCurrentTabPage(function (contentWindow) {
+                            contentWindow.location.reload();
+                        });
+
+                    }
+
+                } else {
+
+                    js.showErrorMessage(data.message)
+
+                }
+
+            }, 'json');
+
+        }
+
+    });
+
+    /**
+     * 新添奖励
+     */
+    $('#addItem').click(function () {
+        js.template('itemTemp', {}, function (html) {
+            $('#items').append(html);
+            $('[data-i18n]').localize();
+        });
+    });
+
+    /**
+     * 给奖励物品删除按钮绑定点击事件
+     */
+    $('#items').on('click', 'button[name=delItem]', function () {
+        $(this).parents('div.row').remove();
+    });
+
+</script>

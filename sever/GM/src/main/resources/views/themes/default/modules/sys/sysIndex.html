@@ -1,0 +1,181 @@
+<%
+// 侧边栏的默认显示样式：1：默认显示侧边栏；2：默认折叠侧边栏
+var sidebarStyle = @Global.getConfig('sys.index.sidebarStyle', '1');
+var sidebarCollapse = (sidebarStyle == '2' ? 'sidebar-collapse' : '');
+var bodyClass = 'fixed noscroll2 sidebar-mini ' + sidebarCollapse;
+%>
+<% layout('/layouts/default.html', {title: '', bodyClass: bodyClass, libs: ['tabPage']}){ %>
+<% include('/include/upgrade.html'){} // 如果客户浏览器版本过低，则显示浏览器升级提示。 %>
+<link rel="stylesheet" href="${ctxStatic}/jquery-toastr/2.0/toastr.min.css?${_version}">
+<link rel="stylesheet" href="${ctxStatic}/modules/sys/sysIndex.css?${_version}">
+<header class="main-header">
+    <% include('sysIndex/topMenu.html'){} %>
+</header>
+<aside class="main-sidebar">
+    <% include('sysIndex/leftMenu.html'){} %>
+</aside>
+<div class="content-wrapper">
+    <div id="tabpanel"></div>
+</div>
+<% } %>
+<div id="maskDiv"
+     style="position: fixed;top: 0;left: 0;background-color: #F4F6F8;width: 100vw;height: 100vh;z-index: 2000"></div>
+<div class="hide" id="desktopTabPage" data-title="${text('仪表盘')}"
+     data-url="${ctx}${@Global.getConfig('sys.index.desktopUrl')}"></div>
+<div class="hide" id="modifyPasswordTip" data-message="${modifyPasswordTip!}"></div>
+<script src="${ctxStatic}/jquery-toastr/2.0/toastr.min.js?${_version}"></script>
+<script src="${ctxStatic}/jquery-plugins/jquery.slimscroll.js"></script>
+<script src="${ctxStatic}/modules/sys/sysIndex.js?${_version}"></script>
+
+<% include('i18n.html'){} %>
+
+<script>
+
+// 点击：退出登录
+function logout() {
+    $.ajax({
+        url: 'logout',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data, result) {
+
+            localStorage.removeItem('secret');
+            location.reload();
+
+        },
+        error: function (xhr, reason, e) {
+            alert('请求出错：' + xhr.responseJSON.message);
+        }
+    });
+}
+
+// 点击：提交按钮
+function submitClick() {
+
+    // 输入的验证码
+    let code = document.getElementById("GoogleAuthenticatorInput").value;
+
+    if (!code || code.length !== 6) {
+
+        js.showErrorMessage('请输入谷歌验证器的6位数验证码')
+        return;
+
+    }
+
+    const secret = localStorage.getItem('secret');
+
+    if (secret) {
+
+        // 绑定
+        bind(code, secret).then(res => {
+
+            if (res) {
+                ok()
+            }
+
+        })
+
+    } else {
+
+        // 验证
+        checkCode(code).then(res => {
+
+            if (res) {
+                ok()
+            }
+
+        })
+
+    }
+
+}
+
+function ok() {
+
+    const iframe = document.querySelector("iframe");
+    if (iframe) {
+        iframe.contentWindow.location.reload(); // 刷新页面
+    }
+    localStorage.removeItem('secret');
+    $(document.getElementById('maskDiv')).remove()
+
+}
+
+/**
+ * 绑定谷歌验证器
+ */
+function bind(code, secret) {
+
+    return new Promise(resolve => {
+
+        let formData = new FormData();
+        formData.append("code", code)
+        formData.append("secret", secret)
+
+        $.ajax({
+            url: '${ctx}/google/authenticator/bind',
+            type: 'POST',
+            data: formData,
+            dataType: 'json',
+            processData: false,
+            contentType: false,
+            success: function (data) {
+
+                if (data.result === 'true') {
+
+                    js.showMessage(data.message)
+                    resolve(true)
+
+                } else {
+
+                    js.showErrorMessage(data.message)
+                    resolve(false)
+
+                }
+
+            }
+        });
+
+    })
+
+}
+
+/**
+ * 验证谷歌验证器
+ */
+function checkCode(code) {
+
+    return new Promise(resolve => {
+
+        let formData = new FormData();
+        formData.append("code", code)
+
+        $.ajax({
+            url: '${ctx}/google/authenticator/checkCode',
+            type: 'POST',
+            data: formData,
+            dataType: 'json',
+            processData: false,
+            contentType: false,
+            success: function (data) {
+
+                if (data.result === 'true') {
+
+                    js.showMessage(data.message)
+                    resolve(true)
+
+                } else {
+
+                    js.showErrorMessage(data.message)
+                    resolve(false)
+
+                }
+
+            }
+        });
+
+    })
+
+}
+
+</script>

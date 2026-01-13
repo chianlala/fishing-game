@@ -1,0 +1,117 @@
+<% layout('/layouts/default.html', {title: '游戏记录', libs: ['dataGrid']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <div class="box-header with-border">
+            <div class="box-title">
+                <i class="fa fa-circle-o"></i> <span data-i18n="游戏记录.游戏记录">游戏记录</span>
+            </div>
+            <div class="box-tools pull-right">
+                <a href="#" class="btn btn-default" id="btnSearch" data-i18n="查询">
+                    <i class="fa fa-filter"></i> ${text('查询')}
+                </a>
+            </div>
+        </div>
+        <div class="box-body">
+            <#form:form id="searchForm" model="${fishing}" action="${ctx}/osee/money/fishing/list" method="post" class="form-inline"
+            data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
+            <div class="form-group">
+                <label class="control-label" data-i18n="游戏记录.玩家ID">${text('(游戏记录.玩家ID)')}：</label>
+                <div class="control-inline">
+                    <#form:input path="playerId" maxlength="10" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" data-i18n="游戏记录.场次">${text('(游戏记录.场次)')}：</label>
+                <div class="control-inline width-120">
+                    <#form:select path="roomIndex" items="${gameStateDictList}" itemLabel="dictLabel" itemValue="dictValue" class="form-control"
+                    blankOption="true"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" data-i18n="游戏记录.时间">${text('(游戏记录.时间)')}：</label>
+                <div class="control-inline">
+                    <#form:input path="startTime" maxlength="50" class="form-control width-160 Wdate laydate" readonly="true" data-type="datetime"
+                    onclick="Wdate laydatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+                    -
+                    <#form:input path="endTime" maxlength="50" class="form-control width-160 Wdate laydate" readonly="true" data-type="datetime"
+                    onclick="Wdate laydatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" data-i18n="游戏记录.游戏类型">${text('(游戏记录.游戏类型)')}：</label>
+                <div class="control-inline width-120">
+                    <% var gameTypeArr = [{dictLabel: 'slots game', dictValue: 2}, {dictLabel: 'fishing game', dictValue: 1}]; %>
+                    <#form:select path="gameType" items="${gameTypeArr}" itemLabel="dictLabel" itemValue="dictValue" class="form-control" blankOption="true" />
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-sm" data-i18n="查询">${text('查询')}</button>
+                <button type="reset" class="btn btn-default btn-sm" data-i18n="重置">${text('重置')}</button>
+            </div>
+        </#form:form>
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="text-red text-bold">
+                    <span data-i18n="游戏记录.变化金币/龙晶总数：">变化金币/龙晶总数：</span><span id="totalWin">-</span>
+                </h4>
+            </div>
+        </div>
+        <table id="dataGrid"></table>
+        <div id="dataGridPage"></div>
+    </div>
+</div>
+</div>
+<% } %>
+<script>
+
+var gameStateDictList = ${gameStateDictList} || []
+
+    // 初始化DataGrid对象
+    $('#dataGrid').dataGrid({
+        searchForm: $("#searchForm"),
+        columnModel: [
+            {header:`${jsValue('$.i18n.t("游戏记录.玩家ID")')}`, name:'playerId', width:90, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("游戏记录.玩家昵称")')}`, name:'nickname', width:90, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("游戏记录.房间名称")')}`, name:'roomIndex', width:90, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                return $.i18n.t("下拉选." + js.getDictLabel(gameStateDictList, val, '未知'))
+            }},
+            {header:`${jsValue('$.i18n.t("游戏记录.进入时间")')}`, name:'joinTime', width:90, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    return js.formatDate(new Date(val), 'yyyy-MM-dd HH:mm:ss')
+                }
+            },
+            {header:`${jsValue('$.i18n.t("游戏记录.退出时间")')}`, name:'exitTime', width:90, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    return js.formatDate(new Date(val), 'yyyy-MM-dd HH:mm:ss')
+                }
+            },
+            {header:`${jsValue('$.i18n.t("游戏记录.停留时间")')}`, name:'spendTime', width:150, align:"center", sortable:false,formatter: function(val, obj, row, act){
+                    var hours = parseInt(val/(1000*60*60));
+                    var minutes = parseInt((val % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = parseInt((val % (1000 * 60)) / 1000);
+                    return hours+":"+minutes+":"+seconds;
+                }},
+            {header:`${jsValue('$.i18n.t("游戏记录.使用道具")')}`, name:'useProps', width:90, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("游戏记录.消耗子弹")')}`, name:'useBattery', width:90, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("游戏记录.获得金币")')}`, name:'totalDragonCrystal', width:90, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("游戏记录.盈亏龙晶")')}`,  width:120, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    if(row.useBattery==0) return "-";
+                    return row.totalDragonCrystal - row.useBattery;
+                }},
+            {header:`${jsValue('$.i18n.t("游戏记录.收益比率")')}`,  width:120, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    if(row.useBattery==0) return "-";
+                    return (row.totalDragonCrystal * 100 / row.useBattery).toFixed(2) + "%";
+                }},
+            // {header:`${jsValue('$.i18n.t("游戏记录.花费金币/龙晶")')}`, name:'spendMoney', width:90, align:"center", sortable:false},
+            // {header:`${jsValue('$.i18n.t("游戏记录.(变)金币/龙晶")')}`, name:'changeMoney', width:90, align:"center", sortable:false},
+            // {header:`${jsValue('$.i18n.t("游戏记录.赢取金币/龙晶")')}`, name:'winMoney', width:90, align:"center", sortable:false},
+            // {header:`${jsValue('$.i18n.t("游戏记录.赢取鱼雷")')}`, name:'dropTorpedo', width:150, align:"center", sortable:false},
+            // {header:`${jsValue('$.i18n.t("游戏记录.时间")')}`, name:'createTime', width:90, align:"center", sortable:false, formatter: function(val, obj, row, act){
+            //         return js.formatDate(new Date(val), 'yyyy-MM-dd HH:mm:ss')
+            //     }
+            // }
+        ],
+        ajaxSuccess: function(data){ // 数据加载成功后执行方法
+            // 将赠送总数量数据展示
+            $('#totalWin').html(data.otherData.totalWin);
+        }
+    })
+</script>

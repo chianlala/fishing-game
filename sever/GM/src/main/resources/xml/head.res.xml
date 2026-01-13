@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<head>
+	<xmlTag tagName="Version" defaultValue="1.0.0"></xmlTag>
+	<xmlTag tagName="Appid"></xmlTag>
+	<xmlTag tagName="Function"></xmlTag>
+	<xmlTag tagName="RespTime"></xmlTag>
+	<xmlTag tagName="RespTimeZone" defaultValue="UTC+8"></xmlTag>
+	<xmlTag tagName="ReqMsgId"></xmlTag>
+	<xmlTag tagName="RsaType"></xmlTag>
+	<xmlTag tagName="Reserve"></xmlTag>
+	<xmlTag tagName="SignType"></xmlTag>
+	<xmlTag tagName="InputCharset" defaultValue="UTF-8"></xmlTag>
+</head>

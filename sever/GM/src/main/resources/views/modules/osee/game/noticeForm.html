@@ -1,0 +1,102 @@
+<% layout('/layouts/default.html', {title: '游戏公告管理', libs: ['validate']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <div class="box-header with-border">
+            <div class="box-title">
+                <i class="fa fa-bullhorn"></i> 添加公告
+            </div>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <#form:form id="inputForm" model="${notice}" action="${ctx}/osee/game/notice/save" method="post"
+            class="form-horizontal">
+        <#form:hidden path="id" />
+        <div class="box-body">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" title="">
+                            <span class="required">*</span> ${text('公告标题')}：<i
+                                class="fa icon-question hide"></i></label>
+                        <div class="col-sm-8">
+                            <#form:input path="title" maxlength="20" class="form-control required"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" title="">
+                            <span class="required">*</span> ${text('公告内容')}：<i
+                                class="fa icon-question hide"></i></label>
+                        <div class="col-sm-8">
+                            <#form:textarea path="content" rows="5" maxlength="1000" class="form-control required"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" title="">
+                            <span class="required">*</span> ${text('生效时间')}：<i
+                                class="fa icon-question hide"></i></label>
+                        <div class="col-sm-8">
+                            <#form:input path="startTime" maxlength="50" class="form-control required Wdate laydate" readonly="true" data-type="datetime"
+                            onclick="Wdate laydatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" title="">
+                            <span class="required">*</span> ${text('失效时间')}：<i
+                                class="fa icon-question hide"></i></label>
+                        <div class="col-sm-8">
+                            <#form:input path="endTime" maxlength="50" class="form-control required Wdate laydate" readonly="true" data-type="datetime"
+                            onclick="Wdate laydatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box-footer">
+            <div class="row">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <% if (hasPermi('game:notice:edit')){ %>
+                    <button type="submit" class="btn btn-sm btn-primary" id="btnSubmit">
+                        <i class="fa fa-check"></i>${text('保 存')}
+                    </button>&nbsp;
+                    <% } %>
+                    <button type="button" class="btn btn-sm btn-default" id="btnCancel"
+                            onclick="js.closeCurrentTabPage()"><i class="fa fa-reply-all"></i> ${text('关 闭')}
+                    </button>
+                </div>
+            </div>
+        </div>
+        </#form:form>
+    </div>
+</div>
+<% } %>
+<script>
+    $("#inputForm").validate({
+        submitHandler: function (form) {
+            js.ajaxSubmitForm($(form), function (data) {
+                if (data.result === 'true') {
+                    js.showMessage(data.message);
+                    js.closeCurrentTabPage(function (contentWindow) {
+                        contentWindow.page();
+                    });
+                } else {
+                    js.showErrorMessage(data.message)
+                }
+            }, "json");
+        }
+    });
+</script>

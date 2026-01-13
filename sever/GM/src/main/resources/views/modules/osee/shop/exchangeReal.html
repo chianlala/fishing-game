@@ -1,0 +1,151 @@
+<% layout('/layouts/default.html', {title: '实物兑换明细', libs: ['dataGrid']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <div class="box-header with-border">
+            <div class="box-title">
+                <i class="fa fa-star"></i> 实物兑换明细
+            </div>
+            <div class="box-tools pull-right">
+                <a href="#" class="btn btn-default" id="btnSearch" title="${text('查询')}">
+                    <i class="fa fa-filter"></i> ${text('查询')}
+                </a>
+            </div>
+        </div>
+        <div class="box-body">
+            <#form:form id="searchForm" model="${exchangeLog}" action="${ctx}/osee/shop/exchange/log/real/list" method="post" class="form-inline"
+                data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
+                <div class="form-group">
+                    <label class="control-label">${text('订单状态')}：</label>
+                    <div class="control-inline width-120">
+                        <#form:select path="orderState" class="form-control"
+                            dictType="osee_shop_exchange_order_status" blankOption="true" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">${text('玩家ID')}：</label>
+                    <div class="control-inline">
+                        <#form:input path="playerId" maxlength="10" class="form-control width-120"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">${text('玩家昵称')}：</label>
+                    <div class="control-inline">
+                        <#form:input path="nickname" maxlength="50" class="form-control width-120"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">${text('兑换时间')}：</label>
+                    <div class="control-inline">
+                        <#form:input path="startTime" maxlength="50" class="form-control width-160 Wdate laydate" readonly="true" data-type="datetime"
+                            onclick="Wdate laydatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+                        -
+                        <#form:input path="endTime" maxlength="50" class="form-control width-160 Wdate laydate" readonly="true" data-type="datetime"
+                            onclick="Wdate laydatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-sm">${text('查询')}</button>
+                    <button type="reset" class="btn btn-default btn-sm">${text('重置')}</button>
+                </div>
+            </#form:form>
+            <div class="row">
+                <div class="col-sm-12">
+                    <span class="text-black">待发货：<span id="state-0-num">0</span></span>&nbsp;
+                    <span class="text-green">已发货：<span id="state-1-num">0</span></span>&nbsp;
+                    <span class="text-red">已拒绝：<span id="state-2-num">0</span></span>&nbsp;
+                </div>
+            </div>
+            <table id="dataGrid"></table>
+            <div id="dataGridPage"></div>
+        </div>
+    </div>
+</div>
+<% } %>
+<script>
+    // 初始化DataGrid对象
+    $('#dataGrid').dataGrid({
+        searchForm: $("#searchForm"),
+        columnModel: [
+            {header:'${text("兑换时间")}', name:'createTime', width:150, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                return js.formatDate(new Date(val), 'yyyy-MM-dd HH:mm:ss')
+                }},
+            // {header:'${text("兑换单号")}', name:'orderNum', width:150, align:"center", sortable:false},
+            {header:'${text("玩家ID")}', name:'playerId', width:150, align:"center", sortable:false},
+            {header:'${text("玩家昵称")}', name:'nickname', width:150, align:"center", sortable:false},
+            {header:'${text("奖品名称")}', name:'name', width:150, align:"center", sortable:false},
+            {header:'${text("兑换数量")}', name:'count', width:150, align:"center", sortable:false},
+            {header:'${text("奖券消耗")}', name:'cost', width:150, align:"center", sortable:false},
+            // {header:'${text("创建人")}', name:'creator', width:150, align:"center", sortable:false},
+            {header:'${text("收货人")}', name:'consignee', width:150, align:"center", sortable:false},
+            {header:'${text("手机号")}', name:'phoneNum', width:150, align:"center", sortable:false},
+            {header:'${text("收货地址")}', name:'address', width:150, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                return val === '' ? '未填写' : val
+                }},
+            {header:'${text("订单状态")}',name:'orderState',width:150, align:"center", sortable:false, title:false, formatter: function(val, obj, row, act){
+                var actionClass = '';
+                var actionText = js.getDictLabel(${@DictUtils.getDictListJson('osee_shop_exchange_order_status')}, val, '${text("未知")}');
+                switch (val) {
+                    case 1:
+                        actionClass = 'btn-default';
+                        break;
+                    case 2:
+                        actionClass = 'btn-success';
+                        break;
+                    case 3:
+                        actionClass = 'btn-danger';
+                        break;
+                }
+                return '<button type="button" class="btn btn-sm ' + actionClass + '" ' +
+                    'onclick="changeOrderState(\'' + row.orderId + '\',\''+row.nickname+'\','+val+')"' +
+                    '>' + actionText + '</button>';
+            }}
+        ],
+        ajaxSuccess: function(data){ // 数据加载成功后执行方法
+            // 将订单统计数据展示
+            $('#state-0-num').html(data.otherData.state_0);
+            $('#state-1-num').html(data.otherData.state_1);
+            $('#state-2-num').html(data.otherData.state_2);
+        }
+    });
+
+    // 选择要改变的状态
+    function changeOrderState(orderId, nickname, orderState) {
+        if (orderState !== 1) { // 不是待发货的订单不能修改状态
+            js.layer.msg('不能修改该订单状态！');
+            return;
+        }
+        js.layer.open({
+            title: '更改订单状态',
+            content: '更改玩家 ' + nickname + ' 的订单状态',
+            btn: ['已发货', '拒绝', '返回'],
+            yes: function(index, layero){
+                // 按钮【按钮一】的回调
+                // return false 开启该代码可禁止点击该按钮关闭
+                // js.showMessage('已发货');
+                doStateChange(orderId, 2);
+            },
+            btn2: function(index, layero){
+                // 按钮【按钮二】的回调
+                // js.showMessage('拒绝');
+                doStateChange(orderId, 3);
+            }
+        });
+    }
+
+    // 提交状态该更新请求
+    function doStateChange(orderId, state) {
+        js.ajaxSubmit('${ctx}/osee/shop/exchange/log/real/state/update', {
+            id: orderId,
+            state: state
+        }, function (data) {
+            if(data.result === 'true'){
+                js.showMessage(data.message);
+                js.getCurrentTabPage(function (contentWindow) {
+                    contentWindow.page();
+                })
+            } else {
+                js.showErrorMessage(data.message);
+            }
+        }, 'json');
+    }
+</script>

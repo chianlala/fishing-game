@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!--4.2.12	订单撤销接口<ant.mybank.bkmerchanttrade.payCancel> -->
+<body>
+<xmlTag tagName="IsvOrgId"></xmlTag>
+<xmlTag tagName="OutTradeNo"></xmlTag>
+    <xmlTag tagName="HlMerchantId"></xmlTag>
+</body>

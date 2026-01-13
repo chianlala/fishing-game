@@ -1,0 +1,90 @@
+<% layout('/layouts/default.html', {title: '支出明细', libs: ['dataGrid']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <div class="box-header with-border">
+            <div class="box-title">
+                <i class="fa fa-sign-out"></i> 支出明细
+            </div>
+            <div class="box-tools pull-right">
+                <a href="#" class="btn btn-default" id="btnSearch" title="${text('查询')}">
+                    <i class="fa fa-filter"></i> ${text('查询')}
+                </a>
+            </div>
+        </div>
+        <div class="box-body">
+            <#form:form id="searchForm" model="${expend}" action="${ctx}/osee/money/expend/list" method="post" class="form-inline"
+            data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
+                <div class="form-group">
+                    <label class="control-label">${text('玩家ID')}：</label>
+                    <div class="control-inline">
+                        <#form:input path="playerId" maxlength="10" class="form-control width-120"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">${text('玩家昵称')}：</label>
+                    <div class="control-inline">
+                        <#form:input path="nickname" maxlength="50" class="form-control width-160"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">${text('支出类型')}：</label>
+                    <div class="control-inline width-120">
+                        <#form:select path="payType" dictType="osee_pay_type" class="form-control"
+                            blankOption="true"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">${text('支出时间')}：</label>
+                    <div class="control-inline">
+                        <#form:input path="startTime" maxlength="50" class="form-control width-160 Wdate laydate" readonly="true" data-type="datetime"
+                        onclick="Wdate laydatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+                        -
+                        <#form:input path="endTime" maxlength="50" class="form-control width-160 Wdate laydate" readonly="true" data-type="datetime"
+                        onclick="Wdate laydatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-sm">${text('查询')}</button>
+                    <button type="reset" class="btn btn-default btn-sm">${text('重置')}</button>
+                </div>
+            </#form:form>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4 class="text-red text-bold">
+                        钻石支出总数：<span id="totalDiamond">-</span>&emsp;
+                        金币支出总数：<span id="totalMoney">-</span>&emsp;
+                        奖券支出总数：<span id="totalLottery">-</span>&emsp;
+                    </h4>
+                </div>
+            </div>
+            <table id="dataGrid"></table>
+            <div id="dataGridPage"></div>
+        </div>
+    </div>
+</div>
+<% } %>
+<script>
+    // 初始化DataGrid对象
+    $('#dataGrid').dataGrid({
+        searchForm: $("#searchForm"),
+        columnModel: [
+            {header:'${text("支出时间")}', name:'createTime', width:150, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    return js.formatDate(new Date(val), 'yyyy-MM-dd HH:mm:ss')
+                }},
+            {header:'${text("获得用户ID")}', name:'playerId', width:150, align:"center", sortable:false},
+            {header:'${text("获得用户昵称")}', name:'nickname', width:150, align:"center", sortable:false},
+            {header:'${text("支出类型")}', name:'payType', width:150, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    return js.getDictLabel(${@DictUtils.getDictListJson('osee_pay_type')}, val, '未知')
+                }},
+            {header:'${text("钻石")}', name:'diamond', width:150, align:"center", sortable:false},
+            {header:'${text("金币")}', name:'money', width:150, align:"center", sortable:false},
+            {header:'${text("奖券")}', name:'lottery', width:150, align:"center", sortable:false}
+        ],
+        ajaxSuccess: function(data){ // 数据加载成功后执行方法
+            // 将总金额数据展示
+            $('#totalDiamond').html(data.otherData.totalDiamond);
+            $('#totalMoney').html(data.otherData.totalMoney);
+            $('#totalLottery').html(data.otherData.totalLottery);
+        }
+    })
+</script>

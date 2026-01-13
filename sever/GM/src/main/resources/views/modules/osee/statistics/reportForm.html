@@ -1,0 +1,365 @@
+<% layout('/layouts/default.html', {title: '新增留存率', libs: ['dataGrid']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <div class="box-header with-border">
+            <div class="box-title">
+                <i class="fa fa-bookmark"></i> 新增留存率
+            </div>
+            <div class="box-tools pull-right">
+                <a href="#" class="btn btn-default" id="btnSearch" title="${text('查询')}">
+                    <i class="fa fa-filter"></i> ${text('查询')}
+                </a>
+            </div>
+        </div>
+        <div class="box-body">
+            <#form:form id="searchForm" model="${reportForm}" action="${ctx}/osee/statistics/reportForm" method="post" class="form-inline"
+            data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}"
+            data-order-by="${parameter.orderBy}">
+            <div class="form-group">
+                <label class="control-label">${text('时间')}：</label>
+                <div class="control-inline">
+                    <#form:input path="startTime" maxlength="50" class="form-control width-160 Wdate laydate" readonly="true" data-type="datetime"
+                    onclick="Wdate laydatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+                    -
+                    <#form:input path="endTime" maxlength="50" class="form-control width-160 Wdate laydate" readonly="true" data-type="datetime"
+                    onclick="Wdate laydatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('类型')}：</label>
+                <div class="control-inline  width-160">
+                    <#form:select path="type" class="form-control"
+                    dictType="osee_reportForm_type" blankOption="true"/>
+                </div>
+            </div>
+            <% /* 注释掉这段代码 Beetl的语法 %>
+            <% */ %>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-sm">${text('查询')}</button>
+                <button type="reset" class="btn btn-default btn-sm">${text('重置')}</button>
+            </div>
+        </#form:form>
+        <table id="dataGrid"></table>
+        <div id="dataGridPage"></div>
+    </div>
+</div>
+</div>
+<% } %>
+<script>
+    // 初始化DataGrid对象
+    $('#dataGrid').dataGrid({
+        searchForm: $("#searchForm"),
+        columnModel: [
+            {
+                header: '${text("时间")}',
+                name: 'dayTime',
+                width: 100,
+                align: "center",
+                sortable: false,
+                formatter: function (val, obj, row, act) {
+                    return js.formatDate(new Date(val), 'yyyy-MM-dd HH:mm:ss')
+                }
+            },
+            {
+                header: '1日',
+                name: 'day1',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '2日',
+                name: 'day2',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '3日',
+                name: 'day3',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '4日',
+                name: 'day4',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '5日',
+                name: 'day5',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '6日',
+                name: 'day6',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '7日',
+                name: 'day7',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '8日',
+                name: 'day8',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '9日',
+                name: 'day9',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '10日',
+                name: 'day10',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '11日',
+                name: 'day11',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '12日',
+                name: 'day12',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '13日',
+                name: 'day13',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '14日',
+                name: 'day14',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '15日',
+                name: 'day15',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '16日',
+                name: 'day16',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '17日',
+                name: 'day17',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '18日',
+                name: 'day18',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '19日',
+                name: 'day19',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '20日',
+                name: 'day20',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '21日',
+                name: 'day21',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '22日',
+                name: 'day22',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '23日',
+                name: 'day23',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '24日',
+                name: 'day24',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '25日',
+                name: 'day25',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '26日',
+                name: 'day26',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '27日',
+                name: 'day27',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '28日',
+                name: 'day28',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '29日',
+                name: 'day29',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '30日',
+                name: 'day30',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            }
+        ]
+    });
+</script>

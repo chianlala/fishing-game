@@ -1,0 +1,56 @@
+<% layout('/layouts/default.html', {title: '版本信息', libs: ['validate']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <div class="box-header with-border">
+            <div class="box-title">
+                <i class="fa fa-info-circle"></i> 游戏版本信息
+            </div>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <form id="inputForm" action="${ctx}/osee/game/version/update" method="post" class="form-horizontal">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">
+                                <span class="required">*</span> ${text('版本号')}：
+                            </label>
+                            <div class="col-sm-4">
+                                <input id="version" type="text" name="version" value="${version}" maxlength="20"
+                                       required
+                                       class="form-control required">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-footer">
+                <div class="row">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-sm btn-primary" id="btnSubmit">
+                            <i class="fa fa-check"></i>${text('保 存')}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<% } %>
+<script>
+    $("#inputForm").validate({
+        submitHandler: function (form) {
+            js.ajaxSubmitForm($(form), function (data) {
+                if (data.result === 'true') {
+                    js.showMessage(data.message)
+                } else {
+                    js.showErrorMessage(data.message)
+                }
+            }, 'json');
+        }
+    });
+</script>

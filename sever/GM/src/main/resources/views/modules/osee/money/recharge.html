@@ -1,0 +1,125 @@
+<% layout('/layouts/default.html', {title: '充值明细', libs: ['dataGrid']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <div class="box-header with-border">
+            <div class="box-title">
+                <i class="fa fa-reorder"></i> <span data-i18n="充值明细.充值明细">充值明细</span>
+            </div>
+            <div class="box-tools pull-right">
+                <a href="#" class="btn btn-default" id="btnSearch" data-i18n="充值明细.查询">
+                    <i class="fa fa-filter"></i> ${text('查询')}
+                </a>
+            </div>
+        </div>
+        <div class="box-body">
+            <#form:form id="searchForm" model="${recharge}" action="${ctx}/osee/money/recharge/list" method="post" class="form-inline"
+            data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
+                <div class="form-group">
+                    <label class="control-label" data-i18n="充值明细.玩家ID">${text('(玩家ID)')}：</label>
+                    <div class="control-inline">
+                        <#form:input path="playerId" maxlength="10" class="form-control width-120"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" data-i18n="充值明细.玩家昵称">${text('(玩家昵称)')}：</label>
+                    <div class="control-inline">
+                        <#form:input path="nickname" maxlength="50" class="form-control width-160"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" data-i18n="充值明细.创建人">${text('(创建人)')}：</label>
+                    <div class="control-inline">
+                        <#form:input path="creator" maxlength="50" class="form-control width-160"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" data-i18n="充值明细.订单号">${text('(订单号)')}：</label>
+                    <div class="control-inline">
+                        <#form:input path="orderNum" maxlength="50" class="form-control width-160"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" data-i18n="充值明细.充值方式">${text('(充值方式)')}：</label>
+                    <div class="control-inline width-120">
+                        <#form:select path="rechargeType" dictType="osee_recharge_type" class="form-control"
+                            blankOption="true"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" data-i18n="充值明细.订单状态">${text('(订单状态)')}：</label>
+                    <div class="control-inline width-120">
+                        <#form:select path="orderState" dictType="osee_pay_order_status" class="form-control"
+                        blankOption="true"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" data-i18n="充值明细.商品类型">${text('(商品类型)')}：</label>
+                    <div class="control-inline width-120">
+                        <#form:select path="shopType" dictType="osee_item_type" class="form-control"
+                            blankOption="true"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" data-i18n="充值明细.充值时间">${text('(充值时间)')}：</label>
+                    <div class="control-inline">
+                        <#form:input path="startTime" maxlength="50" class="form-control width-160 Wdate laydate" readonly="true" data-type="datetime"
+                        onclick="Wdate laydatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+                        -
+                        <#form:input path="endTime" maxlength="50" class="form-control width-160 Wdate laydate" readonly="true" data-type="datetime"
+                        onclick="Wdate laydatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-sm" data-i18n="查询">${text('查询')}</button>
+                    <button type="reset" class="btn btn-default btn-sm" data-i18n="重置">${text('重置')}</button>
+                </div>
+            </#form:form>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4 class="text-red text-bold">
+                        <span data-i18n="充值明细.支付金额总数：">支付金额总数：</span><span id="totalMoney">-</span>&nbsp;
+                        <span data-i18n="充值明细.充值龙晶总数（万）：">充值龙晶总数（万）：</span><span id="rechargeTotalDragonCrystal">-</span>
+                    </h4>
+                </div>
+            </div>
+            <table id="dataGrid"></table>
+            <div id="dataGridPage"></div>
+        </div>
+    </div>
+</div>
+<% } %>
+<script>
+    // 初始化DataGrid对象
+    $('#dataGrid').dataGrid({
+        searchForm: $("#searchForm"),
+        columnModel: [
+            {header:`${jsValue('$.i18n.t("充值明细.充值时间")')}`, name:'createTime', width:150, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    if (val === undefined) return '-';
+                    return js.formatDate(new Date(val), 'yyyy-MM-dd HH:mm:ss')
+                }},
+            {header:`${jsValue('$.i18n.t("充值明细.订单号")')}`, name:'orderNum', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("充值明细.用户ID")')}`, name:'playerId', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("充值明细.用户昵称")')}`, name:'nickname', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("充值明细.支付金额")')}`, name:'payMoney', width:150, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    return val / 100
+                }},
+            {header:`${jsValue('$.i18n.t("充值明细.商品名称")')}`, name:'shopName', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("充值明细.商品类型")')}`, name:'shopType', width:150, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    return $.i18n.t("下拉选." + js.getDictLabel(${@DictUtils.getDictListJson('osee_item_type')}, val, '未知'))
+                }},
+            {header:`${jsValue('$.i18n.t("充值明细.数量")')}`, name:'count', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("充值明细.创建人")')}`, name:'creator', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("充值明细.充值方式")')}`, name:'rechargeType', width:150, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    return $.i18n.t("下拉选." + js.getDictLabel(${@DictUtils.getDictListJson('osee_recharge_type')}, val, '未知'))
+                }},
+            {header:`${jsValue('$.i18n.t("充值明细.订单状态")')}`,name:'orderState',width:150, align:"center", sortable:false, title:false, formatter: function(val, obj, row, act){
+                    return $.i18n.t("下拉选." + js.getDictLabel(${@DictUtils.getDictListJson('osee_pay_order_status')}, val, '未知'))
+                }}
+        ],
+        ajaxSuccess: function(data){ // 数据加载成功后执行方法
+            // 将总金额数据展示
+            $('#totalMoney').html(data.otherData.totalMoney);
+            $('#rechargeTotalDragonCrystal').html(data.otherData.rechargeTotalDragonCrystal);
+        }
+    })
+</script>

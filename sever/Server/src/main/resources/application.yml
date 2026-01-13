@@ -1,0 +1,9 @@
+server:
+  port: 8022
+spring:
+  application:
+    name: osee-server
+  profiles:
+    active: dev
+
+

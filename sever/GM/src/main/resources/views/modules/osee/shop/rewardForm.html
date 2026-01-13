@@ -1,0 +1,167 @@
+<% layout('/layouts/default.html', {title: '添加奖品', libs: ['fileupload', 'validate']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <div class="box-header with-border">
+            <div class="box-title">
+                <i class="fa fa-money"></i> 添加奖品
+            </div>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <#form:form id="inputForm" model="${shop}" action="${ctx}/osee/shop/reward/save" method="post"
+            class="form-horizontal">
+        <div class="box-body">
+            <#form:hidden path="id" />
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" title="">
+                            <span class="required">*</span> ${text('奖品类型')}：<i
+                                class="fa icon-question hide"></i></label>
+                        <div class="col-sm-8">
+                            <#form:select path="type" dictType="osee_shop_reward_type" class="form-control required"
+                                blankOption="true" blankOptionLabel="=请选择="/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" title="">
+                            <span class="required">*</span> ${text('发货类型')}：
+                        </label>
+                        <div class="col-sm-8">
+                            <#form:select path="sendType" dictType="osee_shop_reward_send_type" class="form-control required"
+                                blankOption="true" blankOptionLabel="=请选择="/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" title="">
+                            <span class="required">*</span> ${text('奖品名称')}：<i
+                                class="fa icon-question hide"></i></label>
+                        <div class="col-sm-8">
+                            <#form:input path="name" maxlength="10" class="form-control required"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" title="">
+                            <span class="required">*</span> ${text('奖品图片')}：<i class="fa icon-question hide"></i>
+                        </label>
+                        <div class="col-sm-8">
+                            <#form:fileupload uploadType="image" class="required"
+                                maxUploadNum="1" isLazy="false" returnPath="true" filePathInputId="img"/>
+                            <#form:hidden path="img" class="form-control required" readonly="true"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" title="">
+                            <span class="required">*</span> ${text('奖品数量')}：<i
+                                class="fa icon-question hide"></i></label>
+                        <div class="col-sm-8">
+                            <#form:input path="count" maxlength="10" class="form-control required"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" title="">
+                            <span class="required">*</span> ${text('消耗奖券数量')}：<i
+                                class="fa icon-question hide"></i></label>
+                        <div class="col-sm-8">
+                            <#form:input path="cost" type="number" maxlength="10" min="1" class="form-control required"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" title="">
+                            <span class="required">*</span> ${text('库存数量')}：
+                        </label>
+                        <div class="col-sm-8">
+                            <#form:input path="stock" type="number" min="0" maxlength="20" class="form-control required" />
+                            <span class="help-block">若发货类型为"自动发卡"，则库存数量不生效，需手动添加库存</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" title="">
+                            ${text('限购次数')}：
+                        </label>
+                        <div class="col-sm-8">
+                            <#form:input path="size" disabled="true" type="number" maxlength="10" class="form-control"/>
+                            <span class="help-block">不填或为0则为无限兑换次数</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" title="">
+                            <span class="required">*</span> ${text('限购更新频率')}：
+                        </label>
+                        <div class="col-sm-8">
+                            <#form:select path="refreshType" disabled="true" dictType="osee_shop_reward_refresh_type" class="form-control required" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box-footer">
+            <div class="row">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <% if (hasPermi('shop:reward:edit')){ %>
+                    <button type="submit" class="btn btn-sm btn-primary" id="btnSubmit">
+                        <i class="fa fa-check"></i>${text('保 存')}
+                    </button>&nbsp;
+                    <% } %>
+                    <button type="button" class="btn btn-sm btn-default" id="btnCancel"
+                            onclick="js.closeCurrentTabPage()">
+                        <i class="fa fa-reply-all"></i> ${text('关 闭')}
+                    </button>
+                </div>
+            </div>
+        </div>
+        </#form:form>
+    </div>
+</div>
+<% } %>
+<script>
+    $("#inputForm").validate({
+        submitHandler: function (form) {
+            js.ajaxSubmitForm($(form), function (data) {
+                if (data.result === 'true') {
+                    js.showMessage(data.message);
+                    js.closeCurrentTabPage(function (contentWindow) {
+                        contentWindow.page();
+                    });
+                } else {
+                    js.showErrorMessage(data.message)
+                }
+            }, 'json');
+        }
+    });
+</script>

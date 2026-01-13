@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!--4.2.7	移动刷卡支付（被扫）接口< ant.mybank.bkmerchanttrade.pay > -->
+<body>
+<xmlTag tagName="IsvOrgId"></xmlTag>
+<xmlTag tagName="AuthCode"></xmlTag>
+<xmlTag tagName="OutTradeNo"></xmlTag>
+<xmlTag tagName="Body"></xmlTag>
+<xmlTag tagName="GoodsTag"></xmlTag>
+<xmlTag tagName="GoodsDetail"></xmlTag>
+<xmlTag tagName="TotalAmount"></xmlTag>
+<xmlTag tagName="Currency" defaultValue="CNY"></xmlTag>
+    <xmlTag tagName="HlMerchantId"></xmlTag>
+<xmlTag tagName="ChannelType"></xmlTag>
+<xmlTag tagName="OperatorId"></xmlTag>
+<xmlTag tagName="StoreId"></xmlTag>
+<xmlTag tagName="DeviceId"></xmlTag>
+<xmlTag tagName="DeviceCreateIp"></xmlTag>
+<xmlTag tagName="ExpireExpress"></xmlTag>
+<xmlTag tagName="SettleType"></xmlTag>
+<xmlTag tagName="Attach"></xmlTag>
+<xmlTag tagName="ChannelId"></xmlTag>
+<xmlTag tagName="SubMerchId"></xmlTag>
+<xmlTag tagName="SpecifySubMerchId"></xmlTag>
+<xmlTag tagName="SplitBunch"></xmlTag>
+</body>

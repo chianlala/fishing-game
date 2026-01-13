@@ -1,0 +1,119 @@
+<script src="${ctxStatic}/common/i18n/js/i18next.min.js"></script>
+<script src="${ctxStatic}/common/i18n/js/jquery-i18next.min.js"></script>
+<script src="${ctxStatic}/common/i18n/js/i18nextBrowserLanguageDetector.min.js"></script>
+
+<script src="${ctxStatic}/common/i18n/js/i18nextHttpBackend.min.js"></script>
+
+<script>
+
+const lngs = {
+    'en-US': {nativeName: 'English', selected: true},
+    'zh-CN': {nativeName: '中文'}
+};
+
+const rerender = ($ = window.$) => {
+    // start localizing, details:
+    // https://github.com/i18next/jquery-i18next#usage-of-selector-function
+    if ($('[data-i18n]').localize) {
+        $('[data-i18n]').localize();
+    }
+}
+
+if ($('#languageSwitcher')) {
+
+    // fill language switcher
+    Object.keys(lngs).map((lng) => {
+
+        let localStorageLng = localStorage.getItem("i18nextLng") || 'en-US';
+
+        const opt = new Option(lngs[lng].nativeName, lng, false, localStorageLng ? (localStorageLng === lng) : Boolean(lngs[lng].selected));
+
+        $('#languageSwitcher').append(opt);
+
+        $('#languageSwitcher').change((a, b, c) => {
+
+            const chosenLng = $("#languageSwitcher").val()
+
+            i18next.changeLanguage(chosenLng, () => {
+
+                rerender()
+
+                // 翻译不了表格，所以注释掉了
+                // for (let i = 0; i < window.frames.length; i++) {
+                //
+                //     if(window.frames[i].$.InitI18next){
+                //         window.frames[i].$.InitI18next(window.frames[i].$)
+                //     }
+                //
+                //     rerender(window.frames[i].$)
+                //
+                // }
+
+            });
+
+        });
+
+    });
+
+}
+
+
+$(() => {
+
+    let lng = localStorage.getItem("i18nextLng") || 'en-US';
+
+    // 教程：https://locize.com/blog/jquery-i18next/
+    i18next
+        // i18next-http-backend
+        // loads translations from your server
+        // https://github.com/i18next/i18next-http-backend
+        .use(i18nextHttpBackend)
+        // detect user language
+        // learn more: https://github.com/i18next/i18next-browser-languageDetector
+        .use(i18nextBrowserLanguageDetector)
+        // init i18next
+        // for all options read: https://www.i18next.com/overview/configuration-options
+        .init({
+
+            debug: true,
+            load: 'currentOnly', // 加载策略：【all】 例如：en-US，则会加载 en，和 en-US两个文件 【currentOnly】 只加载一个文件
+            // lng: 'zh-CN', // 指定语言
+            lng: lng, // 指定语言
+            fallbackLng: false, // 若要加载的语言存在某个键值缺失，则用 fallbackLng来代替，false 为不使用该机制
+            ns: ['translation', 'message'],
+            // i.e. if you want to customize a different translation path,
+            // use the loadPath option:
+            backend: {
+                loadPath: '${ctxStatic}/common/i18n/{{lng}}/{{ns}}.json'
+            }
+        }, (err, t) => {
+
+            if (err) return console.error(err);
+
+            // for options see
+            // https://github.com/i18next/jquery-i18next#initialize-the-plugin
+            // jqueryI18next.init(i18next, $, {useOptionsAttr: true});
+
+            function InitI18next($) {
+
+                // for options see
+                // https://github.com/i18next/jquery-i18next#initialize-the-plugin
+                jqueryI18next.init(i18next, $, {useOptionsAttr: true});
+
+            }
+
+            InitI18next($)
+
+            $.InitI18next = InitI18next
+
+            // start localizing, details:
+            // https://github.com/i18next/jquery-i18next#usage-of-selector-function
+            // $('[data-i18n]').localize();
+
+            rerender();
+
+        });
+
+})
+
+</script>

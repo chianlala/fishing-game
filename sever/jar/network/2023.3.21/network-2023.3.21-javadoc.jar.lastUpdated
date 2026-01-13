@@ -1,0 +1,10 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Wed Sep 18 13:31:56 CST 2024
+@default-jeesite-repos-http\://maven.jeesite.net/repository/maven-public/.lastUpdated=1716272872924
+http\://maven.jeesite.net/repository/maven-public/.error=Could not transfer artifact com.maple\:network\:jar\:javadoc\:2023.3.21 from/to jeesite-repos (http\://maven.jeesite.net/repository/maven-public)\: status code\: 401, reason phrase\: Unauthorized (401)
+http\://maven.aliyun.com/repository/public/.error=
+https\://repo.maven.apache.org/maven2/.lastUpdated=1716516041278
+https\://maven.aliyun.com/repository/public/.error=
+https\://maven.aliyun.com/repository/public/.lastUpdated=1726637516993
+http\://maven.aliyun.com/repository/public/.lastUpdated=1716516644210
+https\://repo.maven.apache.org/maven2/.error=

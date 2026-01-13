@@ -1,0 +1,82 @@
+<% layout('/layouts/default.html', {title: '反馈记录', libs: ['dataGrid']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <div class="box-header with-border">
+            <div class="box-title">
+                <i class="fa fa-reorder"></i> <span data-i18n="反馈记录.反馈记录">反馈记录</span>
+            </div>
+            <div class="box-tools pull-right">
+                <a href="#" class="btn btn-default" id="btnSearch" data-i18n="查询">
+                    <i class="fa fa-filter"></i> ${text('查询')}
+                </a>
+            </div>
+        </div>
+        <div class="box-body">
+            <#form:form id="searchForm" model="${feedBack}" action="${ctx}/osee/game/feedBack/list" method="post" class="form-inline"
+            data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
+            <div class="form-group">
+                <label class="control-label" data-i18n="反馈记录.反馈时间">${text('(反馈记录.反馈时间)')}：</label>
+                <div class="control-inline">
+                    <#form:input path="startTime" maxlength="50" class="form-control width-160 Wdate laydate" readonly="true" data-type="datetime"
+                    onclick="Wdate laydatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+                    -
+                    <#form:input path="endTime" maxlength="50" class="form-control width-160 Wdate laydate" readonly="true" data-type="datetime"
+                    onclick="Wdate laydatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-sm" data-i18n="查询">${text('查询')}</button>
+                <button type="reset" class="btn btn-default btn-sm" data-i18n="重置">${text('重置')}</button>
+            </div>
+        </#form:form>
+        <table id="dataGrid"></table>
+        <div id="dataGridPage"></div>
+    </div>
+</div>
+</div>
+<% } %>
+<script>
+    // 初始化DataGrid对象
+    $('#dataGrid').dataGrid({
+        searchForm: $("#searchForm"),
+        columnModel: [
+            {header:`${jsValue('$.i18n.t("反馈记录.创建时间")')}`, name:'createTime', width:40, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    return js.formatDate(new Date(val), 'yyyy-MM-dd HH:mm:ss')
+                }},
+            {header:`${jsValue('$.i18n.t("反馈记录.用户ID")')}`, name:'userId', width:40, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("反馈记录.用户昵称")')}`, name:'userName', width:40, align:"center", sortable:false},
+
+            {header:`${jsValue('$.i18n.t("反馈记录.处理状态")')}`, name:'status', width:40, align:"center", sortable:false,
+                formatter: function(val, obj, row, act){
+                    return $.i18n.t("反馈记录." + (row.replyContent ? '已回复' : '未回复'))
+                }
+            },
+
+            {header:`${jsValue('$.i18n.t("反馈记录.反馈内容")')}`, name:'context', width: 200, align:"center", sortable:false},
+
+            {header:`${jsValue('$.i18n.t("反馈记录.回复内容")')}`, name:'replyContent', width: 200, align:"center", sortable:false},
+
+            {header:`${jsValue('$.i18n.t("反馈记录.操作")')}`,name:'actions',width:150, align:"center", sortable:false, title:false, formatter: function(val, obj, row, act){
+
+                var actions = [];
+
+                actions.push('<a href="${ctx}/osee/game/feedBack/delete?id=' + row.id +
+                        '" class="btnList" title="' + `${jsValue('$.i18n.t("反馈记录.删除数据")')}` + '" data-confirm="' + `${jsValue('$.i18n.t("反馈记录.确认要删除该数据吗？")')}` + '"><i class="fa fa-trash-o"></i></a>');
+
+                if(!row.replyContent){
+
+                    actions.push('<a href="${ctx}/osee/game/mail?title=反馈回复邮件&sendCloseFlag=true&type=14&refId='+ row.id +'&receiverId=' + row.gameId +
+                        '" class="btnList" title="' + `${jsValue('$.i18n.t("反馈记录.回复")')}` + '"><i class="fa fa-reply"></i></a>');
+
+                }
+
+                return actions.join('');
+
+            }}
+
+        ],
+        ajaxSuccess: function(data){ // 数据加载成功后执行方法
+            // 将总金额数据展示
+        }
+    })
+</script>

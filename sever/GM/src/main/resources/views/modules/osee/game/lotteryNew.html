@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+
+    <!-- 引入 layui.css -->
+    <link rel="stylesheet" href="https://unpkg.com/layui@2.6.8/dist/css/layui.css">
+
+    <!-- 引入 layui.js -->
+    <script src="//unpkg.com/layui@2.6.8/dist/layui.js" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+<div id="container">
+
+    <form class="layui-form" style="margin: 20px 0">
+
+        <div class="layui-form-item" v-for="(item, index) in itemList">
+
+            <label class="layui-form-label" style="width: 100px">
+                <input type="radio" name="radioIndex" :value="index" lay-filter="checked" v-model="radioIndex">
+                奖项{{index + 1}}
+            </label>
+
+            <div class="layui-input-inline">
+                <input min="0" max="100" maxlength="3" type="number" required v-model="item.probability"
+                       placeholder="请输入中奖概率" autocomplete="off" class="layui-input">
+            </div>
+
+            <label class="layui-form-label">奖励：</label>
+
+            <div style="padding-top: 8px;">
+                <div v-if="!(item.rewardList && item.rewardList.length)">暂无</div>
+                <button v-else v-for="(subItem, subIndex) in item.rewardList" type="button"
+                        class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal reward-item"
+                        @click="removeReward(item, subIndex)">
+                    <span>{{getItemDictLabel(subItem.reward)}}*{{subItem.num}}</span>&nbsp;&nbsp;<i
+                        class="layui-icon" class="delete">&#xe640;</i>
+                </button>
+            </div>
+
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">物品</label>
+            <div class="layui-input-inline">
+                <#form:select path="reward" class="form-control"
+                dictType="osee_item_type" lay-filter="select" />
+            </div>
+            <label class="layui-form-label">数量</label>
+            <div class="layui-input-inline">
+                <input type="number" name="number" min="0" required lay-verify="required" v-model="itemNum"
+                       placeholder="请输入数量"
+                       autocomplete="off" class="layui-input">
+            </div>
+            <button type="button" class="layui-btn layui-btn-normal" @click="addReward">
+                <i class="layui-icon">&#xe608;</i>添加奖励
+            </button>
+            <button type="button" class="layui-btn layui-btn-normal" @click="saveLotteryInfo">
+                保存
+            </button>
+        </div>
+    </form>
+
+</div>
+
+<script>
+
+var itemTempList = []
+for (let i = 1; i < 9; i++) {
+    let reward = {}
+    reward.probability = 0
+    reward.rewardList = []
+    itemTempList.push(reward)
+}
+
+var oseeItemTypeDict = ${@DictUtils.getDictListJson('osee_item_type')};
+
+var vm = new Vue({
+    el: '#container',
+    data: {
+        radioIndex: 0, // 选中的奖项
+        itemIndex: '1', // 选中的物品
+        itemNum: 10, // 选中物品的数量
+        itemList: [] // 奖项集合
+    },
+    methods: {
+        // 添加：物品
+        addReward() {
+            if (vm.$data.itemNum < 1) {
+                layer.msg('物品数量不能小于 1')
+                return
+            }
+            let item = vm.$data.itemList[vm.$data.radioIndex];
+            if (item.rewardList.some(item => item.reward === vm.$data.itemIndex)) {
+                layer.msg('同一个物品不能添加多个')
+                return
+            }
+            item.rewardList.push({
+                reward: vm.$data.itemIndex,
+                num: vm.$data.itemNum
+            })
+        },
+        // 移除：物品
+        removeReward(item, subIndex) {
+            item.rewardList.splice(subIndex, 1)
+        },
+        // 获取：物品 label
+        getItemDictLabel(value) {
+            for (var s = 0; s < oseeItemTypeDict.length; s++) {
+                if (oseeItemTypeDict[s].dictValue === value) {
+                    return oseeItemTypeDict[s].dictLabel
+                }
+            }
+            return '未知'
+        },
+        // 保存
+        saveLotteryInfo() {
+            axios({
+                method: 'post',
+                url: '/ttmy_admin/a/osee/game/lottery/update',
+                data: {
+                    itemList: vm.$data.itemList
+                }
+            }).then(({data}) => {
+                if (data.result === "true") {
+                    layer.msg('操作成功', {icon: 1});
+                } else {
+                    layer.msg('操作失败：' + data.message, {icon: 2});
+                }
+            }).catch(e => {
+                layer.msg('操作失败，请联系管理员', {icon: 2});
+            })
+        },
+        init() {
+            axios({
+                url: '/ttmy_admin/a/osee/game/lotteryData',
+            }).then(function (res) {
+                vm.$data.itemList = (res.data.itemList && res.data.itemList.length) ? res.data.itemList : itemTempList
+            })
+        }
+    },
+    mounted: function () {
+        this.init();
+    }
+});
+
+var form;
+layui.use(['form'], function () {
+    form = layui.form;
+    form.on('select(select)', function (data) {
+        vm.$data.itemIndex = data.value; // 选中的物品
+    });
+    form.on('radio(checked)', function (data) {
+        vm.$data.radioIndex = data.value; // 选中的奖项
+    });
+});
+
+</script>
+</body>
+</html>

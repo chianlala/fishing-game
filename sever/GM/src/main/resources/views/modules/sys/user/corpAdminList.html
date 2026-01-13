@@ -1,0 +1,111 @@
+<% layout('/layouts/default.html', {title: '系统管理员', libs: ['dataGrid']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header">
+			<div class="box-title">
+				<i class="fa icon-badge"></i> <span data-i18n="系统管理员.系统管理员">系统管理员</span>
+			</div>
+			<div class="box-tools pull-right">
+				<a href="#" class="btn btn-default" id="btnSearch" data-i18n="查询"><i class="fa fa-filter"></i> ${text('查询')}</a>
+				<% if(hasPermi('sys:corpAdmin:edit')){ %>
+					<% if(@Global.getConfigToBoolean('user.useCorpModel', 'false')){ %>
+					<a href="${ctx}/sys/corpAdmin/form?op=addCorp" class="btn btn-default btnTool"><i class="fa fa-plus"></i><span data-i18n="系统管理员.新增租户管理员"></span> ${text('新增租户管理员')}</a>
+					<% }else{ %>
+					<a href="${ctx}/sys/corpAdmin/form?corpCode_=${user.currentUser.corpCode_}&corpName_=${user.currentUser.corpName_}&op=addAdmin" class="btn btn-default btnTool"><i class="fa fa-plus"></i> <span data-i18n="系统管理员.新增管理员">${text('新增管理员')}</span></a>
+					<% } %>
+				<% } %>
+			</div>
+		</div>
+		<div class="box-body">
+			<#form:form id="searchForm" model="${user}" action="${ctx}/sys/corpAdmin/listData" method="post" class="form-inline "
+					data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
+				<div class="form-group">
+					<label class="control-label" data-i18n="系统管理员.登录账号">${text('(系统管理员.登录账号)')}：</label>
+					<div class="control-inline">
+						<#form:input path="loginCode" maxlength="100" class="form-control width-90"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label" data-i18n="系统管理员.用户昵称">${text('(系统管理员.用户昵称)')}：</label>
+					<div class="control-inline">
+						<#form:input path="userName" maxlength="100" class="form-control width-90"/>
+					</div>
+				</div>
+				<div class="form-group ${@Global.getConfigToBoolean('user.useCorpModel', 'false')?'':'hide'}">
+					<label class="control-label" data-i18n="系统管理员.租户代码">${text('(系统管理员.租户代码)')}：</label>
+					<div class="control-inline">
+						<#form:input path="corpCode_" maxlength="100" class="form-control width-90"/>
+					</div>
+				</div>
+				<div class="form-group ${@Global.getConfigToBoolean('user.useCorpModel', 'false')?'':'hide'}">
+					<label class="control-label" data-i18n="系统管理员.租户名称">${text('(系统管理员.租户名称)')}：</label>
+					<div class="control-inline">
+						<#form:input path="corpName_" maxlength="100" class="form-control width-90"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label" data-i18n="系统管理员.状态">${text('(系统管理员.状态)')}：</label>
+					<div class="control-inline width-90">
+						<#form:select path="status" dictType="sys_user_status" blankOption="true" class="form-control isQuick"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-sm" data-i18n="查询">${text('查询')}</button>
+					<button type="reset" class="btn btn-default btn-sm" data-i18n="重置">${text('重置')}</button>
+				</div>
+			</#form:form>
+			<table id="dataGrid"></table>
+			<div id="dataGridPage"></div>
+		</div>
+	</div>
+</div>
+<% } %>
+<script>
+// 初始化DataGrid对象
+$('#dataGrid').dataGrid({
+	searchForm: $("#searchForm"),
+	columnModel: [
+		{header:`${jsValue('$.i18n.t("系统管理员.登录账号")')}`, name:'loginCode', index:'a.login_code', width:200, align:"center", frozen:true, formatter: function(val, obj, row, act){
+			return '<a href="${ctx}/sys/corpAdmin/form?userCode='+row.userCode+'&op=edit" class="btnList" data-title="' + `${jsValue('$.i18n.t("系统管理员.编辑用户")')}` + '">'+(val||row.id)+'</a>';
+		}},
+		{header:`${jsValue('$.i18n.t("系统管理员.用户昵称")')}`, name:'userName', index:'a.user_name', width:200, align:"center"},
+		<% if(@Global.getConfigToBoolean('user.useCorpModel', 'false')){ %>
+		{header:`${jsValue('$.i18n.t("系统管理员.租户代码")')}`, name:'corpCode_', index:'a.corp_code', width:200, align:"center", formatter: function(val, obj, row, act){
+			return '<a href="javascript:" onclick="$(\'#corpCode_\').val(\''+val+'\');$(\'#searchForm\').submit()">'+val+'</a>';
+		}},
+		{header:`${jsValue('$.i18n.t("系统管理员.租户名称")')}`, name:'corpName_', index:'a.corp_name', width:200, align:"center"},
+		<% } %>
+		{header:`${jsValue('$.i18n.t("系统管理员.电子邮箱")')}`, name:'email', index:'a.email', width:200, align:"center"},
+		{header:`${jsValue('$.i18n.t("系统管理员.手机号码")')}`, name:'mobile', index:'a.mobile', width:200, align:"center"},
+		{header:`${jsValue('$.i18n.t("系统管理员.办公电话")')}`, name:'phone', index:'a.phone', width:200, align:"center"},
+		{header:`${jsValue('$.i18n.t("系统管理员.更新时间")')}`, name:'updateDate', index:'a.update_date', width:200, align:"center"},
+		{header:`${jsValue('$.i18n.t("系统管理员.状态")')}`, name:'status', index:'a.status', width:100, align:"center", formatter: function(val, obj, row, act){
+			return js.getDictLabel(${@DictUtils.getDictListJson('sys_status')}, val, '未知', true);
+		}},
+		{header:`${jsValue('$.i18n.t("系统管理员.操作")')}`, name:'actions', width:250, sortable:false, title:false, formatter: function(val, obj, row, act){
+			var actions = [];
+			<% if(hasPermi('sys:corpAdmin:edit')){ %>
+				actions.push('<a href="${ctx}/sys/corpAdmin/form?userCode='+row.userCode+'&op=edit" class="btnList" title="' + `${jsValue('$.i18n.t("系统管理员.编辑用户")')}` + '"><i class="fa fa-pencil"></i></a>&nbsp;');
+				if (row.status == Global.STATUS_NORMAL){
+					actions.push('<a href="${ctx}/sys/corpAdmin/disable?userCode='+row.userCode+'" class="btnList" title="' + `${jsValue('$.i18n.t("系统管理员.停用用户")')}` + '" ><i class="glyphicon glyphicon-ban-circle"></i></a>&nbsp;');
+				} else if (row.status == Global.STATUS_DISABLE){
+					actions.push('<a href="${ctx}/sys/corpAdmin/enable?userCode='+row.userCode+'" class="btnList" title="' + `${jsValue('$.i18n.t("系统管理员.启用用户")')}` + '" ><i class="glyphicon glyphicon-ok-circle"></i></a>&nbsp;');
+				}
+				actions.push('<a href="${ctx}/sys/corpAdmin/delete?userCode='+row.userCode+'" class="btnList" title="' + `${jsValue('$.i18n.t("系统管理员.删除用户")')}` + '" ><i class="fa fa-trash-o"></i></a>&nbsp;');
+				<% if(@Global.getConfigToBoolean('user.useCorpModel', 'false')){ %>
+				actions.push('<a href="${ctx}/sys/corpAdmin/form?corpCode_='+row.corpCode_+'&corpName_='+row.corpName_+'&op=addAdmin" class="btnList" title="' + `${jsValue('$.i18n.t("系统管理员.新增管理员")')}` + '"><i class="fa fa-plus-square"></i></a>&nbsp;');
+				<% } %>
+				actions.push('<a href="javascript:" class="btnMore" title="' + `${jsValue('$.i18n.t("系统管理员.更多操作")')}` + '"><i class="fa fa-chevron-circle-right"></i></a>&nbsp;');
+				actions.push('<div class="moreItems">');
+				actions.push('<a href="${ctx}/sys/corpAdmin/resetpwd?userCode='+row.userCode+'" class="btn btn-default btn-xs btnList" title="' + `${jsValue('$.i18n.t("系统管理员.用户密码重置")')}` + '" ><i class="fa fa-reply-all"></i> ' + `${jsValue('$.i18n.t("系统管理员.重置密码")')}` + '</a>&nbsp;');
+				actions.push('</div>');
+			<% } %>
+			return actions.join('');
+		}}
+	],
+	// 加载成功后执行事件
+	ajaxSuccess: function(data){
+
+	}
+});
+</script>

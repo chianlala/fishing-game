@@ -1,0 +1,108 @@
+<% layout('/layouts/default.html', {title: '商城奖品列表', libs: ['dataGrid']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <div class="box-header with-border">
+            <div class="box-title">
+                <i class="fa fa-money"></i> 奖品列表
+            </div>
+            <div class="box-tools pull-right">
+                <a href="#" class="btn btn-default" id="btnSearch" title="${text('查询')}">
+                    <i class="fa fa-filter"></i> ${text('查询')}
+                </a>
+                <% if(hasPermi('shop:reward:edit')){ %>
+                    <a href="${ctx}/osee/shop/reward/form" class="btn btn-default btnTool" title="${text('添加奖品')}">
+                        <i class="fa fa-plus"></i> ${text('添加')}
+                    </a>
+                <% } %>
+            </div>
+        </div>
+        <div class="box-body">
+            <#form:form id="searchForm" model="${shop}" action="${ctx}/osee/shop/reward/list" method="post" class="form-inline"
+            data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
+                <div class="form-group">
+                    <label class="control-label">${text('奖品名称')}：</label>
+                    <div class="control-inline">
+                        <#form:input path="name" maxlength="50" class="form-control width-160" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">${text('奖品类型')}：</label>
+                    <div class="control-inline width-120">
+                        <#form:select path="type" dictType="osee_shop_reward_type" class="form-control"
+                            blankOption="true"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-sm">${text('查询')}</button>
+                    <button type="reset" class="btn btn-default btn-sm">${text('重置')}</button>
+                </div>
+            </#form:form>
+            <table id="dataGrid"></table>
+            <div id="dataGridPage"></div>
+        </div>
+    </div>
+</div>
+<% } %>
+<script>
+    // 初始化DataGrid对象
+    $('#dataGrid').dataGrid({
+        searchForm: $("#searchForm"),
+        showRownum: true,	// 是否显示行号
+        sortableColumn: true,// 列表是否允许排序（设置为false后，整个列表不允许排序）
+        columnModel: [
+            {header:'${text("奖品ID")}', name:'id', width:200,align:"center", sortable:false},
+            {header:'${text("奖品类型")}', name:'type', width:150, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    return js.getDictLabel(${@DictUtils.getDictListJson('osee_shop_reward_type')}, val, '${text("未知")}')
+                }},
+            {header:'${text("发货类型")}', name:'sendType', width:150, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    return js.getDictLabel(${@DictUtils.getDictListJson('osee_shop_reward_send_type')}, val, '${text("未知")}')
+                }},
+            {header:'${text("奖品名称")}', name:'name', width:150, align:"center", sortable:false},
+            {header:'${text("奖品数量")}', name:'count', width:150, align:"center", sortable:false},
+            {header:'${text("兑换消耗奖券")}', name:'cost', width:150, align:"center", sortable:false},
+            {header:'${text("奖励图片")}', name:'img', width:150, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    return '<img src="'+val+'" width="100" alt="" title="点击查看大图" onclick="showBigImg(\''+val+'\')" />'
+                }},
+            {header:'${text("限购次数")}', name:'size', width:150, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    return val === 0 ? '无限制' : val
+                }},
+            {header:'${text("限购剩余次数")}', name:'restSize', width:150, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    return row.size === 0 ? '无限制' : val
+                }},
+            {header:'${text("限购更新频率")}', name:'refreshType', width:150, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    return js.getDictLabel(${@DictUtils.getDictListJson('osee_shop_reward_refresh_type')}, val, '${text("未知")}')
+                }},
+            {header:'${text("库存")}', name:'stock', width:150, align:"center", sortable:false},
+            {header:'${text("操作")}', name:'actions', width:150, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    var actions = [];
+                    <% if (hasPermi('shop:reward:edit')) { %>
+                        if (row.type === 1 && row.sendType === 3) { // 自动发卡的实物才有库存设置
+                            actions.push('<a href="${ctx}/osee/shop/reward/stock?shopId=' + row.id +
+                               '" class="btnList" title="${text("奖品库存")}"><i class="fa fa-database"></i></a>');
+                        }
+                        actions.push('<a href="${ctx}/osee/shop/reward/form?id=' + row.id +
+                            '" class="btnList" title="${text("编辑奖品")}"><i class="fa fa-pencil"></i></a>');
+                        actions.push('<a href="${ctx}/osee/shop/reward/delete?id=' + row.id +
+                            '" class="btnList" title="${text("删除奖品")}" data-confirm="${text("确认要删除该奖品数据吗？(自动发卡的库存数据不会被删除)")}">' +
+                            '<i class="fa fa-trash-o"></i></a>');
+                    <% } %>
+                    // actions.push('<a href="${ctx}/osee/shop/reward/changeIndex?type=-1&id=' + row.id +
+                    //     '" class="btnList" title="${text("上移")}" data-confirm="${text("上移？")}"><i class="fa fa-arrow-circle-up"></i></a>');
+                    // actions.push('<a href="${ctx}/osee/shop/reward/changeIndex?type=1&id=' + row.id +
+                    //     '" class="btnList" title="${text("下移")}" data-confirm="${text("下移？")}"><i class="fa fa-arrow-circle-down"></i></a>');
+                    return actions.join(' ')
+                }}
+        ]
+    });
+
+    // 查看奖励图片大图形式
+    function showBigImg(img) {
+        layer.open({
+            type: 1,
+            title: false,
+            shadeClose: true,
+            area: ['auto'],
+            content: '<img src="'+img+'" />'
+        });
+    }
+</script>

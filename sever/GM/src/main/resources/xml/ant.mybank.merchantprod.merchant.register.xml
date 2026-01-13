@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!--4.2.1	商户入驻申请接口<ant.mybank.merchantprod.merchant.service> -->
+<body>
+  <xmlTag tagName="IsvOrgId"></xmlTag>
+  <xmlTag tagName="OutMerchantId"></xmlTag>
+  <xmlTag tagName="MerchantName"></xmlTag>
+  <xmlTag tagName="MerchantType"></xmlTag>
+  <xmlTag tagName="DealType"></xmlTag>
+  <xmlTag tagName="SupportPrepayment"></xmlTag>
+  <xmlTag tagName="SettleMode"></xmlTag>
+  <xmlTag tagName="Mcc"></xmlTag>
+  <xmlTag tagName="MerchantDetail"></xmlTag>
+  <xmlTag tagName="TradeTypeList"></xmlTag>
+  <xmlTag tagName="PayChannelList"></xmlTag>
+  <xmlTag tagName="DeniedPayToolList"></xmlTag>
+  <xmlTag tagName="FeeParamList"></xmlTag>
+  <xmlTag tagName="BankCardParam"></xmlTag>
+  <xmlTag tagName="AuthCode"></xmlTag>
+  <xmlTag tagName="OutTradeNo"></xmlTag>
+  <xmlTag tagName="PartnerType"></xmlTag>
+  <xmlTag tagName="StlTyp"></xmlTag>
+  <xmlTag tagName="ServiceFee"></xmlTag>
+  <xmlTag tagName="WechatChannel"></xmlTag>
+  <xmlTag tagName="Path"></xmlTag>
+  <xmlTag tagName="IsSendMes"></xmlTag>
+  <xmlTag tagName="WeChatID"></xmlTag>
+  <xmlTag tagName="QQID"></xmlTag>
+</body>

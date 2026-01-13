@@ -1,0 +1,59 @@
+<% layout('/layouts/default.html', {title: '游走字幕', libs: ['dataGrid']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <div class="box-header with-border">
+            <div class="box-title">
+                <i class="fa fa-font"></i> <span data-i18n="游走字幕列表.游走字幕列表">游走字幕列表</span>
+            </div>
+            <div class="box-tools pull-right">
+                <!--<a href="#" class="btn btn-default" id="btnSearch" data-i18n="查询">-->
+                    <!--<i class="fa fa-filter"></i> ${text('查询')}-->
+                <!--</a>-->
+                <% if(hasPermi('game:subtitle:edit')){ %>
+                    <a href="${ctx}/osee/game/subtitle/form" class="btn btn-default btnTool">
+                        <i class="fa fa-plus"></i> <span data-i18n="添加">${text('添加')}</span>
+                    </a>
+                <% } %>
+            </div>
+        </div>
+        <div class="box-body">
+            <#form:form id="searchForm" model="${subtitle}" action="${ctx}/osee/game/subtitle/list" method="post" class="form-inline"
+            data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
+            </#form:form>
+            <table id="dataGrid"></table>
+            <div id="dataGridPage"></div>
+        </div>
+    </div>
+</div>
+<% } %>
+<script>
+    // 初始化DataGrid对象
+    $('#dataGrid').dataGrid({
+        searchForm: $("#searchForm"),
+        showRownum: true,	// 是否显示行号
+        sortableColumn: false,// 列表是否允许排序（设置为false后，整个列表不允许排序）
+        columnModel: [
+            {header:`${jsValue('$.i18n.t("游走字幕列表.内容")')}`, name:'content', width:300,align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("游走字幕列表.间隔时间(min)")')}`, name:'intervalTime', width:150, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("游走字幕列表.生效时间")')}`, name:'effectiveTime', width:150, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    return js.formatDate(new Date(val), 'yyyy-MM-dd HH:mm:ss')
+                }},
+            {header:`${jsValue('$.i18n.t("游走字幕列表.失效时间")')}`, name:'failureTime', width:150, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    return js.formatDate(new Date(val), 'yyyy-MM-dd HH:mm:ss')
+                }},
+            {header:`${jsValue('$.i18n.t("游走字幕列表.状态")')}`, name:'state', width:150, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    return val === 0 ? `${jsValue('$.i18n.t("游走字幕列表.生效中")')}`: `${jsValue('$.i18n.t("游走字幕列表.未生效")')}`
+                }},
+            {header:`${jsValue('$.i18n.t("游走字幕列表.操作")')}`,name:'actions',width:150, align:"center", sortable:false, title:false, formatter: function(val, obj, row, act){
+                    var actions = [];
+                    <% if(hasPermi('game:subtitle:edit')){ %>
+                        actions.push('<a href="${ctx}/osee/game/subtitle/form?id=' + row.subtitleId +
+                            '" class="btnList" title="' + `${jsValue('$.i18n.t("游走字幕列表.编辑数据")')}` + '" ><i class="fa fa-pencil"></i></a>');
+                        actions.push('<a href="${ctx}/osee/game/subtitle/delete?id=' + row.subtitleId +
+                            '" class="btnList" title="' + `${jsValue('$.i18n.t("游走字幕列表.删除数据")')}` + '" data-confirm="' + `${jsValue('$.i18n.t("游走字幕列表.确认要删除该数据吗？")')}` + '"><i class="fa fa-trash-o"></i></a>');
+                    <% } %>
+                    return actions.join(' ')
+                }}
+        ]
+    })
+</script>

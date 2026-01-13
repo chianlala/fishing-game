@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!--4.2.4	商户信息查询接口<ant.mybank.merchantprod.merchant.query> -->
+<body>
+  <xmlTag tagName="IsvOrgId"></xmlTag>
+  <xmlTag tagName="HlMerchantId"></xmlTag>
+  <xmlTag tagName="FreezeReason"></xmlTag>
+  <xmlTag tagName="OutTradeNo"></xmlTag>
+</body>

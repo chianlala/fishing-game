@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!-- 引入 layui.css -->
+    <link rel="stylesheet" href="https://unpkg.com/layui@2.6.8/dist/css/layui.css">
+
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: 1px solid #cccccc;
+        }
+
+        table th {
+            padding: .4rem ;
+            font-weight: 500;
+        }
+
+        table td {
+            padding: .4rem .2rem;
+            text-align: center;
+            font-size: .8rem;
+        }
+
+        .layui-form-radio {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-tab" lay-filter="tab">
+    <ul class="layui-tab-title" >
+        <li class="layui-this" data-i18n="竞技奖励.日榜">日榜</li>
+        <li data-i18n="竞技奖励.周榜">周榜</li>
+    </ul>
+    <div class="layui-tab-content" id="container">
+        <div class="layui-tab-item layui-show">
+            <form class="layui-form">
+                <div class="layui-form-item" v-for="item, index in items">
+                    <label class="layui-form-label"><input type="radio" name="checked"  :value="index" v-model="ind" lay-filter="checked" checked ><span data-i18n="竞技奖励.排名前">排名前</span></label>
+                    <div class="layui-input-inline">
+                        <input type="number" name="title" required v-model="item.rank" disabled lay-verify="required" @change="change(index)" placeholder="请输入排名" autocomplete="off" class="layui-input" data-i18n="[placeholder]竞技奖励.请输入排名">
+                    </div>
+                    <label class="layui-form-label" data-i18n="竞技奖励.奖励">奖励</label>
+                    <div class="reward-group" style="padding-top: 8px;">
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal reward-item" @click="remove(index, 0)" v-if="item.reward.gold > 0"><span>{{map[0] + '*' + item.reward.gold}}</span>&nbsp;&nbsp;<i class="layui-icon" class="delete">&#xe640;</i>
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal reward-item" @click="remove(index, 1)" v-if="item.reward.diamond > 0"><span>{{map[1] + '*' + item.reward.diamond}}</span>&nbsp;&nbsp;<i class="layui-icon" class="delete">&#xe640;</i>
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal reward-item" @click="remove(index, 2)" v-if="item.reward.lowerBall > 0"><span>{{map[2] + '*' + item.reward.lowerBall}}</span>&nbsp;&nbsp;<i class="layui-icon" class="delete">&#xe640;</i>
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal reward-item" @click="remove(index, 3)" v-if="item.reward.middleBall > 0"><span>{{map[3] + '*' + item.reward.middleBall}}</span>&nbsp;&nbsp;<i class="layui-icon" class="delete">&#xe640;</i>
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal reward-item" @click="remove(index, 4)" v-if="item.reward.highBall > 0"><span>{{map[4] + '*' + item.reward.highBall}}</span>&nbsp;&nbsp;<i class="layui-icon" class="delete">&#xe640;</i>
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal reward-item" @click="remove(index, 5)" v-if="item.reward.skillLock > 0"><span>{{map[5] + '*' + item.reward.skillLock}}</span>&nbsp;&nbsp;<i class="layui-icon" class="delete">&#xe640;</i>
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal reward-item" @click="remove(index, 6)" v-if="item.reward.skillFast > 0"><span>{{map[6] + '*' + item.reward.skillFast}}</span>&nbsp;&nbsp;<i class="layui-icon" class="delete">&#xe640;</i>
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal reward-item" @click="remove(index, 7)" v-if="item.reward.skillCrit > 0"><span>{{map[7] + '*' + item.reward.skillCrit}}</span>&nbsp;&nbsp;<i class="layui-icon" class="delete">&#xe640;</i>
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal reward-item" @click="remove(index, 8)" v-if="item.reward.skillFrozen > 0"><span>{{map[8] + '*' + item.reward.skillFrozen}}</span>&nbsp;&nbsp;<i class="layui-icon" class="delete">&#xe640;</i>
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal reward-item" @click="remove(index, 9)" v-if="item.reward.bossBugle > 0"><span>{{map[9] + '*' + item.reward.bossBugle}}</span>&nbsp;&nbsp;<i class="layui-icon" class="delete">&#xe640;</i>
+                        </button>
+
+                    </div>
+                </div>
+
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label" data-i18n="竞技奖励.物品">物品</label>
+                    <div class="layui-input-inline">
+                        <select name="item"  lay-verify="required" lay-filter="select" v-model="type">
+                            <option value="0" data-i18n="竞技奖励.金币">金币</option>
+                            <option value="1" data-i18n="竞技奖励.钻石">钻石</option>
+<!--                            <option value="2">低阶鱼雷</option>-->
+<!--                            <option value="3">中阶鱼雷</option>-->
+                            <option value="4" data-i18n="竞技奖励.高阶鱼雷">高阶鱼雷</option>
+<!--                            <option value="5">锁定技能</option>-->
+<!--                            <option value="6">极速技能</option>-->
+<!--                            <option value="7">暴击技能</option>-->
+<!--                            <option value="8">冰冻技能</option>-->
+<!--                            <option value="9">BOSS号角</option>-->
+                        </select>
+                    </div>
+                    <label class="layui-form-label" data-i18n="竞技奖励.数量">数量</label>
+                    <div class="layui-input-inline">
+                        <input type="number" name="number" min="0" required  lay-verify="required" v-model="num" placeholder="请输入数量" autocomplete="off" class="layui-input" data-i18n="[placeholder]竞技奖励.请输入数量">
+                    </div>
+                    <button type="button" class="layui-btn layui-btn-normal add-item" @click="addReward">
+                        <i class="layui-icon">&#xe608;</i> <span data-i18n="竞技奖励.添加奖励">添加奖励</span>
+                    </button>
+<!--                    <button type="button" class="layui-btn layui-btn-normal add-item" @click="addRank">-->
+<!--                        <i class="layui-icon">&#xe608;</i>添加排名-->
+<!--                    </button>-->
+<!--                    <button type="button" class="layui-btn layui-btn-normal add-item" @click="removeRank">-->
+<!--                        删除排名-->
+<!--                    </button>-->
+                </div>
+            </form>
+
+        </div>
+        <div class="layui-tab-item">
+            <form class="layui-form">
+                <div class="layui-form-item" v-for="item, index in items">
+                    <label class="layui-form-label"><input type="radio" name="checked" :value="index" v-model="ind" lay-filter="checked" checked style="margin: 0;padding: 0"><span data-i18n="竞技奖励.排名前">排名前</span></label>
+                    <div class="layui-input-inline">
+                        <input type="number" name="title" required v-model="item.rank" disabled @change="change(index)" lay-verify="required" placeholder="请输入排名" autocomplete="off" class="layui-input" data-i18n="[placeholder]竞技奖励.请输入排名">
+                    </div>
+                    <label class="layui-form-label" data-i18n="竞技奖励.奖励">奖励</label>
+                    <div class="reward-group" style="padding-top: 8px;">
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal reward-item" @click="remove(index, 0)" v-if="item.reward.gold > 0"><span>{{map[0] + '*' + item.reward.gold}}</span>&nbsp;&nbsp;<i class="layui-icon" class="delete">&#xe640;</i>
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal reward-item" @click="remove(index, 1)" v-if="item.reward.diamond > 0"><span>{{map[1] + '*' + item.reward.diamond}}</span>&nbsp;&nbsp;<i class="layui-icon" class="delete">&#xe640;</i>
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal reward-item" @click="remove(index, 2)" v-if="item.reward.lowerBall > 0"><span>{{map[2] + '*' + item.reward.lowerBall}}</span>&nbsp;&nbsp;<i class="layui-icon" class="delete">&#xe640;</i>
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal reward-item" @click="remove(index, 3)" v-if="item.reward.middleBall > 0"><span>{{map[3] + '*' + item.reward.middleBall}}</span>&nbsp;&nbsp;<i class="layui-icon" class="delete">&#xe640;</i>
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal reward-item" @click="remove(index, 4)" v-if="item.reward.highBall > 0"><span>{{map[4] + '*' + item.reward.highBall}}</span>&nbsp;&nbsp;<i class="layui-icon" class="delete">&#xe640;</i>
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal reward-item" @click="remove(index, 5)" v-if="item.reward.skillLock > 0"><span>{{map[5] + '*' + item.reward.skillLock}}</span>&nbsp;&nbsp;<i class="layui-icon" class="delete">&#xe640;</i>
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal reward-item" @click="remove(index, 6)" v-if="item.reward.skillFast > 0"><span>{{map[6] + '*' + item.reward.skillFast}}</span>&nbsp;&nbsp;<i class="layui-icon" class="delete">&#xe640;</i>
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal reward-item" @click="remove(index, 7)" v-if="item.reward.skillCrit > 0"><span>{{map[7] + '*' + item.reward.skillCrit}}</span>&nbsp;&nbsp;<i class="layui-icon" class="delete">&#xe640;</i>
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal reward-item" @click="remove(index, 8)" v-if="item.reward.skillFrozen > 0"><span>{{map[8] + '*' + item.reward.skillFrozen}}</span>&nbsp;&nbsp;<i class="layui-icon" class="delete">&#xe640;</i>
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal reward-item" @click="remove(index, 9)" v-if="item.reward.bossBugle > 0"><span>{{map[9] + '*' + item.reward.bossBugle}}</span>&nbsp;&nbsp;<i class="layui-icon" class="delete">&#xe640;</i>
+                        </button>
+
+                    </div>
+                </div>
+
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label" data-i18n="竞技奖励.物品">物品</label>
+                    <div class="layui-input-inline">
+                        <select name="item" id="item" lay-verify="required" lay-filter="select" v-model="type">
+                            <option value="0" data-i18n="竞技奖励.金币">金币</option>
+                            <option value="1" data-i18n="竞技奖励.钻石">钻石</option>
+<!--                            <option value="2">低阶鱼雷</option>-->
+<!--                            <option value="3">中阶鱼雷</option>-->
+                            <option value="4" data-i18n="竞技奖励.高阶鱼雷">高阶鱼雷</option>
+<!--                            <option value="5">锁定技能</option>-->
+<!--                            <option value="6">极速技能</option>-->
+<!--                            <option value="7">暴击技能</option>-->
+<!--                            <option value="8">冰冻技能</option>-->
+<!--                            <option value="9">BOSS号角</option>-->
+                        </select>
+                    </div>
+                    <label class="layui-form-label" data-i18n="竞技奖励.数量">数量</label>
+                    <div class="layui-input-inline">
+                        <input type="number" name="number" id="number" required  lay-verify="required" v-model="num" placeholder="请输入数量" autocomplete="off" class="layui-input" data-i18n="[placeholder]竞技奖励.请输入数量">
+                    </div>
+                    <button type="button" class="layui-btn layui-btn-normal add-item" @click="addReward">
+                        <i class="layui-icon">&#xe608;</i> <span data-i18n="竞技奖励.添加奖励">添加奖励</span>
+                    </button>
+<!--                    <button type="button" class="layui-btn layui-btn-normal add-item" @click="addRank">-->
+<!--                        <i class="layui-icon">&#xe608;</i>添加排名-->
+<!--                    </button>-->
+<!--                    <button type="button" class="layui-btn layui-btn-normal add-item" @click="removeRank">-->
+<!--                        删除排名-->
+<!--                    </button>-->
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+</script>
+
+<!-- 引入 layui.js -->
+<script src="https://unpkg.com/layui@2.6.8/dist/layui.js" ></script>
+<script src="https://unpkg.com/vue@2.7.14/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script src="${ctxStatic}/jquery/jquery-1.12.4.min.js" type="text/javascript"></script>
+
+<script>
+
+if (window.parent.window.$.InitI18next) {
+    window.parent.window.$.InitI18next(window.$)
+    window.$.InitI18next = window.parent.window.$.InitI18next
+}
+
+$(() => {
+
+    if ($('[data-i18n]').localize) {
+        $('[data-i18n]').localize();
+    }
+
+})
+
+    let index = 0;
+    let item_index = 0;
+    let items = [$.i18n.t("竞技奖励.金币"),$.i18n.t("竞技奖励.钻石"),$.i18n.t("竞技奖励.低阶鱼雷"),$.i18n.t("竞技奖励.中阶鱼雷"),$.i18n.t("竞技奖励.高阶鱼雷"),$.i18n.t("竞技奖励.锁定技能"),$.i18n.t("竞技奖励.极速技能"),$.i18n.t("竞技奖励.暴击技能"),$.i18n.t("竞技奖励.冰冻技能"),$.i18n.t("竞技奖励.BOSS号角")];
+
+    let type = 1;
+
+    const elementById = window.document.getElementById('container');
+
+    // console.log(data)
+    let vm = new Vue({
+        el: elementById,
+        data: {
+            map: [$.i18n.t("竞技奖励.金币"),$.i18n.t("竞技奖励.钻石"),$.i18n.t("竞技奖励.低阶鱼雷"),$.i18n.t("竞技奖励.中阶鱼雷"),$.i18n.t("竞技奖励.高阶鱼雷"),$.i18n.t("竞技奖励.锁定技能"),$.i18n.t("竞技奖励.极速技能"),$.i18n.t("竞技奖励.暴击技能"),$.i18n.t("竞技奖励.冰冻技能"),$.i18n.t("竞技奖励.BOSS号角")],
+            type: 0,    // 物品类型
+            num: 0,    // 数量
+            ind: 0, // 行序号
+            items: [{
+                'rank': 1,
+                'reward': {
+                    'gold': 12,
+                    'diamond': 0,
+                    'lowerBall':0,
+                    'middleBall':0,
+                    'highBall':0,
+                    'skillLock':0,
+                    'skillFast':0,
+                    'skillCrit':0,
+                    'skillFrozen':0,
+                    'bossBugle':0
+                }
+            },{
+                'rank': 3,
+                'reward': {
+                    'gold': 0,
+                    'diamond': 0,
+                    'lowerBall':0,
+                    'middleBall':0,
+                    'highBall':0,
+                    'skillLock':0,
+                    'skillFast':0,
+                    'skillCrit':0,
+                    'skillFrozen':0,
+                    'bossBugle':0
+                }
+            }]
+        },
+        methods: {
+            addReward: function () {
+                this.reset(parseInt(this.ind), parseInt(this.type), parseInt(this.num))
+                this.updateData(parseInt(this.ind));
+            },
+            addRank: function() {
+                let params = new URLSearchParams();
+                let rank;
+                if(vm.$data.items.length === 0) rank = 1;
+                else rank = parseInt(vm.$data.items[vm.$data.items.length - 1].rank) + 1;
+                params.append("rank", rank);
+                params.append("type",type);
+                params.append("status",1);
+                axios({
+                    method: 'post',
+                    url: '/ttmy_admin/a/osee/shop/saveRewardSettingData',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                    },
+                    data: params
+                }).then(function (res) {
+                    vm.$data.items.push(res.data)
+
+                    setTimeout(()=>{
+                        if ($('[data-i18n]').localize) {
+                            $('[data-i18n]').localize();
+                        }
+                    },100)
+
+                });
+            },
+            remove: function (index, type) {
+                this.reset(index, type, 0);
+                this.updateData(index);
+            },
+            removeRank: function() {
+                let params = new URLSearchParams();
+                params.append("id",vm.$data.items[this.ind].id);
+                let that = this;
+                axios({
+                    method: 'post',
+                    url: '/ttmy_admin/a/osee/shop/deleteRewardSettingData',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                    },
+                    data: params
+                }).then(function (res) {
+                    // this.flush();
+                    that.flush();
+                });
+            },
+            reset: function (index, type, val) {
+                switch (type) {
+                    case 0: this.items[index].reward['gold'] = val;break;
+                    case 1: this.items[index].reward['diamond'] = val;break;
+                    case 2: this.items[index].reward['lowerBall'] = val;break;
+                    case 3: this.items[index].reward['middleBall'] = val;break;
+                    case 4: this.items[index].reward['highBall'] = val;break;
+                    case 5: this.items[index].reward['skillLock'] = val;break;
+                    case 6: this.items[index].reward['skillFast'] = val;break;
+                    case 7: this.items[index].reward['skillCrit'] = val;break;
+                    case 8: this.items[index].reward['skillFrozen'] = val;break;
+                    case 9: this.items[index].reward['bossBugle'] = val;break;
+                }
+            },
+            updateData(index) {
+                let params = new URLSearchParams();
+                params.append("diamond",vm.$data.items[index].reward.diamond);
+                params.append("gold",vm.$data.items[index].reward.gold);
+                params.append("highBall",vm.$data.items[index].reward.highBall);
+                params.append("id",vm.$data.items[index].reward.id);
+                params.append("lowerBall",vm.$data.items[index].reward.lowerBall);
+                params.append("middleBall",vm.$data.items[index].reward.middleBall);
+                params.append("bossBugle",vm.$data.items[index].reward.bossBugle);
+                params.append("skillCrit",vm.$data.items[index].reward.skillCrit);
+                params.append("skillFast",vm.$data.items[index].reward.skillFast);
+                params.append("skillFrozen",vm.$data.items[index].reward.skillFrozen);
+                params.append("skillLock",vm.$data.items[index].reward.skillLock);
+
+                axios({
+                    method: 'post',
+                    url: '/ttmy_admin/a/osee/shop/updateRewardSettingData',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                    },
+                    data: params
+                });
+            },
+            flush: function () {
+                let params = new URLSearchParams();
+                params.append("type",type);
+                axios({
+                    method: 'post',
+                    url: '/ttmy_admin/a/osee/shop/rewardSettingData',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                    },
+                    data: params
+                }).then(function (res) {
+                    vm.$data.items = res.data.data;
+
+                    setTimeout(()=>{
+                        if ($('[data-i18n]').localize) {
+                            $('[data-i18n]').localize();
+                        }
+                    },100)
+
+                })
+            },
+            change: function (index) {
+                // console.log(index);
+                // let params = new URLSearchParams();
+                // params.append("id",this.items[index].id);
+                // params.append("rank",this.items[index].rank);
+                // axios({
+                //     method: 'post',
+                //     url: '/ttmy_admin/a/osee/shop/updateRewardRankData',
+                //     headers: {
+                //         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                //     },
+                //     data: params
+                // }).then(function (res) {
+                //     console.log(res);
+                // })
+            }
+        },
+        updated: function () {
+            this.$nextTick(function () {
+                layui.use(['form'], function () {
+                    layui.form.render();
+                })
+            })
+        },
+        mounted: function () {
+            this.flush();
+        }
+    });
+
+    //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+    layui.use('element', function(){
+        let element = layui.element;
+
+    });
+
+    let form;
+    layui.use(['element', 'form'], function(){
+        form = layui.form;
+        element = layui.element;
+        element.on('tab(tab)', function(data){
+            type = data.index + 1;
+            vm.flush();
+            form.render();
+        });
+        form.on('radio(checked)', function(data){
+            vm.$data.ind = data.value; //被点击的radio的value值
+        });
+        //
+        form.on('select(select)', function(data){
+            item_index = data.value; //得到被选中的值
+            vm.$data.type = data.value;
+        });
+
+    });
+
+</script>
+</body>
+</html>

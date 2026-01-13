@@ -1,0 +1,70 @@
+<% layout('/layouts/default.html', {title: '客服信息', libs: ['validate', 'fileupload']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <div class="box-header with-border">
+            <div class="box-title">
+                <i class="fa fa fa-support"></i> 客服信息
+            </div>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <#form:form id="inputForm" model="${support}" action="${ctx}/osee/game/support/update" method="post" class="form-horizontal">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">
+                                <span class="required">*</span> ${text('客服微信')}：
+                            </label>
+                            <div class="col-sm-4">
+                                <#form:input path="wechat"  maxlength="30" class="form-control required" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">
+                                <span class="required">*</span> ${text('客服二维码')}：<i class="fa icon-question hide"></i>
+                            </label>
+                            <div class="col-sm-4">
+                                <#form:fileupload uploadType="image" class="required"
+                                maxUploadNum="1" isLazy="false" returnPath="true" filePathInputId="qrcode"/>
+                                <#form:hidden path="qrcode" class="form-control required" readonly="true"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-footer">
+                <div class="row">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <% if (hasPermi('game:support:edit')){ %>
+                            <button type="submit" class="btn btn-sm btn-primary" id="btnSubmit">
+                                <i class="fa fa-check"></i>${text('保 存')}
+                            </button>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </#form:form>
+    </div>
+</div>
+<% } %>
+<script>
+    $("#inputForm").validate({
+        submitHandler: function (form) {
+            js.ajaxSubmitForm($(form), function (data) {
+                if (data.result === 'true') {
+                    js.showMessage(data.message)
+                } else {
+                    js.showErrorMessage(data.message)
+                }
+            }, 'json');
+        }
+    });
+</script>

@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 085301844eacf74429b83b081eec504d
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _MainTex: {instanceID: 0}
+  - _BumpTex: {instanceID: 0}
+  - _SeaTex: {fileID: 2800000, guid: fcd8464e6338b2842bf808dcec1a3edc, type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

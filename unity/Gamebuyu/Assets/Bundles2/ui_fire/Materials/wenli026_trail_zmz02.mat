@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: "wenli026_trail_zmz02"
+  m_Shader: {fileID: 4800000, guid: bfe2bcf85ae74ec6ac171a2dcb8bfb85, type: 3}
+  m_ShaderKeywords: "_ADJUSTHSV_ON _EMISSION _EMISSION_MAP_TEXTURE _OVERLAY_ON _RIMLIGHT_ON
+_SHADOW_ON _SPECULARHIGHLIGHTS_OFF _STREAMERCHANNEL_UVPOS _STREAMER_CHANNEL_SCREENPOS_ON
+_STREAMER_CHANNEL_UVPOS _STREAMER_ON _UVCHANNEL_UV0"
+  m_LightmapFlags: 1
+  m_EnableInstancingVariants: 0
+  m_CustomRenderQueue: 3000
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 94184ec02029416996dfa8f340112d05, type: 3}
+        m_Scale: {x: 3, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _distort_tex:
+        m_Texture: {fileID: 2800000, guid: b99a09d6728948d181bdb3b765f80d71, type: 3}
+        m_Scale: {x: 3, y: 2}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Glow: 20
+    - _MaxX: 100
+    - _MaxY: 100
+    - _MinX: -100
+    - _MinY: -100
+    - _QD: 0
+    - _U: 0
+    - _U_MainTex: 0
+    - _V: 0.5
+    - _V_MainTex: 0
+    m_Colors:
+    - _Color: {r: 0.4386792, g: 1, b: 0.4666056, a: 1}

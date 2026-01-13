@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!--5.2.19	打款结果通知接口< ant.mybank.bkmerchantsettle.notifyPayResult>-->
+
+<body>
+    <xmlTag tagName="IsvOrgId"></xmlTag>
+    <xmlTag tagName="ResponseCode"></xmlTag>
+</body>

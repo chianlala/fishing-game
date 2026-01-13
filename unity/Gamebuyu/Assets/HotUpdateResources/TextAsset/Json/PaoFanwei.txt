@@ -1,0 +1,50 @@
+{
+	"1": {
+		"batteryMin": 100,
+		"batteryMax": 1000
+	},
+	"2": {
+		"batteryMin": 100,
+		"batteryMax": 1000
+	},
+	"3": {
+		"batteryMin": 100, 
+		"batteryMax": 10000
+	},
+	"4": {
+		"batteryMin": 100, 
+		"batteryMax": 100000
+	},
+	"5": {
+		"batteryMin": 100, 
+		"batteryMax": 1000000
+	},
+	"1101": {
+		"batteryMin": 10, 
+		"batteryMax": 90
+	},
+	"1102": {
+		"batteryMin": 100, 
+		"batteryMax": 10000
+	},
+	"1103": {
+		"batteryMin": 1000, 
+		"batteryMax": 100000
+	},
+	"202": {
+		"batteryMin": 1000, 
+		"batteryMax": 100000
+	},
+	"15": {
+		"batteryMin": 200000, 
+		"batteryMax": 10000000
+	},
+	"31": {
+		"batteryMin": 10000, 
+		"batteryMax": 10000
+	},
+	"51": {
+		"batteryMin": 2000, 
+		"batteryMax": 10000
+	}
+}

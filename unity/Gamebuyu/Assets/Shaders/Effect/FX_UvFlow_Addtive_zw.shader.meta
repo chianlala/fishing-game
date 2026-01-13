@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 42689cb60e654b82a3fdf6ebb392e10a
+timeCreated: 1650999098
+licenseType: Free
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: shader/fx/uvflow_addtive_zw.shader.f3d
+  assetBundleVariant: 

@@ -1,0 +1,196 @@
+<% layout('/layouts/default.html', {title: '实物兑换', libs: ['validate']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <div class="box-header with-border">
+            <div class="box-title">
+                <i class="fa fa-exchange"></i> 实物兑换
+            </div>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <#form:form id="inputForm" model="${exchange}" action="${ctx}/osee/shop/exchange/save" method="post"
+            class="form-horizontal">
+        <div class="box-body">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" title="">
+                            <span class="required">*</span> ${text('创建人')}：<i
+                                class="fa icon-question hide"></i></label>
+                        <div class="col-sm-8">
+                            <#form:input path="creator" readonly="true" class="form-control required" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" title="">
+                            <span class="required">*</span> ${text('奖励物品')}：<i class="fa icon-question hide"></i>
+                        </label>
+                        <div class="col-sm-8">
+                            <#form:select path="shopId" class="form-control required"
+                                blankOption="true" blankOptionLabel="=请选择="
+                                items="${shopEntityList}" itemLabel="name" itemValue="id" />
+                            <span class="help-block">剩余限购次数：<span id="shopRestSize">-</span></span>
+                            <span class="help-block">消耗奖券数量：<span id="shopCost">-</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" title="">
+                            <span class="required">*</span> ${text('兑换数量')}：<i class="fa icon-question hide"></i>
+                        </label>
+                        <div class="col-sm-8">
+                            <#form:input path="count" type="number" maxlength="10" min="1" class="form-control required"/>
+                            <span class="help-block text-red">总消耗奖券数量：<span id="shopTotalCost">-</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" title="">
+                            <span class="required">*</span> ${text('玩家ID')}：<i class="fa icon-question hide"></i>
+                        </label>
+                        <div class="col-sm-6">
+                            <#form:input path="playerId" maxlength="10" class="form-control required"/>
+                            <span class="help-block">玩家昵称：<span id="playerName">-</span></span>
+                            <span class="help-block">奖券数量：<span id="playerLotteryNum" class="text-red">-</span></span>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" id="queryPlayerInfo" class="btn btn-sm btn-primary">查询</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" title="">
+                            <span class="required">*</span> ${text('收货人')}：<i
+                                class="fa icon-question hide"></i></label>
+                        <div class="col-sm-8">
+                            <#form:input path="consignee" maxlength="10" class="form-control required" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" title="">
+                            <span class="required">*</span> ${text('手机号')}：<i
+                                class="fa icon-question hide"></i></label>
+                        <div class="col-sm-8">
+                            <#form:input path="phoneNum" maxlength="11" class="form-control required"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" title="">
+                            ${text('收货地址')}：<i class="fa icon-question hide"></i>
+                        </label>
+                        <div class="col-sm-8">
+                            <#form:textarea path="address" rows="5" maxlength="30" class="form-control" placeholder="(选填)"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box-footer">
+            <div class="row">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <% if (hasPermi('shop:exchange:edit')){ %>
+                    <button type="submit" class="btn btn-sm btn-primary" id="btnSubmit">
+                        <i class="fa fa-check"></i>${text('提交订单')}
+                    </button>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+        </#form:form>
+    </div>
+</div>
+<% } %>
+<script>
+    $("#inputForm").validate({
+        submitHandler: function (form) {
+            js.ajaxSubmitForm($(form), function (data) {
+                if (data.result === 'true') {
+                    js.showMessage(data.message);
+                    // 刷新当前页面
+                    window.location.reload();
+                } else {
+                    js.showErrorMessage(data.message)
+                }
+            }, 'json');
+        }
+    });
+
+    // 商品选择更改要显示出商品的相关信息
+    $('#shopId').change(function () {
+        var value = $(this).val();
+        if (value !== ''){
+            js.ajaxSubmit('${ctx}/osee/shop/exchange/reward/info',{
+                id: value
+            }, function (data) {
+                if (data.result === 'true') {
+                    var info = JSON.parse(data.data);
+                    $('#shopRestSize').html(info.size === 0 ? '无限制' : info.restSize); // 剩余限购次数
+                    $('#shopCost').html(info.cost); // 消耗奖券数量
+
+                    // 更新总消耗奖券
+                    var count = $('#count').val();
+                    if (count !== '') {
+                        $('#shopTotalCost').html(value * count); // 总消耗奖券
+                    }
+                }
+            }, 'json');
+        } else { // 选择为空重置显示的信息
+            $('#shopRestSize').html('-'); // 剩余限购次数
+            $('#shopCost').html('-'); // 消耗奖券数量
+            $('#shopTotalCost').html('-'); // 总消耗奖券
+        }
+    });
+
+    // 实时计算总消耗奖券数量
+    $('#count').keyup(function () {
+        var count = $(this).val();
+        var cost = $('#shopCost').html();
+        if (count !== '' && cost !== '-') {
+            $('#shopTotalCost').html(cost * count); // 总消耗奖券
+        }
+    });
+
+    // 查询玩家信息
+    $('#queryPlayerInfo').click(function () {
+        var playerId = $('#playerId').val();
+        if (playerId !== '') {
+            js.ajaxSubmit('${ctx}/osee/player/info', {
+                playerId: playerId
+            }, function (data) {
+                if(data.result === 'true'){
+                    var info = JSON.parse(data.data);
+                    $('#playerName').html(info.nickname);
+                    $('#playerLotteryNum').html(info.lottery);
+                } else {
+                    $('#playerName').html('-');
+                    $('#playerLotteryNum').html('-');
+                    js.showErrorMessage(data.message)
+                }
+            }, 'json');
+        }
+    });
+</script>

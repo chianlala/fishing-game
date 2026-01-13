@@ -1,0 +1,270 @@
+<% layout('/layouts/default.html', {title: '轮盘概率', libs: ['validate']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <div class="box-header with-border">
+            <div class="box-title">
+                <i class="fa fa-pie-chart"></i> 轮盘概率
+            </div>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <#form:form id="inputForm" action="${ctx}/osee/game/lottery/update" model="${lottery}" method="post" class="form-horizontal">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">${text('奖项一：中奖概率')}：</label>
+                            <div class="col-sm-4">
+                                <#form:input path="probability1" min="0" max="100" maxlength="3"
+                                    class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">${text('奖品设置')}：</label>
+                            <div class="col-sm-4">
+                                <#form:select path="reward1" class="form-control"
+                                dictType="osee_item_type" blankOption="true" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">${text('奖品数量')}：</label>
+                            <div class="col-sm-4">
+                                <#form:input path="num1" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">${text('奖项二：中奖概率')}：</label>
+                            <div class="col-sm-4">
+                                <#form:input path="probability2" min="0" max="100" maxlength="3"
+                                class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">${text('奖品设置')}：</label>
+                            <div class="col-sm-4">
+                                <#form:select path="reward2" class="form-control"
+                                dictType="osee_item_type" blankOption="true" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">${text('奖品数量')}：</label>
+                            <div class="col-sm-4">
+                                <#form:input path="num2" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">${text('奖项三：中奖概率')}：</label>
+                            <div class="col-sm-4">
+                                <#form:input path="probability3" min="0" max="100" maxlength="3"
+                                class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">${text('奖品设置')}：</label>
+                            <div class="col-sm-4">
+                                <#form:select path="reward3" class="form-control"
+                                dictType="osee_item_type" blankOption="true" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">${text('奖品数量')}：</label>
+                            <div class="col-sm-4">
+                                <#form:input path="num3" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">${text('奖项四：中奖概率')}：</label>
+                            <div class="col-sm-4">
+                                <#form:input path="probability4" min="0" max="100" maxlength="3"
+                                class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">${text('奖品设置')}：</label>
+                            <div class="col-sm-4">
+                                <#form:select path="reward4" class="form-control"
+                                dictType="osee_item_type" blankOption="true" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">${text('奖品数量')}：</label>
+                            <div class="col-sm-4">
+                                <#form:input path="num4" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">${text('奖项五：中奖概率')}：</label>
+                            <div class="col-sm-4">
+                                <#form:input path="probability5" min="0" max="100" maxlength="3"
+                                class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">${text('奖品设置')}：</label>
+                            <div class="col-sm-4">
+                                <#form:select path="reward5" class="form-control"
+                                dictType="osee_item_type" blankOption="true" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">${text('奖品数量')}：</label>
+                            <div class="col-sm-4">
+                                <#form:input path="num5" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">${text('奖项六：中奖概率')}：</label>
+                            <div class="col-sm-4">
+                                <#form:input path="probability6" min="0" max="100" maxlength="3"
+                                class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">${text('奖品设置')}：</label>
+                            <div class="col-sm-4">
+                                <#form:select path="reward6" class="form-control"
+                                dictType="osee_item_type" blankOption="true" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">${text('奖品数量')}：</label>
+                            <div class="col-sm-4">
+                                <#form:input path="num6" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">${text('奖项七：中奖概率')}：</label>
+                            <div class="col-sm-4">
+                                <#form:input path="probability7" min="0" max="100" maxlength="3"
+                                class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">${text('奖品设置')}：</label>
+                            <div class="col-sm-4">
+                                <#form:select path="reward7" class="form-control"
+                                dictType="osee_item_type" blankOption="true" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">${text('奖品数量')}：</label>
+                            <div class="col-sm-4">
+                                <#form:input path="num7" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">${text('奖项八：中奖概率')}：</label>
+                            <div class="col-sm-4">
+                                <#form:input path="probability8" min="0" max="100" maxlength="3"
+                                class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">${text('奖品设置')}：</label>
+                            <div class="col-sm-4">
+                                <#form:select path="reward8" class="form-control"
+                                dictType="osee_item_type" blankOption="true" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">${text('奖品数量')}：</label>
+                            <div class="col-sm-4">
+                                <#form:input path="num8" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-footer">
+                <div class="row">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-sm btn-primary" id="btnSubmit">
+                            <i class="fa fa-check"></i>${text('保 存')}
+                        </button>
+                        <button type="reset" class="btn btn-sm btn-default" id="btnReset">
+                            <i class="fa fa-reply"></i>${text('重 置')}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </#form:form>
+    </div>
+</div>
+<% } %>
+<script>
+    $("#inputForm").validate({
+        submitHandler: function (form) {
+            js.ajaxSubmitForm($(form), function (data) {
+                if (data.result === 'true') {
+                    js.showMessage(data.message)
+                } else {
+                    js.showErrorMessage(data.message)
+                }
+            }, 'json');
+        }
+    });
+
+</script>

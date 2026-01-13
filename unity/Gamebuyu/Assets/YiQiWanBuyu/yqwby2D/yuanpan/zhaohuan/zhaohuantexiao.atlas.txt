@@ -1,0 +1,139 @@
+
+zhaohuantexiao.png
+size: 760,760
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fazhenyuan_20
+  rotate: true
+  xy: 2, 2
+  size: 211, 210
+  orig: 211, 210
+  offset: 0, 0
+  index: -1
+zhanhuanfazhne_19
+  rotate: false
+  xy: 2, 462
+  size: 292, 293
+  orig: 300, 294
+  offset: 7, 1
+  index: -1
+zhaohuan001xl_19
+  rotate: true
+  xy: 2, 215
+  size: 245, 114
+  orig: 255, 121
+  offset: 5, 3
+  index: -1
+zhaohuan001xl_21
+  rotate: true
+  xy: 296, 516
+  size: 239, 105
+  orig: 255, 113
+  offset: 11, 4
+  index: -1
+zhaohuan001xl_23
+  rotate: true
+  xy: 339, 275
+  size: 239, 105
+  orig: 255, 113
+  offset: 11, 4
+  index: -1
+zhaohuan001xl_25
+  rotate: true
+  xy: 403, 516
+  size: 239, 105
+  orig: 255, 113
+  offset: 11, 4
+  index: -1
+zhaohuan001xl_27
+  rotate: true
+  xy: 229, 221
+  size: 239, 108
+  orig: 255, 113
+  offset: 11, 4
+  index: -1
+zhaohuan001xl_29
+  rotate: true
+  xy: 118, 221
+  size: 239, 109
+  orig: 255, 114
+  offset: 11, 4
+  index: -1
+zhaohuan001xl_31
+  rotate: false
+  xy: 510, 532
+  size: 237, 110
+  orig: 255, 115
+  offset: 12, 4
+  index: -1
+zhaohuan001xl_33
+  rotate: false
+  xy: 510, 644
+  size: 237, 111
+  orig: 255, 115
+  offset: 11, 3
+  index: -1
+zhaohuan001xl_35
+  rotate: false
+  xy: 510, 421
+  size: 234, 109
+  orig: 255, 113
+  offset: 12, 3
+  index: -1
+zhaohuan001xl_37
+  rotate: true
+  xy: 425, 46
+  size: 227, 106
+  orig: 250, 110
+  offset: 12, 1
+  index: -1
+zhaohuan001xl_39
+  rotate: true
+  xy: 214, 2
+  size: 217, 106
+  orig: 250, 110
+  offset: 17, 1
+  index: -1
+zhaohuan001xl_41
+  rotate: false
+  xy: 533, 318
+  size: 201, 101
+  orig: 242, 107
+  offset: 21, 1
+  index: -1
+zhaohuan001xl_43
+  rotate: true
+  xy: 533, 20
+  size: 195, 105
+  orig: 198, 106
+  offset: 2, 0
+  index: -1
+zhaohuan001xl_45
+  rotate: false
+  xy: 533, 217
+  size: 201, 99
+  orig: 203, 99
+  offset: 2, 0
+  index: -1
+zhaohuan001xl_47
+  rotate: true
+  xy: 322, 13
+  size: 206, 101
+  orig: 210, 101
+  offset: 2, 0
+  index: -1
+zhaohuan001xl_49
+  rotate: true
+  xy: 640, 61
+  size: 154, 87
+  orig: 159, 88
+  offset: 3, 1
+  index: -1
+zhaohuan001xl_51
+  rotate: false
+  xy: 296, 477
+  size: 15, 37
+  orig: 19, 39
+  offset: 1, 1
+  index: -1

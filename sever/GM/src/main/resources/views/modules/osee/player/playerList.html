@@ -1,0 +1,368 @@
+<% layout('/layouts/default.html', {title: '玩家列表', libs: ['dataGrid']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <div class="box-header with-border">
+            <div class="box-title" >
+                <i class="fa fa-users"></i><span data-i18n="用户列表.玩家列表">玩家列表</span>
+            </div>
+            <div class="box-tools pull-right">
+
+                <% if(hasPermi('player:view')){ %>
+                <a href="${ctx}/osee/player/registerForm" class="btn btn-default btnTool" data-i18n="用户列表.注册"><i class="fa fa-plus"></i> 注册</a>
+                <a href="javascript:void(0)" class="btn btn-primary" id="btnAutoRefresh" data-i18n="用户列表.启用刷新" onclick="changeAutoRefresh()">启用刷新</a>
+                <a href="javascript:void(0)" class="btn btn-warning" id="btnFrozen" data-i18n="用户列表.冻结" onclick="playerOperate(1)">${text('冻结')}</a>
+                <a href="javascript:void(0)" class="btn btn-success" id="btnUnfrozen" data-i18n="用户列表.解冻" onclick="playerOperate(2)">${text('解冻')}</a>
+                <span>|</span>
+                <% } %>
+
+                <a href="#" class="btn btn-default" id="btnSearch" data-i18n="查询">
+                    <i class="fa fa-filter"></i> ${text('查询')}
+                </a>
+
+                <% if(hasPermi('player:action')){ %>
+                <span>|</span>
+<!--                <a href="javascript:void(0)" class="btn btn-primary" id="btnSyncApk" onclick="syncApkClick()">同步apk</a>-->
+                <a href="javascript:void(0)" class="btn btn-info" id="btnOffline" data-i18n="用户列表.下线" onclick="playerOperate(3)">${text('下线')}</a>
+<!--                <span>|</span>-->
+<!--                <a href="javascript:void(0)" class="btn btn-primary" id="btnAPInit" data-i18n="用户列表.初始化全服用户个控值">${text('初始化全服用户AP值')}</a>-->
+<!--                <a href="javascript:void(0)" class="btn btn-danger" id="btnForceOffline" data-i18n="用户列表.全服强制下线">${text('全服强制下线')}</a>-->
+                <% } %>
+
+            </div>
+        </div>
+        <div class="box-body">
+            <#form:form id="searchForm" model="${player}" action="${ctx}/osee/player/list/data" method="post" class="form-inline"
+            data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
+            <div class="form-group">
+                <label class="control-label" data-i18n="用户列表.注册时间">${text('(注册时间)')}：</label>
+                <div class="control-inline">
+                    <#form:input path="startTime" maxlength="50" class="form-control width-160 Wdate laydate" data-type="datetime" readonly="true"
+                    onclick="Wdate laydatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+                    -
+                    <#form:input path="endTime" maxlength="50" class="form-control width-160 Wdate laydate" readonly="true" data-type="datetime"
+                    onclick="Wdate laydatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" data-i18n="用户列表.用户ID">${text('(用户ID)')}：</label>
+                <div class="control-inline">
+                    <#form:input path="playerId" maxlength="50" class="form-control width-160"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" data-i18n="用户列表.游戏ID">${text('(游戏ID)')}：</label>
+                <div class="control-inline">
+                    <#form:input path="gameId" maxlength="50" class="form-control width-160"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" data-i18n="用户列表.用户账号">${text('(用户账号)')}：</label>
+                <div class="control-inline">
+                    <#form:input path="username" maxlength="50" class="form-control width-160"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" data-i18n="用户列表.用户昵称">${text('(用户昵称)')}：</label>
+                <div class="control-inline">
+                    <#form:input path="nickname" maxlength="50" class="form-control width-160"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" data-i18n="用户列表.账号状态">${text('(账号状态)')}：</label>
+                <div class="control-inline width-90">
+                    <#form:select path="userState" class="form-control"
+                        dictType="osee_player_account_status" blankOption="true" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" data-i18n="用户列表.游戏状态">${text('(游戏状态)')}：</label>
+                <div class="control-inline width-120">
+                    <#form:select path="gameState" class="form-control"
+                    items="${gameStateDictList}" itemLabel="dictLabel" itemValue="dictValue" blankOption="true" readonly="${gameStateReadonly}" />
+                </div>
+            </div>
+            <% /* 注释掉这段代码 Beetl的语法 %>
+            <div class="form-group">
+                <label class="control-label" data-i18n="用户列表.登录方式">${text('(登录方式)')}：</label>
+                <div class="control-inline  width-90">
+                    <#form:select path="loginType" class="form-control"
+                        dictType="osee_player_login_type" blankOption="true"/>
+                </div>
+            </div>
+            <% */ %>
+            <div class="form-group">
+                <label class="control-label" data-i18n="用户列表.用户类型">${text('(用户类型)')}：</label>
+                <div class="control-inline width-90">
+                    <#form:select path="playerType" class="form-control"
+                    dictType="osee_play_type" blankOption="true" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" data-i18n="用户列表.用户ip">${text('(用户ip)')}：</label>
+                <div class="control-inline width-90">
+                    <#form:input path="userIp" maxlength="50" class="form-control width-160"/>
+                </div>
+            </div>
+            <div class="form-group">
+<!--                <div class="control-inline width-90">-->
+                    <button type="submit" id="playListSearchBtn" class="btn btn-primary btn-sm" data-i18n="查询">${text('查询')}</button>
+                    <button type="reset" class="btn btn-default btn-sm" data-i18n="重置">${text('重置')}</button>
+<!--                </div>-->
+            </div>
+            </#form:form>
+            <table id="dataGrid"></table>
+            <div id="dataGridPage"></div>
+        </div>
+    </div>
+</div>
+<% } %>
+<script>
+
+var actionFlag = ${actionFlag} || false
+var editFlag = ${editFlag} || false
+var gameStateDictList = ${gameStateDictList} || []
+
+// 点击：同步 apk
+function syncApkClick() {
+
+    js.confirm('确认执行同步apk操作吗？', '${ctx}/osee/player/syncApk', {}, function (data) {
+        if (data.result === 'true') {
+            js.showMessage(data.message);
+        } else {
+            js.showErrorMessage(data.message);
+        }
+    }, 'json', true, '同步apk中...');
+
+}
+
+var autoRefreshInterval = null
+
+// 切换：自动刷新
+function changeAutoRefresh() {
+
+    let btnAutoRefresh  = document.getElementById('btnAutoRefresh')
+
+    const t1 = '启用刷新'
+    const t2 = '停止刷新'
+
+    if(autoRefreshInterval){
+        clearInterval(autoRefreshInterval)
+    }
+
+    let contentWindowTmp
+
+    js.getCurrentTabPage(function(contentWindow){
+        contentWindowTmp = contentWindow
+    });
+
+    if (btnAutoRefresh.innerText === t1) {
+        btnAutoRefresh.innerText = t2
+        autoRefreshInterval = setInterval(()=>{
+            if(contentWindowTmp){
+                contentWindowTmp.page();
+            }
+        }, 2000)
+    } else {
+        btnAutoRefresh.innerText = t1
+    }
+
+}
+
+    // 玩家相关操作
+    function playerOperate(ops) {
+        var dataGrid = $('#dataGrid');
+        var selectRowsId = dataGrid.dataGrid('getSelectRows');
+        var playerIds = []; // 选中的玩家ID列表
+        selectRowsId.forEach(function(item, index){
+
+            var rowData = dataGrid.dataGrid('getRowData', item);
+
+            console.table('rowData', rowData)
+
+            playerIds.push(rowData.playerId);
+
+        });
+        if (playerIds.length === 0) {
+            js.showErrorMessage('请先选择要操作的玩家！');
+            return;
+        }
+        // 提交操作请求
+        js.ajaxSubmit('${ctx}/osee/player/operate', {
+            playerIds: playerIds,
+            option: ops
+        }, function (data) {
+            if (data.result === 'true') {
+                js.showMessage(data.message);
+                js.getCurrentTabPage(function (contentWindow) {
+                    contentWindow.page();
+                });
+            } else {
+                js.showErrorMessage(data.message);
+            }
+        }, 'json');
+    }
+
+    // 全服用户AP初始化
+    $('#btnAPInit').click(function () {
+        js.confirm('确认初始化全服用户个控值？', '${ctx}/osee/player/apInit', function (data) {
+            if (data.result === 'true') {
+                js.showMessage(data.message);
+            } else {
+                js.showErrorMessage(data.message);
+            }
+        }, 'json', true, '正在初始化...');
+    });
+
+    // 全员强制下线
+    $('#btnForceOffline').click(function () {
+        js.confirm('确认强制下线所有玩家？', '${ctx}/osee/player/operate', {
+            playerIds: [''], // 全服玩家下线参数为空
+            option: 3
+        }, function (data) {
+            if (data.result === 'true') {
+                js.showMessage(data.message);
+                js.getCurrentTabPage(function (contentWindow) {
+                    contentWindow.page();
+                });
+            } else {
+                js.showErrorMessage(data.message);
+            }
+        }, 'json', true, '全员下线中...');
+    });
+
+    // 初始化DataGrid对象
+    $('#dataGrid').dataGrid({
+        searchForm: $("#searchForm"),
+        showCheckbox: true,// 是否显示复选框
+        shrinkToFit: false,
+        columnModel: [
+
+            // 备注：该字段不要删除：用于：选中行的操作
+            {header:`${jsValue('$.i18n.t("用户列表.用户ID")')}`, name:'playerId', hidden: true},
+
+            {header:`${jsValue('$.i18n.t("用户列表.用户ID")')}`, width:60, align:"center", sortable:false, formatter: function(val, obj, row, act){
+
+                    return '<a href="${ctx}/osee/money/account?userId='+ row.playerId + '"' +
+                        ' class="btnList" title="' + `${jsValue('$.i18n.t("用户列表.账户明细")')}` + '">' + row.playerId + '</a>'
+
+                }},
+            {header:`${jsValue('$.i18n.t("用户列表.游戏ID")')}`, width:60, align:"center", sortable:false, formatter: function(val, obj, row, act){
+
+                    return '<a href="${ctx}/osee/money/give?playerId='+ row.playerId + '"' +
+                        ' class="btnList" title="' + `${jsValue('$.i18n.t("用户列表.赠送记录")')}` + '">' + row.gameId + '</a>'
+
+                }},
+
+            // {header:`${jsValue('$.i18n.t("用户列表.等级")')}`, name:'level', width:40, align:"center", sortable:false},
+            // {header:`${jsValue('$.i18n.t("用户列表.最高炮倍")')}`, name:'batteryLevel', width:80, align:"center", sortable:false},
+            // {header:`${jsValue('$.i18n.t("用户列表.用户类型")')}`, name:'playerType', width:120, align:"center", sortable:false, formatter: function(val, obj, row, act){
+            //         return js.getDictLabel(${@DictUtils.getDictListJson('osee_player_type')}, val, '${text("未知")}')
+            //     }},
+            // {header:`${jsValue('$.i18n.t("用户列表.用户昵称")')}`, name:'nickname', width:150, align:"center", sortable:false},
+            // {header:`${jsValue('$.i18n.t("用户列表.登录方式")')}`, name:'loginType', width:150, align:"center", sortable:false, formatter: function(val, obj, row, act){
+            //         return js.getDictLabel(${@DictUtils.getDictListJson('osee_player_login_type')}, val, '${text("未知")}')
+            //     }},
+
+            {header:`${jsValue('$.i18n.t("用户列表.钻石")')}`, name:'diamond', width:50, align:"center", sortable:false},
+            // {header:`${jsValue('$.i18n.t("用户列表.携带金币")')}`, name:'money', width:120, align:"center", sortable:false},
+            // {header:`${jsValue('$.i18n.t("用户列表.AG值")')}`, name:'ag_str', width:90, align:"center", sortable:false},
+
+            {header:`${jsValue('$.i18n.t("用户列表.用户账号")')}`, name:'username', width:70, align:"center", sortable:false, formatter: function(val, obj, row, act){
+
+                    return '<a href="${ctx}/osee/game/killBossList?userId='+ row.playerId + '"' +
+                        ' class="btnList" title="' + `${jsValue('$.i18n.t("用户列表.击杀boss记录")')}` + '">' + row.username + '</a>'
+
+                }},
+
+            // {header:`${jsValue('$.i18n.t("用户列表.保险箱金币")')}`, name:'bankMoneyStr', width:80, align:"center", sortable:false},
+            {header:`${jsValue('$.i18n.t("用户列表.奖券")')}`, name:'lottery', width:80, align:"center", sortable:false},
+
+            {header:`${jsValue('$.i18n.t("用户列表.龙晶")')}`, name:'dragonCrystalStr', width:210, align:"center", sortable:false},
+
+            // {header:`${jsValue('$.i18n.t("用户列表.slots未发放")')}`, name:'slotsNotGetWinMoneyStr', width:100, align:"center", sortable:false},
+
+            {header:`${jsValue('$.i18n.t("用户列表.操作")')}`,name:'actions',width:100, align:"center", sortable:false, title:false, formatter: function(val, obj, row, act){
+                    var actions = [];
+                    actions.push('<a href="javascript:void(0);" onclick="packageInfo('+ row.playerId + ',\'' + row.username + '\')"' +
+                        ' class="btn-small" title="' + `${jsValue('$.i18n.t("用户列表.背包信息")')}` + '"><i class="fa fa-archive"></i></a>');
+
+                    if(editFlag){
+                        actions.push('<a href="${ctx}/osee/player/form?playerId='+ row.playerId + '"' +
+                            ' class="btnList" title="' + `${jsValue('$.i18n.t("用户列表.编辑用户信息")')}` + '"><i class="fa fa-pencil"></i></a>');
+                    }
+
+                    if(actionFlag){
+                        actions.push('<a href="${ctx}/osee/player/tenure/form?playerId='+ row.playerId + '&nickname='+row.username+'"' +
+                            ' class="btnList" title="' + `${jsValue('$.i18n.t("用户列表.玩家账变")')}` + '"><i class="fa fa-cny"></i></a>');
+                    }
+
+                    return actions.join(' ');
+                }},
+
+            {header:`${jsValue('$.i18n.t("用户列表.游戏状态")')}`, name:'gameState', width:90, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                    // return $.i18n.t("下拉选." + js.getDictLabel(gameStateDictList, val, '${text("未知")}'))
+                    return $.i18n.t(js.getDictLabel(gameStateDictList, val, '${text("未知")}'))
+                }},
+
+            {header:`${jsValue('$.i18n.t("用户列表.状态")')}`, name:'userState', width:70, align:"center", sortable:false, formatter: function(val, obj, row, act){
+                return $.i18n.t("下拉选." + js.getDictLabel(${@DictUtils.getDictListJson('osee_player_account_status')}, val, '${text("未知")}'))
+                }},
+            {header:`${jsValue('$.i18n.t("用户列表.注册时间")')}`, name:'createTime', width:150, align:"center", sortable:false,formatter: function(val, obj, row, act){
+                    if (val === undefined) return '-';
+                    return js.formatDate(new Date(val), 'yyyy-MM-dd HH:mm:ss')
+            }},
+
+        ]
+    });
+
+    /**
+     * 获取玩家的背包信息
+     */
+    function packageInfo(playerId, nickname) {
+        js.ajaxSubmit('${ctx}/osee/player/packageInfo', {
+            playerId: playerId
+        }, function (data) {
+            if (data.result === 'true') {
+                var info = data.data;
+                var content = '';
+                for (var i = 0; i < info.length; i++) {
+                    content += '<p style="margin:10px">' + info[i] + '</p>';
+                }
+                js.layer.open({
+                    type: 1,
+                    title: nickname + ' 的背包',
+                    area: ['300px'], //宽高
+                    content: content
+                });
+            } else {
+                js.showErrorMessage(data.message);
+            }
+        }, 'json');
+    }
+
+    /**
+     * 设置玩家vip等级
+     */
+    function vip(playerId, nickname) {
+        js.layer.prompt({
+            title: '设置 ' + nickname + ' 的vip等级',
+            maxlength: 3
+        }, function(val, index) { // 只有在点了确定有了值的情况下才会进入该函数
+            if(val.length > 0) {
+                js.ajaxSubmit('${ctx}/osee/player/changeVipLevel',{
+                    playerId: playerId,
+                    vipLevel: val
+                },function (data) {
+                    if (data.result === 'true') {
+                        js.showMessage(data.message);
+                        js.getCurrentTabPage(function (contentWindow) {
+                            contentWindow.page()
+                        })
+                    } else {
+                        js.showErrorMessage(data.message)
+                    }
+                }, 'json');
+            }
+        })
+    }
+</script>

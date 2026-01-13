@@ -1,0 +1,121 @@
+<% layout('/layouts/default.html', {title: '新增付费率', libs: ['dataGrid']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <div class="box-header with-border">
+            <div class="box-title">
+                <i class="fa fa-bookmark"></i> 新增付费率
+            </div>
+            <div class="box-tools pull-right">
+                <a href="#" class="btn btn-default" id="btnSearch" title="${text('查询')}">
+                    <i class="fa fa-filter"></i> ${text('查询')}
+                </a>
+            </div>
+        </div>
+        <div class="box-body">
+            <#form:form id="searchForm" model="${rateForm}" action="${ctx}/osee/statistics/rateForm" method="post" class="form-inline"
+            data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}"
+            data-order-by="${parameter.orderBy}">
+            <div class="form-group">
+                <label class="control-label">${text('时间')}：</label>
+                <div class="control-inline">
+                    <#form:input path="startTime" maxlength="50" class="form-control width-160 Wdate laydate" readonly="true" data-type="datetime"
+                    onclick="Wdate laydatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+                    -
+                    <#form:input path="endTime" maxlength="50" class="form-control width-160 Wdate laydate" readonly="true" data-type="datetime"
+                    onclick="Wdate laydatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+                </div>
+            </div>
+            <% /* 注释掉这段代码 Beetl的语法 %>
+            <% */ %>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-sm">${text('查询')}</button>
+                <button type="reset" class="btn btn-default btn-sm">${text('重置')}</button>
+            </div>
+        </#form:form>
+        <table id="dataGrid"></table>
+        <div id="dataGridPage"></div>
+    </div>
+</div>
+<% } %>
+<script>
+    // 初始化DataGrid对象
+    $('#dataGrid').dataGrid({
+        searchForm: $("#searchForm"),
+        columnModel: [
+            {
+                header: '${text("时间")}',
+                name: 'dayTime',
+                width: 100,
+                align: "center",
+                sortable: false,
+                formatter: function (val, obj, row, act) {
+                    return js.formatDate(new Date(val), 'yyyy-MM-dd HH:mm:ss')
+                }
+            },
+            {
+                header: '${text("付费率")}',
+                name: 'rate',
+                width: 50,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '${text("ARPPU")}',
+                name: 'arppu',
+                width: 80,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '${text("ARPU")}',
+                name: 'arpu',
+                width: 80,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '${text("新增付费率")}',
+                name: 'newRate',
+                width: 120,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '${text("新增ARPPU")}',
+                name: 'newArppu',
+                width: 150,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {
+                header: '${text("新增ARPU")}',
+                name: 'newArpu',
+                width: 150,
+                align: "center",
+                sortable: false,
+                formatter: function (value, row, index) {
+                    return value = value + "%";
+                }
+            },
+            {header: '${text("新增人数")}', name: 'newPayNum', width: 80, align: "center", sortable: false},
+            {header: '${text("登录人数")}', name: 'loginNum', width: 80, align: "center", sortable: false},
+            {header: '${text("付费人数")}', name: 'payNum', width: 150, align: "center", sortable: false},
+            {header: '${text("充值流水")}', name: 'allMoney', width: 90, align: "center", sortable: false}
+        ]
+    });
+</script>

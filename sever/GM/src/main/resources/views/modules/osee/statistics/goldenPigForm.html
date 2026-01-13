@@ -1,0 +1,75 @@
+<% layout('/layouts/default.html', {title: '砸金猪记录', libs: ['dataGrid']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <div class="box-header with-border">
+            <div class="box-title">
+                <i class="fa fa-bookmark"></i> 砸金猪记录
+            </div>
+            <div class="box-tools pull-right">
+                <a href="#" class="btn btn-default" id="btnSearch" title="${text('查询')}">
+                    <i class="fa fa-filter"></i> ${text('查询')}
+                </a>
+            </div>
+        </div>
+        <div class="box-body">
+            <#form:form id="searchForm" model="${goldenPigForm}" action="${ctx}/osee/statistics/goldenPigForm" method="post" class="form-inline"
+            data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}"
+            data-order-by="${parameter.orderBy}">
+            <div class="form-group">
+                <label class="control-label">${text('时间')}：</label>
+                <div class="control-inline">
+                    <#form:input path="startTime" maxlength="50" class="form-control width-160 Wdate laydate" readonly="true" data-type="datetime"
+                    onclick="Wdate laydatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+                    -
+                    <#form:input path="endTime" maxlength="50" class="form-control width-160 Wdate laydate" readonly="true" data-type="datetime"
+                    onclick="Wdate laydatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('用户id')}：</label>
+                <div class="control-inline">
+                    <#form:input path="userId" maxlength="50" class="form-control width-160"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('用户昵称')}：</label>
+                <div class="control-inline">
+                    <#form:input path="nickName" maxlength="50" class="form-control width-160"/>
+                </div>
+            </div>
+            <% /* 注释掉这段代码 Beetl的语法 %>
+            <% */ %>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-sm">${text('查询')}</button>
+                <button type="reset" class="btn btn-default btn-sm">${text('重置')}</button>
+            </div>
+        </#form:form>
+        <table id="dataGrid"></table>
+        <div id="dataGridPage"></div>
+    </div>
+</div>
+<% } %>
+<script>
+    // 初始化DataGrid对象
+    $('#dataGrid').dataGrid({
+        searchForm: $("#searchForm"),
+        columnModel: [
+            {
+                header: '${text("时间")}',
+                name: 'createTime',
+                width: 100,
+                align: "center",
+                sortable: false,
+                formatter: function (val, obj, row, act) {
+                    return js.formatDate(new Date(val), 'yyyy-MM-dd HH:mm:ss')
+                }
+            },
+            {header: '${text("用户id")}', name: 'userId', width: 80, align: "center", sortable: false},
+            {header: '${text("用户名")}', name: 'nickName', width: 80, align: "center", sortable: false},
+            {header: '${text("使用前奖券")}', name: 'preLottery', width: 150, align: "center", sortable: false},
+            {header: '${text("消耗核弹数量")}', name: 'num', width: 90, align: "center", sortable: false},
+            {header: '${text("变化奖券")}', name: 'changeLottery', width: 90, align: "center", sortable: false},
+            {header: '${text("使用后奖券")}', name: 'afterLottery', width: 90, align: "center", sortable: false}
+        ]
+    });
+</script>

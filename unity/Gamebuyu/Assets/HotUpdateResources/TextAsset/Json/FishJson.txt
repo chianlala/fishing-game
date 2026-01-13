@@ -1,0 +1,434 @@
+{
+	"小黄刺鱼": {
+		"modelID": 1101,
+		"isSmall": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+	"小草鱼": {
+		"modelID": 1102,
+		"isSmall": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+	"热带黄鱼": {
+		"modelID": 1103,
+		"isSmall": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+	"大眼金鱼": {
+		"modelID": 1104,
+		"isSmall": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+	"热带条纹鱼": {
+		"modelID": 1105,
+		"isSmall": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+	"小丑鱼": {
+		"modelID": 1106,
+		"isSmall": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+	"河豚鱼": {
+		"modelID": 1107,
+		"isSmall": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+	"蓝倒吊": {
+		"modelID": 1108,
+		"isSmall": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+	"灯笼鱼": {
+		"modelID": 1109,
+		"isSmall": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+	"神仙鱼": {
+		"modelID": 1110,
+		"isSmall": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+	"乌龟": {
+		"modelID": 1111,
+		"isSmall": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+	"蝴蝶鱼": {
+		"modelID": 1114,
+		"isSmall": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+	"铃铛鱼": {
+		"modelID": 1116,
+		"isSmall": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+	"剑鱼": {
+		"modelID": 1117,
+		"isSmall": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+	"魔鬼鱼": {
+		"modelID": 1118,
+		"isSmall": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+	"灯笼鱼制胜": {
+		"modelID": 1209,
+		"isSmall": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+	"神仙鱼制胜": {
+		"modelID": 1210,
+		"isSmall": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+	"乌龟制胜": {
+		"modelID": 1211,
+		"isSmall": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+	"蝴蝶鱼制胜": {
+		"modelID": 1214,
+		"isSmall": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+	"铃铛鱼制胜": {
+		"modelID": 1216,
+		"isSmall": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+	"剑鱼制胜": {
+		"modelID": 1217,
+		"isSmall": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+	"魔鬼鱼制胜": {
+		"modelID": 1218,
+		"isSmall": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+	"小银鲨": {
+		"modelID": 3030,
+		"isSmall": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": true
+	},
+	"小金鲨": {
+		"modelID": 3031,
+		"isBig": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": true
+	},
+	"黄金鲎鱼": {
+		"modelID": 3045,
+		"isBig": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": true
+	},
+	"黄金锤头鲨": {
+		"modelID": 3046,
+		"isBig": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": true
+	},
+	"黄金鲸鱼": {
+		"modelID": 3047,
+		"isBig": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": true
+	},
+	"黄金海龟": {
+		"modelID": 3048,
+		"isBig": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": true
+	},
+	"黄金水母": {
+		"modelID": 3049,
+		"isBig": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": true
+	},
+	"小玛丽": {
+		"modelID": 4011,
+		"isBig": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": true
+	},
+	"玉蟾": {
+		"modelID": 3037,
+		"isBig": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": true
+	},
+	"金蟾": {
+		"modelID": 3038,
+		"isBig": true,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": true
+	},
+	"银龙": {
+		"modelID": 3040,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": true
+	},
+	"金龙": {
+		"modelID": 3041,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": true
+	},
+	
+	"三条蝴蝶鱼": {
+		"modelID": 3110,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": true
+	},
+	"三蓝倒吊": {
+		"modelID": 3111,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": true
+	},
+	"银鲨铃铛鱼": {
+		"modelID": 3112,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": true
+	},
+	"银鲨金鲨": {
+		"modelID": 3113,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": true
+	},
+	"四小丑鱼": {
+		"modelID": 3114,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": true
+	},
+	"四条灯笼鱼": {
+		"modelID": 3115,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": true
+	},
+	"魔鬼小丑鱼": {
+		"modelID": 3118,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": true
+	},
+	"海龟四大眼金鱼": {
+		"modelID": 3120,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": true
+	},
+	"斧头": {
+		"modelID": 4001,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": true
+	},
+	"刀": {
+		"modelID": 4002,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": true
+	},
+	"长矛": {
+		"modelID": 4003,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": true
+	},
+	"小玛丽": {
+		"modelID": 4008,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": true
+	},
+	"狂暴鱼": {
+		"modelID": 4010,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": true
+	},
+	"鸿福转盘": {
+		"modelID": 4035,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+	"财神驾到": {
+		"modelID": 4038,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+	"哪吒": {
+		"modelID": 4050,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+	"沉船宝藏": {
+		"modelID": 4040,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+    "吉星高照": {
+		"modelID": 4060,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+	"美人鱼": {
+		"modelID": 4065,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+	"大圣": {
+		"modelID": 4070,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+	"李逵": {
+		"modelID": 4085,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	},
+	"全屏炸弹": {
+		"modelID": 4110,
+		"isBoss": false,
+		"isTwoAttack": true,
+		"isSkill": false,
+		"isGold": true
+	},
+	"奖券": {
+		"modelID": 4210,
+		"isBoss": false,
+		"isTwoAttack": false,
+		"isSkill": false,
+		"isGold": false
+	}
+}

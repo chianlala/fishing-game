@@ -1,0 +1,932 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!200 &20000000
+ShaderVariantCollection:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: NewShaderVariants
+  m_Shaders:
+  - first: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: ETC1_EXTERNAL_ALPHA
+        passType: 0
+      - keywords: ETC1_EXTERNAL_ALPHA UNITY_HDR_ON
+        passType: 0
+      - keywords: BILLBOARD_FACE_CAMERA_POS ETC1_EXTERNAL_ALPHA UNITY_HDR_ON
+        passType: 0
+  - first: {fileID: 10770, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: UNITY_HDR_ON
+        passType: 0
+      - keywords: BILLBOARD_FACE_CAMERA_POS
+        passType: 0
+      - keywords: BILLBOARD_FACE_CAMERA_POS UNITY_HDR_ON
+        passType: 0
+      - keywords: UNITY_UI_ALPHACLIP
+        passType: 0
+  - first: {fileID: 66, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _NORMALMAP
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _HITCOLORCHANNEL_RIM _METALLICGLOSSMAP
+          _NORMALMAP _RIMLIGHT_ON _STREAMERCHANNEL_UVPOS
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON _HITCOLORCHANNEL_RIM _METALLICGLOSSMAP
+          _NORMALMAP _RIMLIGHT_ON _STREAMERCHANNEL_UVPOS
+        passType: 4
+      - keywords: DIRECTIONAL _NORMALMAP
+        passType: 5
+      - keywords: SHADOWS_DEPTH
+        passType: 8
+      - keywords: _HITCOLORCHANNEL_RIM _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON
+          _STREAMERCHANNEL_UVPOS
+        passType: 8
+  - first: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: DIRECTIONAL LIGHTPROBE_SH
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH SHADOWS_SCREEN
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _EMISSION
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _METALLICGLOSSMAP _NORMALMAP
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH SHADOWS_SCREEN _METALLICGLOSSMAP _NORMALMAP
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _EMISSION _METALLICGLOSSMAP _NORMALMAP
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH SHADOWS_SCREEN _EMISSION _METALLICGLOSSMAP
+          _NORMALMAP
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _HITCOLORCHANNEL_ALBEDO _METALLICGLOSSMAP
+          _NORMALMAP _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON _SHADOW_ON _STREAMERCHANNEL_UVPOS
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON _HITCOLORCHANNEL_ALBEDO
+          _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON _SHADOW_ON
+          _STREAMERCHANNEL_UVPOS
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON _CONTRAST_ON _HITCOLORCHANNEL_RIM
+          _METALLICGLOSSMAP _NORMALMAP _REFLECT_ON _RIMLIGHT_ON _SHADOW_ON _STREAMERCHANNEL_UVPOS
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON _CONTRAST_ON _HITCOLORCHANNEL_RIM
+          _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON _STREAMERCHANNEL_UVPOS
+        passType: 4
+      - keywords: BILLBOARD_FACE_CAMERA_POS DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON
+          _CONTRAST_ON _HITCOLORCHANNEL_RIM _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON
+          _SHADOWOFFSETTOGGLE_ON _STREAMERCHANNEL_UVPOS
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _CONTRAST_ON _HITCOLORCHANNEL_ALBEDO
+          _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON _SHADOW_ON
+          _STREAMERCHANNEL_UVPOS
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON _CONTRAST_ON _HITCOLORCHANNEL_ALBEDO
+          _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON _SHADOW_ON
+          _STREAMERCHANNEL_UVPOS
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON _ADJUSTHSV_ON _CONTRAST_ON
+          _HITCOLORCHANNEL_ALBEDO _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON _SHADOW_ON
+          _STREAMERCHANNEL_UVPOS
+        passType: 4
+      - keywords: BILLBOARD_FACE_CAMERA_POS DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON
+          _ADJUSTHSV_ON _CONTRAST_ON _HITCOLORCHANNEL_ALBEDO _METALLICGLOSSMAP _NORMALMAP
+          _RIMLIGHT_ON _SHADOW_ON _STREAMERCHANNEL_UVPOS
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ADJUSTHSV_ON _CONTRAST_ON _EMISSION
+          _HITCOLORCHANNEL_ALBEDO _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON
+          _SHADOW_ON _STREAMERCHANNEL_UVPOS
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON _ADJUSTHSV_ON _CONTRAST_ON
+          _EMISSION _HITCOLORCHANNEL_ALBEDO _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON
+          _SHADOWOFFSETTOGGLE_ON _SHADOW_ON _STREAMERCHANNEL_UVPOS
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _CONTRAST_ON _HITCOLORCHANNEL_ALBEDO
+          _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON _SHADOW_ON _STREAMERCHANNEL_UVPOS
+          _STREAMER_ON
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ALPHAPREMULTIPLY_ON _METALLICGLOSSMAP
+          _NORMALMAP
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ALPHAPREMULTIPLY_ON _CONTRAST_ON _HITCOLORCHANNEL_RIM
+          _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON _STREAMERCHANNEL_UVPOS
+          _STREAMER_ON
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON _ALPHAPREMULTIPLY_ON _CONTRAST_ON
+          _HITCOLORCHANNEL_RIM _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON
+          _STREAMERCHANNEL_UVPOS _STREAMER_ON
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _METALLICGLOSSMAP _NORMALMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH SHADOWS_SCREEN _METALLICGLOSSMAP _NORMALMAP
+          _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _EMISSION _METALLICGLOSSMAP _NORMALMAP
+          _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH SHADOWS_SCREEN _EMISSION _METALLICGLOSSMAP
+          _NORMALMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ADJUSTHSV_ON _EMISSION_MAP_TEXTURE _HITCOLORCHANNEL_RIM
+          _METALLICGLOSSMAP _NORMALMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A _STREAMERCHANNEL_UVPOS
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON _ADJUSTHSV_ON _EMISSION_MAP_TEXTURE
+          _HITCOLORCHANNEL_RIM _METALLICGLOSSMAP _NORMALMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+          _STREAMERCHANNEL_UVPOS
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON _ADJUSTHSV_ON _CONTRAST_ON
+          _HITCOLORCHANNEL_RIM _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON
+          _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A _STREAMERCHANNEL_UVPOS
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ADJUSTHSV_ON _CONTRAST_ON _EMISSION
+          _HITCOLORCHANNEL_ALBEDO _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON
+          _SHADOW_ON _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A _STREAMERCHANNEL_UVPOS
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON _ADJUSTHSV_ON _CONTRAST_ON
+          _EMISSION _HITCOLORCHANNEL_ALBEDO _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON
+          _SHADOWOFFSETTOGGLE_ON _SHADOW_ON _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+          _STREAMERCHANNEL_UVPOS
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ADJUSTHSV_ON _CONTRAST_ON _EMISSION_MAP_TEXTURE
+          _HITCOLORCHANNEL_ALBEDO _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON
+          _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A _STREAMERCHANNEL_UVPOS
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON _ADJUSTHSV_ON _CONTRAST_ON
+          _EMISSION_MAP_TEXTURE _HITCOLORCHANNEL_ALBEDO _METALLICGLOSSMAP _NORMALMAP
+          _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+          _STREAMERCHANNEL_UVPOS
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ADJUSTHSV_ON _CONTRAST_ON _EMISSION_ALBEDO_CHANNEL_A
+          _EMISSION_MAP_TEXTURE _HITCOLORCHANNEL_ALBEDO _METALLICGLOSSMAP _NORMALMAP
+          _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON _SHADOW_ON _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+          _STREAMERCHANNEL_UVPOS
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON _ADJUSTHSV_ON _CONTRAST_ON
+          _EMISSION_ALBEDO_CHANNEL_A _EMISSION_MAP_TEXTURE _HITCOLORCHANNEL_ALBEDO
+          _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON _SHADOW_ON
+          _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A _STREAMERCHANNEL_UVPOS
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON _ADJUSTHSV_ON _CONTRAST_ON
+          _EMISSION_ALBEDO_CHANNEL_A _FADING_ON _HITCOLORCHANNEL_ALBEDO _METALLICGLOSSMAP
+          _NORMALMAP _REQUIRE_UV2 _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+          _STREAMERCHANNEL_UVPOS _USE8NEIGHBOURHOOD_ON
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ALPHABLEND_ON _HITCOLORCHANNEL_RIM _METALLICGLOSSMAP
+          _NORMALMAP _RIMLIGHT_ON _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A _STREAMERCHANNEL_UVPOS
+          _STREAMER_ON
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON _ALPHABLEND_ON _HITCOLORCHANNEL_RIM
+          _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+          _STREAMERCHANNEL_UVPOS _STREAMER_ON
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ALPHAPREMULTIPLY_ON _METALLICGLOSSMAP
+          _NORMALMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ALPHAPREMULTIPLY_ON _CONTRAST_ON _HITCOLORCHANNEL_RIM
+          _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+          _STREAMERCHANNEL_UVPOS
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON _ALPHAPREMULTIPLY_ON _CONTRAST_ON
+          _HITCOLORCHANNEL_RIM _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON
+          _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A _STREAMERCHANNEL_UVPOS
+        passType: 4
+      - keywords: DIRECTIONAL
+        passType: 5
+      - keywords: DIRECTIONAL UNITY_HDR_ON
+        passType: 5
+      - keywords: BILLBOARD_FACE_CAMERA_POS DIRECTIONAL UNITY_HDR_ON
+        passType: 5
+      - keywords: DIRECTIONAL _METALLICGLOSSMAP _NORMALMAP
+        passType: 5
+      - keywords: DIRECTIONAL SHADOWS_SCREEN _METALLICGLOSSMAP _NORMALMAP
+        passType: 5
+      - keywords: DIRECTIONAL UNITY_HDR_ON _CONTRAST_ON _HITCOLORCHANNEL_RIM _METALLICGLOSSMAP
+          _NORMALMAP _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON _STREAMERCHANNEL_UVPOS
+        passType: 5
+      - keywords: BILLBOARD_FACE_CAMERA_POS DIRECTIONAL UNITY_HDR_ON _CONTRAST_ON
+          _HITCOLORCHANNEL_RIM _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON
+          _STREAMERCHANNEL_UVPOS
+        passType: 5
+      - keywords: BILLBOARD_FACE_CAMERA_POS DIRECTIONAL UNITY_HDR_ON _ADJUSTHSV_ON
+          _CONTRAST_ON _HITCOLORCHANNEL_ALBEDO _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON
+          _SHADOW_ON _STREAMERCHANNEL_UVPOS
+        passType: 5
+      - keywords: DIRECTIONAL _METALLICGLOSSMAP _NORMALMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+        passType: 5
+      - keywords: POINT _METALLICGLOSSMAP _NORMALMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+        passType: 5
+      - keywords: DIRECTIONAL SHADOWS_SCREEN _METALLICGLOSSMAP _NORMALMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+        passType: 5
+      - keywords: DIRECTIONAL UNITY_HDR_ON _ADJUSTHSV_ON _CONTRAST_ON _EMISSION _HITCOLORCHANNEL_ALBEDO
+          _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON _SHADOW_ON
+          _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A _STREAMERCHANNEL_UVPOS
+        passType: 5
+      - keywords: DIRECTIONAL UNITY_HDR_ON _ADJUSTHSV_ON _CONTRAST_ON _EMISSION_ALBEDO_CHANNEL_A
+          _EMISSION_MAP_TEXTURE _HITCOLORCHANNEL_ALBEDO _METALLICGLOSSMAP _NORMALMAP
+          _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON _SHADOW_ON _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+          _STREAMERCHANNEL_UVPOS
+        passType: 5
+      - keywords: DIRECTIONAL _ALPHAPREMULTIPLY_ON _METALLICGLOSSMAP _NORMALMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+        passType: 5
+      - keywords: 
+        passType: 8
+      - keywords: SHADOWS_DEPTH
+        passType: 8
+      - keywords: SHADOWS_DEPTH _METALLICGLOSSMAP
+        passType: 8
+      - keywords: _HITCOLORCHANNEL_RIM _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON
+          _SHADOWOFFSETTOGGLE_ON _STREAMERCHANNEL_UVPOS
+        passType: 8
+      - keywords: _HITCOLORCHANNEL_ALBEDO _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON
+          _SHADOWOFFSETTOGGLE_ON _SHADOW_ON _STREAMERCHANNEL_UVPOS
+        passType: 8
+      - keywords: _CONTRAST_ON _HITCOLORCHANNEL_RIM _METALLICGLOSSMAP _NORMALMAP
+          _RIMLIGHT_ON _STREAMERCHANNEL_UVPOS
+        passType: 8
+      - keywords: _CONTRAST_ON _HITCOLORCHANNEL_RIM _METALLICGLOSSMAP _NORMALMAP
+          _REFLECT_ON _RIMLIGHT_ON _SHADOW_ON _STREAMERCHANNEL_UVPOS
+        passType: 8
+      - keywords: _CONTRAST_ON _HITCOLORCHANNEL_RIM _METALLICGLOSSMAP _NORMALMAP
+          _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON _STREAMERCHANNEL_UVPOS
+        passType: 8
+      - keywords: _CONTRAST_ON _HITCOLORCHANNEL_ALBEDO _METALLICGLOSSMAP _NORMALMAP
+          _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON _SHADOW_ON _STREAMERCHANNEL_UVPOS
+        passType: 8
+      - keywords: _ADJUSTHSV_ON _CONTRAST_ON _HITCOLORCHANNEL_ALBEDO _METALLICGLOSSMAP
+          _NORMALMAP _RIMLIGHT_ON _SHADOW_ON _STREAMERCHANNEL_UVPOS
+        passType: 8
+      - keywords: _ADJUSTHSV_ON _CONTRAST_ON _EMISSION _HITCOLORCHANNEL_ALBEDO _METALLICGLOSSMAP
+          _NORMALMAP _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON _SHADOW_ON _STREAMERCHANNEL_UVPOS
+        passType: 8
+      - keywords: _CONTRAST_ON _HITCOLORCHANNEL_ALBEDO _METALLICGLOSSMAP _NORMALMAP
+          _RIMLIGHT_ON _SHADOW_ON _STREAMERCHANNEL_UVPOS _STREAMER_ON
+        passType: 8
+      - keywords: _CONTRAST_ON _HITCOLORCHANNEL_RIM _METALLICGLOSSMAP _NORMALMAP
+          _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON _STREAMERCHANNEL_UVPOS _STREAMER_ON
+        passType: 8
+      - keywords: _CONTRAST_ON _EMISSION_MAP_TEXTURE _HITCOLORCHANNEL_RIM _METALLICGLOSSMAP
+          _NORMALMAP _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON _STREAMERCHANNEL_UVPOS _STREAMER_ON
+        passType: 8
+      - keywords: SHADOWS_DEPTH _ALPHAPREMULTIPLY_ON _METALLICGLOSSMAP
+        passType: 8
+      - keywords: _ALPHAPREMULTIPLY_ON _CONTRAST_ON _HITCOLORCHANNEL_RIM _METALLICGLOSSMAP
+          _NORMALMAP _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON _STREAMERCHANNEL_UVPOS _STREAMER_ON
+        passType: 8
+      - keywords: SHADOWS_DEPTH _METALLICGLOSSMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+        passType: 8
+      - keywords: _ADJUSTHSV_ON _EMISSION_MAP_TEXTURE _HITCOLORCHANNEL_RIM _METALLICGLOSSMAP
+          _NORMALMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A _STREAMERCHANNEL_UVPOS
+        passType: 8
+      - keywords: _ADJUSTHSV_ON _CONTRAST_ON _HITCOLORCHANNEL_RIM _METALLICGLOSSMAP
+          _NORMALMAP _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+          _STREAMERCHANNEL_UVPOS
+        passType: 8
+      - keywords: _ADJUSTHSV_ON _CONTRAST_ON _EMISSION _HITCOLORCHANNEL_ALBEDO _METALLICGLOSSMAP
+          _NORMALMAP _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON _SHADOW_ON _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+          _STREAMERCHANNEL_UVPOS
+        passType: 8
+      - keywords: _ADJUSTHSV_ON _CONTRAST_ON _EMISSION_MAP_TEXTURE _HITCOLORCHANNEL_ALBEDO
+          _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+          _STREAMERCHANNEL_UVPOS
+        passType: 8
+      - keywords: _ADJUSTHSV_ON _CONTRAST_ON _EMISSION_ALBEDO_CHANNEL_A _EMISSION_MAP_TEXTURE
+          _HITCOLORCHANNEL_ALBEDO _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON
+          _SHADOW_ON _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A _STREAMERCHANNEL_UVPOS
+        passType: 8
+      - keywords: _ADJUSTHSV_ON _CONTRAST_ON _EMISSION_ALBEDO_CHANNEL_A _FADING_ON
+          _HITCOLORCHANNEL_ALBEDO _METALLICGLOSSMAP _NORMALMAP _REQUIRE_UV2 _RIMLIGHT_ON
+          _SHADOWOFFSETTOGGLE_ON _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A _STREAMERCHANNEL_UVPOS
+          _USE8NEIGHBOURHOOD_ON
+        passType: 8
+      - keywords: _ALPHABLEND_ON _HITCOLORCHANNEL_RIM _METALLICGLOSSMAP _NORMALMAP
+          _RIMLIGHT_ON _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A _STREAMERCHANNEL_UVPOS
+          _STREAMER_ON
+        passType: 8
+      - keywords: SHADOWS_DEPTH _ALPHAPREMULTIPLY_ON _METALLICGLOSSMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+        passType: 8
+      - keywords: _ALPHAPREMULTIPLY_ON _CONTRAST_ON _HITCOLORCHANNEL_RIM _METALLICGLOSSMAP
+          _NORMALMAP _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+          _STREAMERCHANNEL_UVPOS
+        passType: 8
+  - first: {fileID: 47, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _CONTRAST_ON _DETAIL_MULX2 _EMISSION
+          _HITCOLORCHANNEL_RIM _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON
+          _STREAMERCHANNEL_UVPOS _STREAMER_ON
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON _CONTRAST_ON _DETAIL_MULX2
+          _EMISSION _HITCOLORCHANNEL_RIM _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON
+          _SHADOWOFFSETTOGGLE_ON _STREAMERCHANNEL_UVPOS _STREAMER_ON
+        passType: 4
+      - keywords: DIRECTIONAL UNITY_HDR_ON _CONTRAST_ON _DETAIL_MULX2 _EMISSION _HITCOLORCHANNEL_RIM
+          _METALLICGLOSSMAP _NORMALMAP _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON _STREAMERCHANNEL_UVPOS
+          _STREAMER_ON
+        passType: 5
+      - keywords: _CONTRAST_ON _DETAIL_MULX2 _EMISSION _HITCOLORCHANNEL_RIM _METALLICGLOSSMAP
+          _NORMALMAP _RIMLIGHT_ON _SHADOWOFFSETTOGGLE_ON _STREAMERCHANNEL_UVPOS _STREAMER_ON
+        passType: 8
+  - first: {fileID: 106, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: UNITY_HDR_ON
+        passType: 0
+      - keywords: _SUNDISK_NONE
+        passType: 0
+      - keywords: _SUNDISK_SIMPLE
+        passType: 0
+      - keywords: UNITY_HDR_ON _SUNDISK_SIMPLE
+        passType: 0
+  - first: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: FOG_EXP2
+        passType: 0
+      - keywords: UNITY_HDR_ON
+        passType: 0
+      - keywords: BILLBOARD_FACE_CAMERA_POS UNITY_HDR_ON
+        passType: 0
+  - first: {fileID: 202, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: UNITY_HDR_ON
+        passType: 0
+  - first: {fileID: 211, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 4
+      - keywords: _ALPHABLEND_ON
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ALPHABLEND_ON
+        passType: 4
+      - keywords: LIGHTPROBE_SH UNITY_HDR_ON _ALPHABLEND_ON
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON _ALPHABLEND_ON
+        passType: 4
+      - keywords: BILLBOARD_FACE_CAMERA_POS DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON
+          _ALPHABLEND_ON
+        passType: 4
+      - keywords: PROCEDURAL_INSTANCING_ON _ALPHABLEND_ON
+        passType: 8
+      - keywords: 
+        passType: 13
+      - keywords: _ALPHABLEND_ON
+        passType: 13
+  - first: {fileID: 9000, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 9001, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 9002, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 9003, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 9004, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 9006, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 9007, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 10720, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: FOG_EXP2
+        passType: 0
+      - keywords: ALPHAPACK_NONE ETC1_EXTERNAL_ALPHA
+        passType: 0
+  - first: {fileID: 10721, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: FOG_EXP2
+        passType: 0
+      - keywords: UNITY_HDR_ON
+        passType: 0
+      - keywords: BILLBOARD_FACE_CAMERA_POS UNITY_HDR_ON
+        passType: 0
+      - keywords: UNITY_HDR_ON _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+        passType: 0
+      - keywords: BILLBOARD_FACE_CAMERA_POS UNITY_HDR_ON _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+        passType: 0
+  - first: {fileID: 10761, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: ETC1_EXTERNAL_ALPHA _ADJUSTHSV_ON
+        passType: 0
+      - keywords: ETC1_EXTERNAL_ALPHA UNITY_HDR_ON _ADJUSTHSV_ON
+        passType: 0
+      - keywords: BILLBOARD_FACE_CAMERA_POS ETC1_EXTERNAL_ALPHA UNITY_HDR_ON _ADJUSTHSV_ON
+        passType: 0
+      - keywords: ETC1_EXTERNAL_ALPHA _ADJUSTHSV_ON _ALPHAPREMULTIPLY_ON
+        passType: 0
+      - keywords: ETC1_EXTERNAL_ALPHA UNITY_HDR_ON _ADJUSTHSV_ON _ALPHAPREMULTIPLY_ON
+        passType: 0
+      - keywords: BILLBOARD_FACE_CAMERA_POS ETC1_EXTERNAL_ALPHA UNITY_HDR_ON _ADJUSTHSV_ON
+          _ALPHAPREMULTIPLY_ON
+        passType: 0
+  - first: {fileID: 15104, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 15105, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: ad39c1409ba445139c1f2c85b1db9c0d, type: 3}
+    second:
+      variants:
+      - keywords: DIRECTIONAL
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH
+        passType: 4
+  - first: {fileID: 4800000, guid: a59a9c705ae341968e52f67797dd58f8, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: UNITY_HDR_ON
+        passType: 0
+      - keywords: BILLBOARD_FACE_CAMERA_POS UNITY_HDR_ON
+        passType: 0
+  - first: {fileID: 4800000, guid: 45495790b394f894a967dbf44489b57b, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 8
+  - first: {fileID: 4800000, guid: b8b64ea0324b4222a277d49dfbc842a2, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: UNITY_HDR_ON
+        passType: 0
+      - keywords: BILLBOARD_FACE_CAMERA_POS UNITY_HDR_ON
+        passType: 0
+  - first: {fileID: 4800000, guid: c359a9516dea496e8081bbe801a72733, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: UNITY_HDR_ON
+        passType: 0
+  - first: {fileID: 4800000, guid: 75048f32cd03455b95269a704c4193d4, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: UNITY_HDR_ON
+        passType: 0
+      - keywords: BILLBOARD_FACE_CAMERA_POS UNITY_HDR_ON
+        passType: 0
+  - first: {fileID: 4800000, guid: 4447e9424ffdf3b4ea00eaea04f6effd, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 1
+      - keywords: 
+        passType: 2
+      - keywords: DIRECTIONAL
+        passType: 4
+      - keywords: DIRECTIONAL DIRLIGHTMAP_COMBINED DYNAMICLIGHTMAP_ON
+        passType: 4
+      - keywords: DIRECTIONAL DIRLIGHTMAP_COMBINED DYNAMICLIGHTMAP_ON SHADOWS_SCREEN
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH SHADOWS_SCREEN
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTMAP_SHADOW_MIXING LIGHTPROBE_SH SHADOWS_SCREEN
+        passType: 4
+      - keywords: DIRECTIONAL FOG_EXP2 LIGHTPROBE_SH
+        passType: 4
+      - keywords: DIRECTIONAL FOG_EXP2 LIGHTPROBE_SH SHADOWS_SCREEN
+        passType: 4
+      - keywords: SPOT
+        passType: 5
+      - keywords: DIRECTIONAL
+        passType: 5
+      - keywords: POINT
+        passType: 5
+      - keywords: DIRECTIONAL SHADOWS_SCREEN
+        passType: 5
+      - keywords: DIRECTIONAL FOG_EXP2
+        passType: 5
+      - keywords: DIRECTIONAL FOG_EXP2 SHADOWS_SCREEN
+        passType: 5
+      - keywords: 
+        passType: 6
+      - keywords: 
+        passType: 7
+      - keywords: SHADOWS_DEPTH
+        passType: 8
+      - keywords: 
+        passType: 10
+      - keywords: 
+        passType: 11
+  - first: {fileID: 4800000, guid: 1aad9633a95348abb6b38c742fdd4a31, type: 3}
+    second:
+      variants:
+      - keywords: DIRECTIONAL
+        passType: 4
+  - first: {fileID: 4800000, guid: 6b9fe1b3032e479f821142614b3f6218, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: ETC1_EXTERNAL_ALPHA
+        passType: 0
+  - first: {fileID: 4800000, guid: c71234047ffd4d7d9beffa73966c7e60, type: 3}
+    second:
+      variants:
+      - keywords: DIRECTIONAL
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON
+        passType: 4
+      - keywords: BILLBOARD_FACE_CAMERA_POS DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON
+        passType: 4
+      - keywords: 
+        passType: 8
+      - keywords: SHADOWS_DEPTH
+        passType: 8
+  - first: {fileID: 4800000, guid: d09f8134e6b24a80b5f7a420634f7219, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: ETC1_EXTERNAL_ALPHA
+        passType: 0
+      - keywords: ETC1_EXTERNAL_ALPHA UNITY_HDR_ON
+        passType: 0
+      - keywords: BILLBOARD_FACE_CAMERA_POS ETC1_EXTERNAL_ALPHA UNITY_HDR_ON
+        passType: 0
+  - first: {fileID: 4800000, guid: ea7c2b445b734c5db76c63eaa642c9f5, type: 3}
+    second:
+      variants:
+      - keywords: DIRECTIONAL
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON
+        passType: 4
+  - first: {fileID: 4800000, guid: 76d84964700540339367c1458be46558, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: b38988e4b08a45778b58f4a11f90f1fd, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: UNITY_HDR_ON
+        passType: 0
+  - first: {fileID: 4800000, guid: f086c2351ecd41fc929a3ac0083e7917, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: UNITY_HDR_ON
+        passType: 0
+      - keywords: BILLBOARD_FACE_CAMERA_POS UNITY_HDR_ON
+        passType: 0
+  - first: {fileID: 4800000, guid: 88d2fc454aa748df8cbd9f738324f3d9, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: UNITY_HDR_ON
+        passType: 0
+  - first: {fileID: 4800000, guid: 72060855e0b54893bffae724389f97bd, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: UNITY_HDR_ON
+        passType: 0
+      - keywords: BILLBOARD_FACE_CAMERA_POS UNITY_HDR_ON
+        passType: 0
+  - first: {fileID: 4800000, guid: a28f68365811499c83b38ea38ce8832f, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: UNITY_HDR_ON
+        passType: 0
+  - first: {fileID: 4800000, guid: 5ac7f95697ef5164999e1c53149ebca1, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: ALPHAPACK_NONE _ALPHAPREMULTIPLY_ON
+        passType: 0
+      - keywords: ALPHAPACK_NONE UNITY_HDR_ON _ALPHAPREMULTIPLY_ON
+        passType: 0
+      - keywords: ALPHAPACK_NONE BILLBOARD_FACE_CAMERA_POS UNITY_HDR_ON _ALPHAPREMULTIPLY_ON
+        passType: 0
+  - first: {fileID: 4800000, guid: 18967a96b89f43c4b0c9a70430d4a7fa, type: 3}
+    second:
+      variants:
+      - keywords: DIRECTIONAL
+        passType: 4
+      - keywords: DIRECTIONAL ETC1_EXTERNAL_ALPHA LIGHTPROBE_SH _ALPHAPREMULTIPLY_ON
+          _MASKON_ON
+        passType: 4
+      - keywords: ETC1_EXTERNAL_ALPHA LIGHTPROBE_SH UNITY_HDR_ON _ALPHAPREMULTIPLY_ON
+          _MASKON_ON
+        passType: 4
+      - keywords: DIRECTIONAL ETC1_EXTERNAL_ALPHA LIGHTPROBE_SH UNITY_HDR_ON _ALPHAPREMULTIPLY_ON
+          _MASKON_ON
+        passType: 4
+      - keywords: BILLBOARD_FACE_CAMERA_POS DIRECTIONAL ETC1_EXTERNAL_ALPHA LIGHTPROBE_SH
+          UNITY_HDR_ON _ALPHAPREMULTIPLY_ON _MASKON_ON
+        passType: 4
+  - first: {fileID: 4800000, guid: 65b1c2e64b4049d9b714ea4b4786da94, type: 3}
+    second:
+      variants:
+      - keywords: DIRECTIONAL
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH
+        passType: 4
+      - keywords: LIGHTPROBE_SH UNITY_HDR_ON
+        passType: 4
+      - keywords: BILLBOARD_FACE_CAMERA_POS DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON
+        passType: 4
+  - first: {fileID: 4800000, guid: f811a96749c64a9ba3d13e9dbb058646, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: UNITY_HDR_ON
+        passType: 0
+      - keywords: ETC1_EXTERNAL_ALPHA
+        passType: 0
+      - keywords: ETC1_EXTERNAL_ALPHA UNITY_HDR_ON
+        passType: 0
+      - keywords: BILLBOARD_FACE_CAMERA_POS ETC1_EXTERNAL_ALPHA UNITY_HDR_ON
+        passType: 0
+  - first: {fileID: 4800000, guid: a8a84b675a97487092a80dac276a5bd0, type: 3}
+    second:
+      variants:
+      - keywords: DIRECTIONAL
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH
+        passType: 4
+      - keywords: LIGHTPROBE_SH UNITY_HDR_ON
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON
+        passType: 4
+      - keywords: BILLBOARD_FACE_CAMERA_POS DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON
+        passType: 4
+  - first: {fileID: 4800000, guid: 07ab4097288e92841aa100aa3126ada2, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 1
+      - keywords: 
+        passType: 2
+      - keywords: DIRECTIONAL
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON _HITCOLORCHANNEL_RIM _METALLICGLOSSMAP
+          _NORMALMAP _SHADOWOFFSETTOGGLE_ON _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+          _STREAMERCHANNEL_UVPOS
+        passType: 4
+      - keywords: DIRECTIONAL
+        passType: 5
+      - keywords: POINT
+        passType: 5
+      - keywords: DIRECTIONAL UNITY_HDR_ON _HITCOLORCHANNEL_RIM _METALLICGLOSSMAP
+          _NORMALMAP _SHADOWOFFSETTOGGLE_ON _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+          _STREAMERCHANNEL_UVPOS
+        passType: 5
+      - keywords: 
+        passType: 6
+      - keywords: 
+        passType: 7
+      - keywords: SHADOWS_DEPTH
+        passType: 8
+      - keywords: 
+        passType: 10
+      - keywords: 
+        passType: 11
+  - first: {fileID: 4800000, guid: c4ad5ab7c65041d5b457dc2192fc1a31, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: UNITY_HDR_ON
+        passType: 0
+      - keywords: BILLBOARD_FACE_CAMERA_POS UNITY_HDR_ON
+        passType: 0
+  - first: {fileID: 4800000, guid: 1d600cb70f364c739f47437705b37b4b, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 8cf224f70e12497ea45d8ee359a4d7a0, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: UNITY_HDR_ON
+        passType: 0
+  - first: {fileID: 4800000, guid: 522f03282fd79be47b306e2ef4b593fd, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 8
+  - first: {fileID: 4800000, guid: ad23d8390e324e07871e130a599e9eba, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: UNITY_HDR_ON
+        passType: 0
+  - first: {fileID: 4800000, guid: 79f15659eb29436f98f750cd2f76ef9b, type: 3}
+    second:
+      variants:
+      - keywords: ETC1_EXTERNAL_ALPHA
+        passType: 0
+      - keywords: ETC1_EXTERNAL_ALPHA UNITY_HDR_ON
+        passType: 0
+  - first: {fileID: 4800000, guid: 53efa1d97f5d9f74285d4330cda14e36, type: 3}
+    second:
+      variants:
+      - keywords: _STRAIGHT_ALPHA_INPUT _USE8NEIGHBOURHOOD_ON
+        passType: 8
+  - first: {fileID: 4800000, guid: 315b706a384a425d803e19f5593fa3e7, type: 3}
+    second:
+      variants:
+      - keywords: DIRECTIONAL
+        passType: 4
+      - keywords: BILLBOARD_FACE_CAMERA_POS DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON
+        passType: 4
+  - first: {fileID: 4800000, guid: 6a0222ea256c4b158734c755b4695faa, type: 3}
+    second:
+      variants:
+      - keywords: DIRECTIONAL
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON
+        passType: 4
+      - keywords: BILLBOARD_FACE_CAMERA_POS DIRECTIONAL LIGHTPROBE_SH UNITY_HDR_ON
+        passType: 4
+  - first: {fileID: 4800000, guid: 1e8a610c9e01c3648bac42585e5fc676, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 8
+      - keywords: _USE8NEIGHBOURHOOD_ON
+        passType: 8
+      - keywords: _STRAIGHT_ALPHA_INPUT
+        passType: 8
+      - keywords: _STRAIGHT_ALPHA_INPUT _USE8NEIGHBOURHOOD_ON
+        passType: 8
+  - first: {fileID: 4800000, guid: 2462982c25bd4d2e810b955153316fa5, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: UNITY_HDR_ON
+        passType: 0
+  - first: {fileID: 4800000, guid: 07ae937c37aa41f49ac6161722281fc0, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: ETC1_EXTERNAL_ALPHA
+        passType: 0
+      - keywords: ETC1_EXTERNAL_ALPHA UNITY_HDR_ON
+        passType: 0
+      - keywords: BILLBOARD_FACE_CAMERA_POS ETC1_EXTERNAL_ALPHA UNITY_HDR_ON
+        passType: 0
+  - first: {fileID: 4800000, guid: c84608ac74634f7fa275c746c0ecf5c4, type: 3}
+    second:
+      variants:
+      - keywords: UNITY_HDR_ON
+        passType: 0
+  - first: {fileID: 4800000, guid: bd29d70e548b423398d278448f2f61d0, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: UNITY_HDR_ON
+        passType: 0
+      - keywords: BILLBOARD_FACE_CAMERA_POS UNITY_HDR_ON
+        passType: 0
+  - first: {fileID: 4800000, guid: 4f2fd90e3f6247e98ce53c1ad594fa91, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: UNITY_HDR_ON
+        passType: 0
+      - keywords: BILLBOARD_FACE_CAMERA_POS UNITY_HDR_ON
+        passType: 0
+  - first: {fileID: 4800000, guid: 74969e1e369646a4a310346fd5491713, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: UNITY_HDR_ON
+        passType: 0
+      - keywords: BILLBOARD_FACE_CAMERA_POS UNITY_HDR_ON
+        passType: 0
+  - first: {fileID: 4800000, guid: 5c1231ae43974041b380bc6e84ccda22, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: BILLBOARD_FACE_CAMERA_POS UNITY_HDR_ON
+        passType: 0
+  - first: {fileID: 4800000, guid: 0f1e0daeb12e42319cd6aaf7f2c72c4f, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: UNITY_HDR_ON
+        passType: 0
+      - keywords: BILLBOARD_FACE_CAMERA_POS UNITY_HDR_ON
+        passType: 0
+      - keywords: UNITY_HDR_ON _PARTICLE_CONTROLA_ON
+        passType: 0
+  - first: {fileID: 4800000, guid: ac9aa71f6bea427093ac91e7574b7198, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 8ef7972fcf8f4e489fb51f738d946cf0, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: UNITY_HDR_ON
+        passType: 0
+  - first: {fileID: 4800000, guid: 569f844f7b3d1eb42933f53341e7a2b9, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: UNITY_HDR_ON
+        passType: 0
+      - keywords: BILLBOARD_FACE_CAMERA_POS UNITY_HDR_ON
+        passType: 0
+  - first: {fileID: 4800000, guid: 9a69606fdd914fc89c7900a00247cf99, type: 3}
+    second:
+      variants:
+      - keywords: DIRECTIONAL
+        passType: 4
+      - keywords: SHADOWS_DEPTH
+        passType: 8
+  - first: {fileID: 4800000, guid: 194475ff61c64d10876d8ae22cb35003, type: 3}
+    second:
+      variants:
+      - keywords: _PARTICLE_CONTROLA_ON
+        passType: 8

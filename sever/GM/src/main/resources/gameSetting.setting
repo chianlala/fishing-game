@@ -1,0 +1,47 @@
+# 只能用外面的gameSetting.setting 的文件 原因 他还需要配置表
+# 重启服务器：服务器和管理后台的地址相关配置
+server.gm.host=
+server.gm.port=
+server.gm.user=
+server.gm.password=
+
+# 重启服务器：代理后台的地址相关配置
+server.agent.gm.host=
+server.agent.gm.user=
+server.agent.gm.password=
+
+# 代理后台的密钥
+api.agent.gm.sign=
+
+# 代理后台的 api地址
+api.agent.gm.host=
+
+# 服务器，http的 ip白名单，
+api.sys.engine.whiteIp=
+
+# 游戏服务器的 api地址，备注：这个最后不要加 /
+api.server.host=
+
+# 发送短信类型：1 腾讯云 2 阿里云
+sms.type=1
+
+# 发送短信：腾讯云相关
+sms.tencent.secretId=
+sms.tencent.secretKey=
+sms.tencent.sdkAppId=
+sms.tencent.sign=
+sms.tencent.templateId=
+
+# 发送短信：阿里云相关
+sms.aliyun.accessKeyId=
+sms.aliyun.accessKeySecret=
+sms.aliyun.signName=
+sms.aliyun.templateCode=
+
+gameIds=
+
+gmPlatformName=
+
+agentGmPlatformName=
+
+checkSetAddressFlag=false

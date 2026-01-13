@@ -1,0 +1,209 @@
+
+buyudating_qianbei.png
+size: 584,584
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jiangbei_01
+  rotate: false
+  xy: 482, 459
+  size: 12, 30
+  orig: 128, 96
+  offset: 4, 53
+  index: -1
+jiangbei_02
+  rotate: false
+  xy: 336, 203
+  size: 20, 47
+  orig: 128, 96
+  offset: 4, 37
+  index: -1
+jiangbei_03
+  rotate: true
+  xy: 266, 219
+  size: 31, 68
+  orig: 128, 96
+  offset: 4, 23
+  index: -1
+jiangbei_04
+  rotate: true
+  xy: 408, 450
+  size: 39, 72
+  orig: 128, 96
+  offset: 4, 21
+  index: -1
+jiangbei_05
+  rotate: false
+  xy: 442, 254
+  size: 47, 84
+  orig: 128, 96
+  offset: 5, 10
+  index: -1
+jiangbei_06
+  rotate: false
+  xy: 377, 8
+  size: 55, 94
+  orig: 128, 96
+  offset: 5, 0
+  index: -1
+jiangbei_07
+  rotate: true
+  xy: 448, 79
+  size: 61, 94
+  orig: 128, 96
+  offset: 6, 0
+  index: -1
+jiangbei_08
+  rotate: true
+  xy: 458, 142
+  size: 69, 94
+  orig: 128, 96
+  offset: 6, 0
+  index: -1
+jiangbei_09
+  rotate: true
+  xy: 362, 178
+  size: 74, 94
+  orig: 128, 96
+  offset: 8, 0
+  index: -1
+jiangbei_10
+  rotate: false
+  xy: 362, 254
+  size: 78, 94
+  orig: 128, 96
+  offset: 10, 0
+  index: -1
+jiangbei_11
+  rotate: false
+  xy: 500, 488
+  size: 82, 94
+  orig: 128, 96
+  offset: 13, 0
+  index: -1
+jiangbei_12
+  rotate: false
+  xy: 492, 296
+  size: 83, 94
+  orig: 128, 96
+  offset: 18, 0
+  index: -1
+jiangbei_13
+  rotate: false
+  xy: 496, 392
+  size: 86, 94
+  orig: 128, 96
+  offset: 21, 0
+  index: -1
+jiangbei_14
+  rotate: false
+  xy: 361, 350
+  size: 89, 94
+  orig: 128, 96
+  offset: 24, 0
+  index: -1
+jiangbei_15
+  rotate: false
+  xy: 266, 252
+  size: 94, 94
+  orig: 128, 96
+  offset: 26, 0
+  index: -1
+jiangbei_16
+  rotate: true
+  xy: 266, 348
+  size: 96, 93
+  orig: 128, 96
+  offset: 29, 0
+  index: -1
+jiangbei_17
+  rotate: false
+  xy: 408, 491
+  size: 90, 91
+  orig: 128, 96
+  offset: 37, 1
+  index: -1
+jiangbei_18
+  rotate: true
+  xy: 491, 213
+  size: 81, 88
+  orig: 128, 96
+  offset: 46, 1
+  index: -1
+jiangbei_19
+  rotate: true
+  xy: 361, 104
+  size: 72, 85
+  orig: 128, 96
+  offset: 55, 1
+  index: -1
+jiangbei_20
+  rotate: false
+  xy: 311, 21
+  size: 64, 81
+  orig: 128, 96
+  offset: 63, 1
+  index: -1
+jiangbei_21
+  rotate: true
+  xy: 434, 21
+  size: 56, 76
+  orig: 128, 96
+  offset: 71, 1
+  index: -1
+jiangbei_22
+  rotate: false
+  xy: 311, 111
+  size: 48, 69
+  orig: 128, 96
+  offset: 79, 3
+  index: -1
+jiangbei_23
+  rotate: false
+  xy: 452, 390
+  size: 38, 58
+  orig: 128, 96
+  offset: 89, 6
+  index: -1
+jiangbei_24
+  rotate: false
+  xy: 452, 340
+  size: 30, 48
+  orig: 128, 96
+  offset: 97, 9
+  index: -1
+jiangbei_25
+  rotate: false
+  xy: 311, 182
+  size: 19, 35
+  orig: 128, 96
+  offset: 108, 19
+  index: -1
+qianbei_BG
+  rotate: false
+  xy: 2, 215
+  size: 262, 367
+  orig: 268, 405
+  offset: 3, 36
+  index: -1
+qianbei_jiao01
+  rotate: true
+  xy: 2, 10
+  size: 203, 307
+  orig: 203, 307
+  offset: 0, 0
+  index: -1
+qianbei_jiao02
+  rotate: true
+  xy: 266, 446
+  size: 136, 140
+  orig: 138, 143
+  offset: 0, 0
+  index: -1
+qianbei_pangxie03
+  rotate: false
+  xy: 512, 13
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1

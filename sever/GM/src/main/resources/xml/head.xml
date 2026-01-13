@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<head>
+	<xmlTag tagName="Version" defaultValue="1.0.0"></xmlTag>
+	<xmlTag tagName="Appid" defaultValue="11001"></xmlTag>
+	<xmlTag tagName="HlMerchantId"></xmlTag>
+	<xmlTag tagName="Function"></xmlTag>
+	<xmlTag tagName="ReqTime"></xmlTag>
+	<xmlTag tagName="ReqTimeZone" defaultValue="UTC+8"></xmlTag>
+	<xmlTag tagName="ReqMsgId"></xmlTag>
+    <xmlTag tagName="RsaType"></xmlTag>
+	<xmlTag tagName="Reserve"></xmlTag>
+	<xmlTag tagName="ProviderType" defaultValue="01"></xmlTag>
+	<xmlTag tagName="InputCharset" defaultValue="UTF-8"></xmlTag>
+</head>

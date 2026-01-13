@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!--5.2.12支付结果异步通知<ant.mybank.bkmerchanttrade.prePayNotice> -->
+<body>
+    <xmlTag tagName="ResultStatus"></xmlTag>
+    <xmlTag tagName="ResultCode"></xmlTag>
+    <xmlTag tagName="ResultMsg"></xmlTag>
+</body>

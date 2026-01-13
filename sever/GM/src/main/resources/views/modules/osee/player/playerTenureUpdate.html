@@ -1,0 +1,97 @@
+<% layout('/layouts/default.html', {title: '玩家账变', libs: ['validate']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <div class="box-header with-border">
+            <div class="box-title">
+                <i class="fa fa-cny"></i> <span data-i18n="玩家账变.玩家账变">玩家账变</span>
+            </div>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <form id="inputForm" action="${ctx}/osee/player/tenure/update" method="post" class="form-horizontal">
+            <input type="hidden" name="creator" value="${creator}">
+            <input type="hidden" name="playerId" value="${playerId}">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label class="col-sm-offset-4 col-sm-8">
+                                <span data-i18n="玩家账变.修改玩家">修改玩家</span> ${nickname} <span data-i18n="玩家账变.的账户数据">的账户数据</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" title="">
+                                <span class="required">*</span> <span data-i18n="玩家账变.操作的财产类型：">${text('操作的财产类型')}：</span>
+                            </label>
+                            <div class="col-sm-8">
+                                <#form:select name="tenureType" dictType="osee_item_type" class="form-control required" blankOption="true" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" title="">
+                                <span class="required">*</span> <span data-i18n="玩家账变.操作数量：">${text('操作数量')}：</span>
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="number" name="number" min="1" maxlength="20" required class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" title="">
+                                <span class="required">*</span> <span data-i18n="玩家账变.操作类型：">${text('操作类型')}：</span>
+                            </label>
+                            <div class="col-sm-8">
+                                <#form:radio name="opType" items="${oseePlayerTenureOperationTypeList}" itemLabel="dictLabel" itemValue="dictValue" class="form-control required" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-footer">
+                <div class="row">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <% if (hasPermi('player:edit')){ %>
+                        <button type="submit" class="btn btn-sm btn-primary" id="btnSubmit">
+                            <i class="fa fa-check"></i> <span data-i18n="提交">${text('提 交')}</span>
+                        </button>&nbsp;
+                        <% } %>
+                        <button type="button" class="btn btn-sm btn-default" id="btnCancel"
+                                onclick="js.closeCurrentTabPage()"><i class="fa fa-reply-all"></i> <span data-i18n="关闭">${text('关 闭')}</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<% } %>
+<script>
+    $("#inputForm").validate({
+        submitHandler: function (form) {
+            js.ajaxSubmitForm($(form), function (data) {
+                if (data.result === 'true') {
+                    js.showMessage(data.message);
+                    // js.closeCurrentTabPage(function (contentWindow) {
+                    //     contentWindow.page();
+                    // });
+                } else {
+                    js.showErrorMessage(data.message);
+                }
+            }, 'json');
+        }
+    });
+</script>

@@ -1,0 +1,34 @@
+
+buyudating_baibei.png
+size: 460,460
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+baibei_BG
+  rotate: false
+  xy: 2, 90
+  size: 262, 367
+  orig: 268, 405
+  offset: 3, 36
+  index: -1
+qianbei_shayu01
+  rotate: false
+  xy: 266, 202
+  size: 191, 255
+  orig: 191, 255
+  offset: 0, 0
+  index: -1
+qianbei_shayu02
+  rotate: true
+  xy: 266, 44
+  size: 156, 179
+  orig: 161, 200
+  offset: 5, 16
+  index: -1
+shayu_guang
+  rotate: false
+  xy: 2, 12
+  size: 76, 76
+  orig: 80, 80
+  offset: 2, 2
+  index: -1

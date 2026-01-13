@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!--4.2.14	退款查询<ant.mybank.bkmerchanttrade.refundQuery> -->
+<body>
+<xmlTag tagName="IsvOrgId"></xmlTag>
+<xmlTag tagName="OutRefundNo"></xmlTag>
+    <xmlTag tagName="HlMerchantId"></xmlTag>
+</body>

@@ -1,0 +1,80 @@
+<linker>
+       <assembly fullname="mscorlib">
+               	<type fullname="System.Reflection" preserve="all"/>
+               	<type fullname="System.Security.Cryptography" preserve="all"/>
+				<type fullname="System.Collections" preserve="all"/>
+				<type fullname="System.Collections.Generic" preserve="all"/>
+               	<type fullname="System.Runtime.CompilerServices" preserve="all"/>
+               	<type fullname="System.Runtime.InteropServices" preserve="all"/>
+               	<type fullname="System.Diagnostics" preserve="all"/>
+               	<type fullname="System.Security" preserve="all"/>
+               	<type fullname="System.Security.Permissions" preserve="all"/>
+				<type fullname="System.GC" preserve="all"/>
+				<type fullname="System.Text" preserve="all"/>
+				<type fullname="System.Linq" preserve="all"/>
+       </assembly>
+	  
+	   <assembly fullname="DOTween">
+					<namespace  fullname="DG.Tweening" preserve="all"/>
+					<namespace  fullname="DG.Tweening.DOVirtual" preserve="all"/>
+	  </assembly>	
+	  
+	  <assembly fullname="Assembly-CSharp">
+			<namespace  fullname="GameFramework" preserve="all"/>
+			<namespace  fullname="NetLib" preserve="all"/>
+			<type fullname="Root3D" preserve="all"/>
+			<type fullname="Shaker" preserve="all"/>
+			<type fullname="toggleTwo" preserve="all"/>
+			<type fullname="CSV" preserve="all"/>
+			<type fullname="Amazing" preserve="all"/>
+			<type fullname="paotai" preserve="all"/>
+			<type fullname="ArtNumQuote" preserve="all"/>
+			<type fullname="ArtNum" preserve="all"/>
+			<type fullname="ArtNumSY" preserve="all"/>
+			<type fullname="ArtNumZeng" preserve="all"/>	
+			<type fullname="OperateSkeletonGraphic" preserve="all"/>	
+			<type fullname="PlayBossEvent" preserve="all"/>			
+			<type fullname="GUIMainNetWorkInfo" preserve="all"/>			
+			<type fullname="commonunity" preserve="all"/>	
+			<type fullname="SoundHelper" preserve="all"/>	
+			<type fullname="SoundMgr" preserve="all"/>	
+			<type fullname="UnityFuntion" preserve="all"/>	
+			<type fullname="PerfabsMgr" preserve="all"/>		
+			<type fullname="NetMgr" preserve="all"/>		
+			<type fullname="StartJcUpdate" preserve="all"/>		
+			<type fullname="com.maple.common.lobby.proto" preserve="all"/>	  
+			<type fullname="com.maple.common.login.proto" preserve="all"/>	
+			<type fullname="com.maple.network.proto" preserve="all"/>	
+		    <type fullname="com.maple.game.osee.proto.bairen" preserve="all"/>	
+		    <type fullname="com.maple.game.osee.proto.fightten" preserve="all"/>	
+		    <type fullname="com.maple.game.osee.proto.fishing" preserve="all"/>	
+		    <type fullname="com.maple.game.osee.proto.fruit" preserve="all"/>	
+		    <type fullname="com.maple.game.osee.proto.gobang" preserve="all"/>
+		    <type fullname="com.maple.game.osee.proto.lobby" preserve="all"/>	
+		    <type fullname="com.maple.game.osee.proto" preserve="all"/>	
+		    <type fullname="com.maple.game.osee.proto.agent" preserve="all"/>	
+		    <type fullname="com.maple.game.osee.proto.animals" preserve="all"/>	
+		    <type fullname="com.maple.game.osee.proto.fightten" preserve="all"/>	
+		    <type fullname="com.maple.game.osee.proto.fishing" preserve="all"/>	
+		    <type fullname="com.maple.game.osee.proto" preserve="all"/>	
+		    <type fullname="com.maple.game.osee.proto.goldenpig" preserve="all"/>	
+		    <type fullname="com.maple.network.proto" preserve="all"/>	
+		    <type fullname="com.maple.gamebase.proto" preserve="all"/>	
+			<type fullname="com.maple.game.osee.proto" preserve="all"/>	
+	 </assembly> 
+	
+		      <assembly fullname="UnityEngine"/>			
+			  <assembly fullname="UnityEngine.GameObject" preserve="all"/>
+			  <assembly fullname="UnityEngine.AudioListener" preserve="all"/>
+			  <assembly fullname="UnityEngine.EventSystems.EventSystem" preserve="all"/>
+			  <assembly fullname="UnityEngine.Transform" preserve="all"/>
+			  <assembly fullname="UnityEngine.UI.Button" preserve="all"/>
+			  <assembly fullname="UnityEngine.UI.Text" preserve="all"/>
+			  <assembly fullname="UnityEngine.AnimationClip" preserve="all"/>
+			  <assembly fullname="UnityEngine.Motion" preserve="all"/>		
+			  <assembly fullname="UnityEngine.SceneManagement" preserve="all"/>
+			  <assembly fullname="UnityEngine.UnityWebRequestWWWModule" preserve="all"/>
+			  <assembly fullname="JsonData" preserve="all"/>
+			  <assembly fullname="UnityEngine.Random" preserve="all"/>
+			  <assembly fullname="UnityEngine.PlayerPrefs" preserve="all"/>
+</linker>
